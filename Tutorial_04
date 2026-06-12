@@ -1,0 +1,609 @@
+*******************************************************************************************************************************************************************************************************************
+# Program vs Process
+_____________________
+=> A Program is a passive collection of instructions stored on disk, whereas a Process is an active instance of a program that is currently executing in memory.
+   This is the foundation for everything that comes later:
+
+Process States
+Scheduling
+Threads
+Synchronization
+Deadlocks
+
+If Program vs Process is unclear, the rest of OS becomes difficult.
+
+First Question
+
+When you install Chrome, what actually gets installed?
+
+Answer:
+
+A file gets stored in SSD.
+
+Example:
+
+chrome.exe
+
+This file is called a Program.
+
+What is a Program?
+Definition
+
+A Program is a set of instructions stored on secondary storage (SSD/HDD).
+
+Easy Definition
+
+A Program is a file containing instructions that tell the computer what to do.
+
+Examples
+
+Stored on SSD:
+
+chrome.exe
+spotify.exe
+notepad.exe
+vscode.exe
+
+All of these are programs.
+
+Important Point
+
+A program is passive.
+
+Meaning:
+
+It is doing nothing.
+
+Example
+
+Suppose Chrome is installed.
+
+But you haven't opened it.
+
+chrome.exe
+
+is simply sitting inside SSD.
+
+No CPU usage.
+
+No RAM usage.
+
+No execution.
+
+This is just a Program.
+
+Real-Life Example
+
+Think of a recipe book.
+
+The recipe exists.
+
+But nobody is cooking.
+
+So food is not being prepared.
+
+Recipe Book = Program
+
+What is a Process?
+
+Now you double-click Chrome.
+
+Immediately:
+
+OS loads Chrome into RAM.
+
+CPU starts executing its instructions.
+
+Now Chrome becomes:
+
+Process
+Definition
+
+A Process is a program that is currently being executed.
+
+Easy Definition
+
+A Process is a running instance of a program.
+
+Real-Life Example
+
+Recipe Book = Program
+
+Cooking Food = Process
+
+Another Example:
+
+Movie file stored in SSD = Program
+
+Movie currently playing = Process
+
+Program vs Process Visualization
+
+Before opening Chrome:
+
+SSD
+ └── chrome.exe
+
+Program
+
+After opening Chrome:
+
+SSD
+ └── chrome.exe
+
+RAM
+ └── Chrome Running
+
+Process
+
+What Happens Internally?
+
+You double-click Chrome.
+
+OS performs:
+
+Step 1
+
+Finds:
+
+chrome.exe
+Step 2
+
+Loads code into RAM.
+
+Step 3
+
+Allocates memory.
+
+Step 4
+
+Creates Process Control Block (PCB)
+
+Step 5
+
+Assigns CPU time.
+
+Step 6
+
+Chrome starts running.
+
+Now it is a Process.
+
+Can One Program Create Multiple Processes?
+
+Absolutely.
+
+Example:
+
+Open Chrome.
+
+Open another Chrome window.
+
+Open another Chrome profile.
+
+OS may create multiple processes.
+
+Example:
+
+chrome.exe
+
+One Program
+
+Chrome Process 1
+Chrome Process 2
+Chrome Process 3
+-------------------------------------
+| Program           | Process       |
+| ----------------- | ------------- |
+| Stored in SSD/HDD | Stored in RAM |
+| Passive           | Active        |
+| Not executing     | Executing     |
+| Static            | Dynamic       |
+| No CPU usage      | Uses CPU      |
+| No state          | Has state     |
+|-----------------------------------|
+
+____________________________________________________________
+# Why Does OS Need to Track Processes?
+------------------------------------------------------------
+Suppose:
+
+Running:
+
+Chrome
+VS Code
+Spotify
+WhatsApp
+
+OS must know:
+
+Who is running?
+How much RAM?
+How much CPU?
+Current state?
+Priority?
+
+For this reason OS creates something called:
+
+Process Control Block (PCB)
+What is PCB?
+
+Think of PCB as an ID card for a process.
+
+Every process gets one.
+
+PCB Stores
+Process ID (PID)
+Current State
+CPU Registers
+Memory Information
+Priority
+Open Files
+
+Example:
+
+Chrome Process
+
+PID = 1001
+State = Running
+RAM = 2GB
+Priority = Normal
+
+Stored inside PCB.
+
+Real-Life Example
+
+Student:
+
+Name
+Roll Number
+Branch
+Year
+
+stored in college database.
+
+Topic 5: Process States
+
+Until now, we learned:
+
+Program
+   ↓
+Loaded into RAM
+   ↓
+Process Created
+
+But here's a question:
+
+Does a process start running immediately after being created?
+
+❌ No.
+
+A process goes through several stages (states).
+
+Real-Life Analogy
+
+Imagine you're going to a doctor's clinic.
+
+States:
+
+Entered Clinic
+      ↓
+Waiting in Queue
+      ↓
+Meeting Doctor
+      ↓
+Waiting for Test Report
+      ↓
+Doctor Again
+      ↓
+Going Home
+
+Similarly, a process moves through different states.
+_________________________________________________________________
+
+# The 5 Main Process States
+---------------------------
+New
+ ↓
+Ready
+ ↓
+Running
+ ↓
+Waiting
+ ↓
+Ready
+ ↓
+Running
+ ↓
+Terminated
+
+This diagram is extremely important.
+
+State 1: New
+What happens?
+
+The process has just been created.
+
+OS is preparing it.
+
+Example
+
+You double-click Chrome.
+
+OS starts creating:
+
+PID
+PCB
+Memory structures
+
+At this moment:
+
+Chrome is in:
+
+New State
+Easy Definition
+
+A process that has been created but not yet admitted for execution.
+
+State 2: Ready
+
+Now OS says:
+
+Chrome is ready to run.
+
+But CPU is busy.
+
+Maybe CPU is running:
+
+Spotify
+VS Code
+
+So Chrome must wait.
+
+Ready State
+
+The process has everything except CPU.
+
+Think:
+
+RAM ✓
+Resources ✓
+CPU ✗
+Real-Life Example
+
+You are standing outside an interview room.
+
+Everything is ready.
+
+Only waiting for your turn.
+
+That's Ready State.
+
+State 3: Running
+
+Finally CPU becomes available.
+
+OS Scheduler says:
+
+Chrome, your turn.
+
+CPU starts executing Chrome instructions.
+
+Now Chrome enters:
+
+Running State
+Definition
+
+A process currently executing on CPU.
+
+Important Point
+
+For one CPU core:
+
+Only one process can be in Running state at a time.
+
+Example:
+
+Chrome → Running
+
+VS Code → Ready
+
+Spotify → Ready
+State 4: Waiting (Blocked)
+
+Very important.
+
+Suppose Chrome needs something.
+
+Examples:
+
+File from SSD
+User input
+Network response
+
+CPU cannot help.
+
+So Chrome waits.
+
+Example:
+
+You search:
+
+Operating System Notes
+
+Chrome sends request to Google.
+
+Now Chrome waits for response.
+
+During this waiting period:
+
+Waiting State
+Definition
+
+A process waiting for some event or I/O operation.
+
+Examples
+
+Waiting for:
+
+Keyboard input
+Mouse click
+SSD read
+Internet response
+Printer output
+Why Waiting State Exists?
+
+Imagine Chrome waiting for internet.
+
+Response takes:
+
+200 ms
+
+CPU should not sit idle.
+
+OS gives CPU to another process.
+
+Example:
+
+Chrome → Waiting
+
+Spotify → Running
+
+VS Code → Ready
+
+This improves efficiency.
+
+State 5: Terminated
+
+Process finishes.
+
+OR
+
+User closes application.
+
+Example:
+
+You close Notepad.
+
+OS:
+
+Free RAM
+Destroy PCB
+Release Resources
+
+Process enters:
+
+Terminated State
+Definition
+
+A process that has completed execution.
+
+Full Life Cycle Example
+
+Let's open Chrome.
+
+New
+
+You double-click Chrome.
+
+Process Created
+Ready
+
+Chrome is ready.
+
+Waiting for CPU.
+
+Running
+
+CPU starts executing Chrome.
+
+Waiting
+
+Chrome requests webpage.
+
+Waiting for network response.
+
+Ready
+
+Response received.
+
+Chrome becomes ready again.
+
+Running
+
+CPU executes Chrome again.
+
+Terminated
+
+You close Chrome.
+
+Process ends.
+
+Full Diagram
+           +---------+
+           |  New    |
+           +---------+
+                |
+                v
+           +---------+
+           | Ready   |
+           +---------+
+                |
+                v
+           +---------+
+           | Running |
+           +---------+
+            /      \
+           /        \
+          v          v
+ +---------+     +---------+
+ | Waiting |     |Terminated|
+ +---------+     +---------+
+       |
+       v
+    Ready
+----------------------------------------------------------------
+Practical Example on Your Laptop
+
+Suppose:
+
+You have:
+
+Chrome
+Spotify
+VS Code
+
+Running.
+
+Chrome:
+
+Waiting for webpage.
+
+Waiting
+
+Spotify:
+
+Playing music.
+
+Running
+
+VS Code:
+
+Ready for execution.
+
+Ready
+
+OS continuously moves processes between states.
+------------------------------------------------------------
+Why Process States Matter?
+
+Because the Scheduler uses these states to decide:
+
+Who gets CPU?
+Who should wait?
+Who is blocked?
+Who has finished?
+
+Without states, CPU scheduling would be impossible.
+Process information is stored in PCB.
+Multiple Processes
