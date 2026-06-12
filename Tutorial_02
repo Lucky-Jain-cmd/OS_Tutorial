@@ -72,20 +72,30 @@ Memory Management
 __________________
 
 Problem 3: File Corruption
-
+___________________________
 Imagine two apps writing to the same file.
 
 Without OS:
-
 App A writes
 App B writes
 App A writes
 App B writes
-
 File becomes corrupted.
-
 OS coordinates access.
-
 This is:
-
 File Management
+
+Security Disaster
+Suppose a calculator app decides:
+Let me delete all photos.
+Without OS:
+Nothing stops it.
+OS creates permissions.
+
+Examples:
+Read
+Write
+Execute
+This is:
+Protection & Security
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
