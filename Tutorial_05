@@ -1,0 +1,435 @@
+______________________________________________________________________________________________________________________________________________________________________________________________________________
+# What is a Scheduler?
+______________________
+Simple Definition
+
+A Scheduler is a part of the Operating System that decides:
+
+Which process enters memory?
+Which process gets CPU?
+Which process is removed from memory?
+Real-Life Example
+
+Imagine a railway station.
+
+Thousands of passengers arrive.
+
+Someone must decide:
+
+Who enters the platform?
+Who boards the train?
+Who leaves the station?
+
+That manager is like a Scheduler.
+
+Why Do We Need Schedulers?
+
+Suppose you open:
+
+Chrome
+VS Code
+Spotify
+WhatsApp
+Notepad
+
+All want:
+
+CPU
+RAM
+Resources
+
+at the same time.
+
+OS cannot allow chaos.
+
+Schedulers help organize everything.
+
+Three Types of Schedulers
+
+Classical OS theory defines:
+
+1. Long-Term Scheduler
+2. Short-Term Scheduler
+3. Medium-Term Scheduler
+
+These are extremely common interview questions.
+
+Big Picture
+Programs on SSD
+       ↓
+Long-Term Scheduler
+       ↓
+Ready Queue (RAM)
+       ↓
+Short-Term Scheduler
+       ↓
+CPU
+       ↑
+       ↓
+Medium-Term Scheduler
+1. Long-Term Scheduler
+
+Also called:
+
+Job Scheduler
+Main Work
+
+Decides:
+
+Which programs are allowed to enter RAM?
+
+Remember:
+
+SSD may contain:
+
+Chrome
+VS Code
+Spotify
+Photoshop
+Steam
+Games
+100 more applications
+
+But RAM is limited.
+
+Example:
+
+RAM = 8 GB
+
+All programs cannot be loaded.
+
+So OS decides:
+
+Load Chrome
+Load VS Code
+Load Spotify
+
+Don't load Game yet
+
+This decision is made by:
+
+Long-Term Scheduler
+Real-Life Example
+
+Imagine a college.
+
+10,000 students apply.
+
+College can admit only 500.
+
+Admission committee decides who enters.
+
+Admission Committee = Long-Term Scheduler
+
+Process State Movement
+New
+ ↓
+Ready
+
+Long-Term Scheduler moves processes from:
+
+New → Ready
+Example
+
+You click:
+
+Chrome
+Spotify
+VS Code
+
+OS creates processes.
+
+Long-Term Scheduler decides:
+
+Chrome → Ready
+Spotify → Ready
+VS Code → Ready
+Main Goal
+
+Control:
+
+Degree of Multiprogramming
+What is Degree of Multiprogramming?
+
+Number of processes in memory.
+
+Example:
+
+10 processes in RAM
+
+Degree of Multiprogramming = 10
+
+Long-Term Scheduler controls this number.
+
+Frequency
+
+Runs rarely.
+
+Why?
+
+Because processes don't enter memory every millisecond.
+
+Interview Point
+Long-Term Scheduler
+
+Selects processes from secondary storage and loads them into memory.
+
+2. Short-Term Scheduler
+
+Most Important Scheduler.
+
+Also called:
+
+CPU Scheduler
+Main Work
+
+Decides:
+
+Which Ready Process gets CPU?
+
+Suppose Ready Queue:
+
+Chrome
+VS Code
+Spotify
+WhatsApp
+
+Only one CPU core available.
+
+Who gets CPU?
+
+Short-Term Scheduler decides.
+
+Example
+
+Ready Queue:
+
+Chrome
+VS Code
+Spotify
+
+Scheduler decides:
+
+Chrome → Running
+
+After a few milliseconds:
+
+VS Code → Running
+
+Then:
+
+Spotify → Running
+
+This switching happens thousands of times per second.
+
+Real-Life Example
+
+Doctor's clinic.
+
+Waiting room:
+
+Patient A
+Patient B
+Patient C
+
+Doctor chooses next patient.
+
+Doctor = Short-Term Scheduler
+
+State Transition
+
+Moves process:
+
+Ready → Running
+
+and sometimes:
+
+Running → Ready
+Frequency
+
+Runs extremely often.
+
+Sometimes every few milliseconds.
+
+Interview Point
+Short-Term Scheduler
+
+Selects a process from the Ready Queue and allocates CPU.
+
+3. Medium-Term Scheduler
+
+Most students ignore this one.
+
+Interviewers love asking it.
+
+Main Work
+
+Temporarily removes processes from RAM.
+
+This is called:
+
+Swapping
+Why Needed?
+
+Suppose:
+
+RAM = 8 GB
+
+Processes need:
+
+Chrome = 2 GB
+VS Code = 1 GB
+Game = 5 GB
+Spotify = 1 GB
+
+Total:
+
+9 GB
+
+Problem:
+
+RAM only 8 GB.
+
+OS may decide:
+
+Move Spotify out temporarily
+
+to SSD.
+
+This is:
+
+Swap Out
+
+Later:
+
+Bring Spotify back
+
+This is:
+
+Swap In
+
+Medium-Term Scheduler manages this.
+
+Real-Life Example
+
+Hostel.
+
+Rooms are full.
+
+Warden temporarily shifts some students elsewhere.
+
+When space becomes available:
+
+Students return.
+
+Warden = Medium-Term Scheduler
+
+State Transition
+
+Usually:
+
+Ready ↔ Suspended
+Running ↔ Suspended
+Frequency
+
+Runs occasionally.
+
+More frequent than Long-Term.
+
+Less frequent than Short-Term.
+
+# Comparison Table
+--------------------------------------------------------------------------------
+| Feature      | Long-Term        | Medium-Term              | Short-Term      |
+| ------------ | ---------------- | ------------------------ | --------------- |
+| Also Called  | Job Scheduler    | Swapper                  | CPU Scheduler   |
+| Main Work    | Admit Processes  | Remove/Restore Processes | Allocate CPU    |
+| Works On     | New Processes    | Processes in Memory      | Ready Queue     |
+| Frequency    | Rare             | Occasional               | Very Frequent   |
+| Controls     | Multiprogramming | Memory Pressure          | CPU Usage       |
+| State Change | New → Ready      | Ready ↔ Suspended        | Ready → Running |
+--------------------------------------------------------------------------------
+
+# Complete Story Using Chrome
+
+Suppose laptop starts.
+
+Step 1
+
+You open Chrome.
+
+Process created.
+
+State:
+
+New
+Step 2
+
+Long-Term Scheduler says:
+
+Allow Chrome into RAM
+
+State:
+
+Ready
+Step 3
+
+Short-Term Scheduler says:
+
+Chrome gets CPU
+
+State:
+
+Running
+Step 4
+
+RAM becomes full.
+
+Medium-Term Scheduler says:
+
+Move Spotify out temporarily
+
+State:
+
+Suspended
+Step 5
+
+Memory available again.
+
+Medium-Term Scheduler says:
+
+Bring Spotify back
+
+State:
+
+Ready
+Easy Memory Trick
+
+Imagine a cinema.
+
+Long-Term Scheduler
+
+Security Guard
+
+Who can enter the theatre?
+Short-Term Scheduler
+
+Ticket Checker
+
+Who gets the next seat?
+Medium-Term Scheduler
+
+Manager
+
+Hall full?
+Move some people outside temporarily.
+What Happens in Modern Systems?
+
+In modern Windows, Linux, and macOS:
+
+Short-Term Scheduler is heavily used.
+Medium-Term Scheduler exists through swapping/paging mechanisms.
+Long-Term Scheduler is less visible because process admission is largely automatic.
+
+But in OS theory and interviews, you should still know all three.
+
