@@ -465,3 +465,465 @@ Next Roadmap Topic
 Now a very natural question arises:
 
 👉 If multiple processes are in the Ready state, how does the OS decide which one gets the CPU first?
+---------------------------------------------------------------------------------------------------------
+# Mini Revision (Hindi)
+Long-Term Scheduler (Job Scheduler)
+
+Kaunse processes RAM me aayenge, ye decide karta hai.
+
+Short-Term Scheduler (CPU Scheduler)
+
+Ready queue me se kis process ko CPU milega, ye decide karta hai.
+
+Medium-Term Scheduler (Swapper)
+
+Memory kam hone par process ko temporarily RAM se bahar bhejta hai aur baad me wapas laata hai.
+
+Before Moving to CPU Scheduling Algorithms
+
+One more tiny but very important concept comes in between:
+
+Dispatcher
+
+Because the scheduler only chooses the process.
+
+The Dispatcher actually performs the switch from one process to another on the CPU.
+
+Without understanding Dispatcher, FCFS, SJF, Round Robin become harder to visualize.
+
+
+Excellent. This is exactly the right place to learn Dispatcher.
+
+Most students think:
+
+Scheduler selects a process, and that's it.
+
+But that's not true.
+
+The Scheduler decides, while the Dispatcher executes the decision.
+
+First Understand the Problem
+
+Suppose Ready Queue contains:
+
+Chrome
+VS Code
+Spotify
+
+Short-Term Scheduler decides:
+
+Chrome should run next.
+
+Question:
+
+How does Chrome actually get the CPU?
+
+Who performs the switch?
+
+Answer:
+
+Dispatcher
+Simple Definition
+
+A Dispatcher is the OS component that gives control of the CPU to the process selected by the CPU Scheduler.
+
+One-Line Interview Definition
+
+Dispatcher is the OS module that transfers CPU control to the process chosen by the Short-Term Scheduler.
+
+Real-Life Example
+
+Imagine a railway station.
+
+Scheduler
+
+Decides:
+
+Train Number 101 leaves next.
+
+Decision made.
+
+But train still hasn't moved.
+
+Dispatcher
+
+Actually:
+
+Clears the track
+Gives signal
+Starts movement
+
+Now train moves.
+
+Similarly:
+
+Scheduler
+
+Chooses process.
+
+Dispatcher
+
+Starts execution.
+
+Relationship Between Scheduler and Dispatcher
+Ready Queue
+     ↓
+CPU Scheduler
+     ↓
+Select Process
+     ↓
+Dispatcher
+     ↓
+CPU Executes Process
+Very Important Analogy
+
+Think of a company.
+
+Manager
+
+Chooses employee.
+
+Rahul will do this task.
+Dispatcher
+
+Actually assigns:
+
+Desk
+Computer
+Resources
+
+and tells Rahul:
+
+Start working.
+What Does Dispatcher Actually Do?
+
+When Dispatcher runs, it performs several tasks.
+
+Task 1: Context Switch
+
+Most important responsibility.
+
+Suppose:
+
+Currently running:
+
+Chrome
+
+Now Scheduler chooses:
+
+VS Code
+
+CPU cannot instantly forget Chrome.
+
+Its current state must be saved.
+
+Dispatcher:
+
+Saves Chrome's state
+
+Stores:
+
+Program Counter
+CPU Registers
+Stack Pointer
+
+inside Chrome's PCB.
+
+Then:
+
+Loads VS Code's state
+
+from VS Code's PCB.
+
+This entire operation is:
+
+Context Switching
+What Is Context?
+
+Context means:
+
+The current execution information of a process.
+
+Example:
+
+Current Instruction
+Register Values
+Memory References
+Stack Information
+
+Think:
+
+If Chrome was calculating:
+
+5 + 10 + 20
+
+and had reached:
+
+15 + 20
+
+OS must remember this.
+
+Otherwise computation restarts.
+
+Real-Life Example
+
+You are writing notes.
+
+Teacher says:
+
+Stop.
+
+You mark page number.
+
+Later:
+
+Continue.
+
+You resume exactly where you stopped.
+
+That bookmark is like saved context.
+
+Task 2: Switch CPU Mode
+
+Modern CPUs generally operate in:
+
+User Mode
+
+or
+
+Kernel Mode
+
+When Dispatcher transfers control:
+
+It prepares CPU appropriately.
+
+Example:
+
+OS Work → Kernel Mode
+
+Application Work → User Mode
+
+Dispatcher handles this transition.
+
+Task 3: Jump to Correct Instruction
+
+Suppose VS Code was paused earlier.
+
+Dispatcher loads:
+
+Program Counter = 2500
+
+CPU resumes exactly from instruction 2500.
+
+Not from beginning.
+
+Without Dispatcher:
+
+VS Code would restart every time.
+
+Complete Flow Example
+
+Suppose:
+
+Chrome = Running
+VS Code = Ready
+Spotify = Ready
+Step 1
+
+Timer Interrupt occurs.
+
+OS regains control.
+
+Step 2
+
+Scheduler decides:
+
+VS Code should run.
+Step 3
+
+Dispatcher starts.
+
+Step 4
+
+Save Chrome Context
+
+Registers
+Program Counter
+Stack Pointer
+
+into Chrome PCB.
+
+Step 5
+
+Load VS Code Context
+
+from VS Code PCB.
+
+Step 6
+
+Give CPU to VS Code.
+
+Result:
+
+VS Code = Running
+Chrome = Ready
+Visualization
+Chrome Running
+      ↓
+Scheduler Decision
+      ↓
+Choose VS Code
+      ↓
+Dispatcher
+      ↓
+Save Chrome State
+      ↓
+Load VS Code State
+      ↓
+VS Code Running
+Dispatcher vs Scheduler
+
+This question is asked very frequently.
+
+Scheduler	Dispatcher
+Chooses next process	Gives CPU to chosen process
+Decision Maker	Executor
+Works on scheduling policy	Performs context switch
+Selects process	Starts process execution
+FCFS/SJF/RR logic here	Actual switching happens here
+Easy Memory Trick
+
+Imagine cricket.
+
+Captain (Scheduler)
+
+Decides:
+
+Virat will bat next.
+Umpire/Staff (Dispatcher)
+
+Actually:
+
+Opens gate
+Sends Virat to pitch
+Starts play
+What Is Dispatch Latency?
+
+Very Important Interview Concept.
+
+Definition
+
+Time taken by Dispatcher to stop one process and start another.
+
+Formula:
+
+Dispatch Latency
+=
+Time for Context Switch
++
+Time to Start New Process
+Example
+
+Suppose:
+
+Saving Chrome state:
+
+2 ms
+
+Loading VS Code state:
+
+1 ms
+
+Starting execution:
+
+1 ms
+
+Dispatch Latency:
+
+4 ms
+Why Small Dispatch Latency Is Important?
+
+Because during dispatch:
+
+CPU doing useful work?
+
+No.
+
+CPU is busy switching.
+
+Smaller latency means:
+
+✔ Better performance
+
+✔ Better responsiveness
+
+✔ Faster multitasking
+
+Real-Life Example
+
+Suppose teacher changes classrooms.
+
+If shifting students takes:
+
+20 minutes
+
+Huge waste.
+
+If it takes:
+
+30 seconds
+
+Efficient.
+
+Same idea.
+
+Interview Questions
+Q1. Who selects the next process?
+
+Answer:
+
+Scheduler.
+
+Q2. Who actually transfers CPU control?
+
+Answer:
+
+Dispatcher.
+
+Q3. What is Context Switching?
+
+Answer:
+
+Saving current process state and loading another process state.
+
+Q4. Is Context Switch useful work?
+
+Answer:
+
+No.
+
+It is overhead required for multitasking.
+
+Q5. What is Dispatch Latency?
+
+Answer:
+
+Time taken by the Dispatcher to stop one process and start another.
+
+Complete Big Picture
+Processes in Ready Queue
+            ↓
+      Scheduler
+            ↓
+    Select Process
+            ↓
+      Dispatcher
+            ↓
+ Save Old Context
+            ↓
+ Load New Context
+            ↓
+   Transfer CPU
+            ↓
+      Running
+
