@@ -1,0 +1,91 @@
+******************************************************************************************************************************************************************************************************************
+The Biggest Question :
+If Hardware Exists, Why Can't Applications Directly Use It?
+___________________________________________________________
+
+For example:
+Why can't Chrome directly talk to:
+
+CPU
+RAM
+SSD
+Keyboard
+
+without an OS?
+Imagine No Operating System
+
+You open:
+Chrome
+VS Code
+Spotify
+WhatsApp
+
+All applications want:
+CPU time
+RAM
+Disk access
+at the same time.
+
+Who will decide?
+Nobody.
+Chaos.
+
+Example: One Bathroom, Four People
+Suppose there is:
+1 bathroom
+4 people
+Without management:
+Everyone rushes inside.
+Result:
+Fight.
+
+Computer has similar problem:
+1 CPU
+Many programs
+OS decides:
+
+Chrome -> Wait
+VS Code -> Run
+Spotify -> Wait
+
+This is called:
+CPU Scheduling
+______________
+
+# Problem 2: RAM Conflict
+_________________________
+
+Suppose:
+Chrome stores data at RAM location:
+1000
+Now Spotify also writes:
+1000
+Data gets overwritten.
+Crash.
+OS prevents this.
+
+Example:
+Chrome -> RAM 1000-5000
+Spotify -> RAM 5001-9000
+This is:
+Memory Management
+__________________
+
+Problem 3: File Corruption
+
+Imagine two apps writing to the same file.
+
+Without OS:
+
+App A writes
+App B writes
+App A writes
+App B writes
+
+File becomes corrupted.
+
+OS coordinates access.
+
+This is:
+
+File Management
