@@ -1,0 +1,152 @@
+...............................................................................................................................................................................................................
+What Is Actually Inside an OS?
+
+Major components:
+Operating System
+|
+|-- Process Management
+|-- Memory Management
+|-- File System
+|-- Device Management
+|-- Security
+|-- Scheduler
+These are the main chapters of Operating Systems.
+--------------------------------------------------
+
+Chapter 1: Process Management
+______________________________
+
+Question:
+When Chrome runs, what exactly runs?
+The answer is:
+Process
+Program vs Process
+Program
+A file stored on disk.
+
+Example:
+chrome.exe
+Just sitting in SSD.
+Inactive.
+
+Process
+A program currently executing.
+Example:
+You double-click Chrome.
+Now Chrome becomes:
+Running Process
+
+Easy Example
+Recipe Book = Program
+Cooking Food = Process
+
+Interview Question:
+Difference between Program and Process?
+Answer:
+A program is a passive file stored on disk, whereas a process is an active program in execution.
+-------------------------------------------------------------------------------------------------
+
+Chapter 2: Memory Management
+____________________________
+
+RAM is limited.
+Example:
+Laptop:
+8 GB RAM
+Running:
+Chrome
+VS Code
+Spotify
+WhatsApp
+All need RAM.
+
+OS decides:
+Chrome -> 2 GB
+VS Code -> 1 GB
+Spotify -> 500 MB
+This is Memory Management.
+_____________________________
+
+Chapter 3: File System
+_______________________
+
+Suppose you save:
+OS Notes.pdf
+Where is it stored?
+How is it found later?
+Who manages folders?
+Who manages deletion?
+OS.
+This component is called:
+File System
+Examples:
+NTFS (Windows)
+ext4 (Linux)
+APFS (macOS)
+_______________________
+
+Chapter 4: Device Management
+_____________________________
+
+Devices:
+Keyboard
+Mouse
+Printer
+Webcam
+Speaker
+
+Every device speaks its own language.
+OS communicates with them using:
+Device Drivers
+Example
+You click mouse.
+Mouse
+↓
+Driver
+ ↓
+OS
+ ↓
+Application
+--------------------------------------
+
+Chapter 5: CPU Scheduling
+__________________________
+
+Most Important Interview Topic.
+Question:
+How does one CPU run many applications?
+Actually:
+It doesn't.
+CPU rapidly switches.
+Example:
+Chrome    5 ms
+VS Code   5 ms
+Spotify   5 ms
+Chrome    5 ms
+This switching is so fast that it appears all programs run simultaneously.
+This is called:
+Scheduling
+---------------------------------------------------------------------------
+
+# Kernel
+__________
+
+The Kernel is the core part of the Operating System that directly interacts with hardware and manages system resources.
+
+Diagram:
+User
+ ↓
+Applications
+ ↓
+Operating System
+ ↓
+Kernel
+ ↓
+Hardware
+
+Think:
+
+OS = Entire Company
+Kernel = CEO of the Company
+-----------------------------
+
