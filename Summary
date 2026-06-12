@@ -431,3 +431,37 @@ Power → CPU → BIOS/UEFI → POST → Bootloader → Kernel → Drivers → S
 
 Ye poori process Booting kehlati hai.
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Mini Revision (Hindi)
+New State
+
+Naya process create hua hai.
+
+Ready State
+
+Process CPU ka wait kar raha hai.
+
+Running State
+
+CPU process ko execute kar raha hai.
+
+Waiting State
+
+Process kisi event/I/O ka wait kar raha hai.
+
+Terminated State
+
+Process khatam ho gaya hai.
+
+Interview Answer (30 Seconds)
+
+A process moves through five main states: New, Ready, Running, Waiting (Blocked), and Terminated. 
+A newly created process enters the Ready queue, waits for CPU allocation, executes in the Running state, may move to Waiting for I/O operations,
+returns to Ready after the event completes, and finally enters the Terminated state when execution finishes.
+
+Next Roadmap Topic
+
+Now a very natural question arises:
+
+👉 If multiple processes are in the Ready state, how does the OS decide which one gets the CPU first?
