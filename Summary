@@ -927,3 +927,19 @@ Processes in Ready Queue
             ↓
       Running
 
+Hindi Revision
+Scheduler kya karta hai?
+
+Ye decide karta hai ki agla CPU kis process ko milega.
+
+Dispatcher kya karta hai?
+
+Ye scheduler ke decision ko implement karta hai aur CPU ka control selected process ko deta hai.
+
+Context Switch kya hai?
+
+Ek process ki current state save karna aur dusre process ki state load karna.
+
+Dispatch Latency kya hai?
+
+Ek process ko rok kar dusre process ko start karne me lagne wala time.
