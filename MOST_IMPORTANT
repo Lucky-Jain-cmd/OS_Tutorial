@@ -1,0 +1,318 @@
+🚀 Top 20 Most Important OS Questions – Super Simple Answers (Interview Revision)
+1️⃣ BIOS vs UEFI
+Answer:
+
+BIOS = Old firmware system
+UEFI = Modern firmware system
+
+✅ UEFI is faster
+✅ More secure
+✅ Supports larger disks
+
+Easy Trick
+BIOS = Old
+UEFI = New
+2️⃣ What is POST?
+Answer:
+
+POST = Power-On Self Test
+
+When laptop starts, it checks:
+
+✅ RAM
+✅ CPU
+✅ Keyboard
+✅ Hardware
+
+before loading OS.
+
+Easy Example
+
+Laptop says:
+
+"Sab hardware theek hai ya nahi?"
+
+3️⃣ What is GRUB?
+Answer:
+
+GRUB is a Bootloader in Linux.
+
+Its job:
+
+Find Kernel
+Load Kernel
+Start OS
+Easy Example
+
+GRUB = OS starter
+
+4️⃣ What is PID 1?
+Answer:
+
+PID = Process ID
+
+In Linux:
+
+PID 1 = systemd (or init)
+
+It is the first user-space process started by the kernel.
+
+Easy Example
+
+PID 1 = Boss process
+
+5️⃣ What is fork()?
+Answer:
+
+fork() creates a new child process.
+
+Example
+Parent Process
+       |
+       ↓
+Child Process
+Easy Trick
+fork() = New Process
+6️⃣ What is exec()?
+Answer:
+
+exec() replaces the current program with another program.
+
+Example
+
+Current Process:
+
+Notepad
+
+becomes
+
+Calculator
+
+inside the same process.
+
+Easy Trick
+exec() = Replace Program
+7️⃣ What is a Daemon?
+Answer:
+
+A daemon is a background service.
+
+Examples
+
+✅ Printing service
+✅ Network service
+✅ Logging service
+
+Easy Example
+
+Works silently in background.
+
+8️⃣ What is Cron?
+Answer:
+
+Cron schedules automatic tasks.
+
+Example
+Run backup every day at 10 PM
+Easy Trick
+Cron = Alarm Clock of Linux
+9️⃣ What is /etc/shadow?
+Answer:
+
+Stores user passwords in encrypted/hashed form.
+
+Why?
+
+For security.
+
+Easy Trick
+Password Storage File
+🔟 What is chmod?
+Answer:
+
+Changes file permissions.
+
+Example
+Read
+Write
+Execute
+
+permissions.
+
+Easy Trick
+chmod = Change Mode
+1️⃣1️⃣ What is chown?
+Answer:
+
+Changes file owner.
+
+Example
+
+File owner:
+
+User A
+
+becomes
+
+User B
+Easy Trick
+chown = Change Owner
+1️⃣2️⃣ What is a Hypervisor?
+Answer:
+
+Software that creates and manages Virtual Machines.
+
+Easy Example
+
+One computer runs many virtual computers.
+
+1️⃣3️⃣ VM vs Container
+Answer:
+VM	Container
+Has full OS	Shares host OS
+Heavy	Lightweight
+Slower	Faster
+Easy Trick
+VM = Full House
+Container = One Room
+1️⃣4️⃣ What is Docker?
+Answer:
+
+Docker is a platform for creating and running containers.
+
+Easy Example
+
+Package app + dependencies together.
+
+1️⃣5️⃣ What is Kubernetes?
+Answer:
+
+Kubernetes manages many containers automatically.
+
+Easy Example
+
+Docker creates containers.
+
+Kubernetes manages thousands of them.
+
+Easy Trick
+Docker = Builder
+Kubernetes = Manager
+1️⃣6️⃣ What is a System Call?
+Answer:
+
+A request from a program to the Operating System.
+
+Example
+
+Program wants:
+
+Open File
+Create Process
+Read Data
+
+Uses system call.
+
+Easy Trick
+System Call = Talking to OS
+1️⃣7️⃣ Kernel Mode vs User Mode
+Answer:
+Kernel Mode	User Mode
+Full Access	Limited Access
+OS runs here	Applications run here
+Easy Example
+Kernel Mode = Admin
+User Mode = Guest
+1️⃣8️⃣ Monolithic vs Microkernel
+Monolithic Kernel
+
+Most services inside kernel.
+
+Example:
+
+Linux
+
+Microkernel
+
+Only essential services inside kernel.
+
+Example:
+
+MINIX
+
+Easy Trick
+Monolithic = Big Kernel
+Microkernel = Small Kernel
+1️⃣9️⃣ Why is Android based on Linux?
+Answer:
+
+Android uses the Linux kernel for:
+
+✅ Process management
+✅ Memory management
+✅ Security
+✅ Drivers
+
+Easy Trick
+Android = Linux Kernel + Android Framework
+2️⃣0️⃣ NTFS vs ext4
+NTFS
+
+Used in:
+
+Microsoft Windows
+
+ext4
+
+Used in:
+
+Linux
+
+Easy Trick
+Windows → NTFS
+Linux → ext4
+🎯 Ultimate 20-Line Revision
+BIOS = Old Firmware
+UEFI = Modern Firmware
+
+POST = Hardware Check
+
+GRUB = Linux Bootloader
+
+PID 1 = systemd/init
+
+fork() = Create Child Process
+
+exec() = Replace Program
+
+Daemon = Background Service
+
+Cron = Task Scheduler
+
+/etc/shadow = Password File
+
+chmod = Change Permissions
+
+chown = Change Owner
+
+Hypervisor = Creates VMs
+
+VM = Full Virtual Computer
+
+Container = Lightweight Virtualization
+
+Docker = Container Platform
+
+Kubernetes = Container Manager
+
+System Call = Request to OS
+
+Kernel Mode = Full Access
+User Mode = Limited Access
+
+Linux = Monolithic Kernel
+
+Android = Linux Kernel
+
+Windows = NTFS
+Linux = ext4
