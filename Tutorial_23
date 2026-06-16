@@ -1,0 +1,366 @@
+Deadlock Avoidance
+
+Before this, we studied:
+
+Deadlock Prevention
+
+which says:
+
+"Don't allow deadlock conditions to happen."
+
+But prevention is often too strict.
+
+So OS designers asked:
+
+Can we allow processes to request resources normally, but intelligently avoid dangerous situations?
+
+Answer:
+
+Deadlock Avoidance
+Core Idea
+
+Imagine driving a car.
+
+Prevention says:
+
+Never drive on roads where accidents can happen.
+
+Very restrictive.
+
+Avoidance says:
+
+Drive normally,
+but don't enter dangerous situations.
+
+Much smarter.
+
+Definition
+
+Deadlock Avoidance is a strategy in which the OS analyzes resource requests and grants them only if the system remains in a safe state.
+
+The Most Important Concept
+
+Everything in avoidance revolves around:
+
+Safe State
+
+and
+
+Unsafe State
+What is a Safe State?
+
+A state where there exists at least one order of process execution such that every process can finish successfully.
+
+Easy Definition
+
+A safe state means:
+
+The system can still complete all processes.
+
+No deadlock will occur.
+
+Real-Life Example
+
+Imagine:
+
+You have:
+
+₹1000
+
+in your wallet.
+
+Your friends may ask:
+
+Friend A → ₹200
+Friend B → ₹300
+Friend C → ₹400
+
+You can satisfy everyone.
+
+Safe.
+
+Unsafe State
+
+Unsafe does NOT mean deadlock has already happened.
+
+This is extremely important.
+
+Many students think:
+
+Unsafe State = Deadlock
+
+Wrong.
+
+Correct relationship:
+
+Safe State
+      ↓
+Unsafe State
+      ↓
+Deadlock
+
+Meaning:
+
+Safe ≠ Deadlock
+
+Unsafe ≠ Deadlock
+
+But Deadlock can arise from Unsafe State.
+Analogy
+
+Suppose:
+
+You have:
+
+₹1000
+
+You lend:
+
+₹900
+
+to someone.
+
+Only:
+
+₹100
+
+left.
+
+Nothing bad has happened yet.
+
+But now you are in danger.
+
+This is:
+
+Unsafe State
+Safe Sequence
+
+The most important term in Deadlock Avoidance.
+
+A Safe Sequence is:
+
+An order in which all processes can complete.
+
+Example:
+
+P1
+↓
+P3
+↓
+P2
+↓
+P4
+
+If all can finish in that order:
+
+Safe Sequence Exists
+
+Then:
+
+Safe State
+Example of Safe State
+
+Available resources:
+
+10
+
+Processes:
+
+P1 needs 3
+P2 needs 4
+P3 needs 2
+
+OS can schedule:
+
+P3 finishes
+↓
+returns resources
+
+P1 finishes
+↓
+returns resources
+
+P2 finishes
+
+Safe sequence exists.
+
+Safe state.
+
+Example of Unsafe State
+
+Suppose:
+
+Available resources:
+
+1
+
+Processes:
+
+P1 needs 2
+P2 needs 3
+P3 needs 4
+
+Nobody can finish.
+
+System enters risky territory.
+
+Unsafe.
+
+Key Difference
+Safe State	Unsafe State
+Safe sequence exists	No guaranteed safe sequence
+Deadlock impossible	Deadlock possible
+OS grants request	OS may deny request
+How OS Avoids Deadlock
+
+Whenever a process requests a resource:
+
+OS asks:
+
+"If I grant this request,
+will system remain safe?"
+
+If:
+
+YES
+
+Grant request.
+
+If:
+
+NO
+
+Make process wait.
+
+This is Deadlock Avoidance.
+
+Real-Life Example
+
+Bank Manager.
+
+Suppose bank has:
+
+₹1 Crore
+
+Customers request loans.
+
+Bank doesn't blindly approve.
+
+Bank checks:
+
+Can I still satisfy all customers later?
+
+If yes:
+
+Loan Approved
+
+If no:
+
+Loan Denied
+
+This is exactly why the next algorithm is called:
+
+Banker's Algorithm
+
+Designed by Edsger W. Dijkstra.
+
+Difference: Prevention vs Avoidance
+Prevention	Avoidance
+Break Coffman conditions	Keep Coffman conditions
+Very restrictive	More flexible
+Simple	More complex
+Lower utilization	Better utilization
+Deadlock impossible	Deadlock avoided intelligently
+Prevention Example
+
+Rule:
+
+Request all resources at once.
+
+Problem:
+
+Resources may sit idle.
+
+Avoidance Example
+
+Rule:
+
+Request when needed.
+
+OS checks safety first.
+
+Better utilization.
+
+Requirements for Deadlock Avoidance
+
+OS must know in advance:
+
+Maximum Resource Need
+
+Example:
+
+P1 may need at most 10 units.
+
+OS needs this information before allocation.
+
+Without it:
+
+Avoidance impossible.
+Advantages
+Better Resource Utilization
+
+Resources aren't unnecessarily reserved.
+
+More Concurrency
+
+Processes run more freely.
+
+Deadlocks Avoided
+
+Without excessive restrictions.
+
+Disadvantages
+Complex
+
+Lots of calculations.
+
+Need Maximum Resource Information
+
+Programs must declare needs beforehand.
+
+Not Practical Everywhere
+
+Modern general-purpose OSes rarely use full avoidance.
+
+Interview Questions
+Q1. What is Deadlock Avoidance?
+
+Answer:
+
+A strategy that grants resource requests only if the resulting state remains safe.
+
+Q2. What is a Safe State?
+
+Answer:
+
+A state in which a safe sequence exists and all processes can complete.
+
+Q3. What is an Unsafe State?
+
+Answer:
+
+A state where no guaranteed safe sequence exists and deadlock may occur.
+
+Q4. Is Unsafe State equal to Deadlock?
+
+Answer:
+
+No.
+
+Unsafe state only means deadlock is possible.
+
+Q5. What is a Safe Sequence?
+
+Answer:
+
+An order of process execution in which every process can complete successfully.
