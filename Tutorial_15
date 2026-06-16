@@ -1,0 +1,513 @@
+Semaphore
+
+This is one of the most frequently asked OS interview topics.
+
+First Understand Why Mutex Is Not Enough
+
+Suppose we have:
+
+1 Bathroom
+
+Only one person can enter.
+
+Mutex works perfectly.
+
+But suppose we have:
+
+5 Parking Slots
+
+Question:
+
+Should only one car enter?
+
+No
+
+Up to 5 cars can park simultaneously.
+
+Mutex cannot model this efficiently.
+
+We need something that can allow:
+
+1 person
+2 people
+5 people
+10 people
+
+depending on availability.
+
+Solution: Semaphore
+Definition
+
+A Semaphore is a synchronization mechanism that controls access to a shared resource using a counter.
+
+Easy Definition
+
+Think of a semaphore as:
+
+A Counter + Rules
+
+Example:
+
+Available Slots = 5
+
+Each entry reduces count.
+
+Each exit increases count.
+
+Real-Life Example: Parking Lot
+
+Parking capacity:
+
+5 Cars
+
+Initially:
+
+Semaphore = 5
+
+Car 1 enters:
+
+Semaphore = 4
+
+Car 2 enters:
+
+Semaphore = 3
+
+Eventually:
+
+Semaphore = 0
+
+Lot Full.
+
+Next car must wait.
+
+A car exits:
+
+Semaphore = 1
+
+Now one waiting car can enter.
+
+Core Idea
+
+Semaphore stores:
+
+Number of Available Resources
+Two Operations
+
+Every semaphore uses only two fundamental operations:
+
+wait()
+
+Also called:
+
+P()
+down()
+acquire()
+
+Meaning:
+
+I want a resource.
+
+Operation:
+
+Count--
+
+If count becomes unavailable:
+
+Wait
+signal()
+
+Also called:
+
+V()
+up()
+release()
+
+Meaning:
+
+I am returning a resource.
+
+Operation:
+
+Count++
+
+If threads are waiting:
+
+Wake one.
+
+Visualization
+wait()
+   ↓
+Use Resource
+   ↓
+signal()
+Example
+
+Semaphore value:
+
+3
+
+Thread A:
+
+wait()
+
+Value:
+
+2
+
+Thread B:
+
+wait()
+
+Value:
+
+1
+
+Thread C:
+
+wait()
+
+Value:
+
+0
+
+Thread D:
+
+wait()
+
+Must wait.
+
+Until someone executes:
+
+signal()
+Types of Semaphores
+
+Very Important Interview Question.
+
+There are two major types.
+
+1. Binary Semaphore
+
+Only values:
+
+0
+1
+
+allowed.
+
+Think:
+
+Yes / No
+Open / Closed
+Locked / Unlocked
+
+Example:
+
+Semaphore = 1
+
+One thread enters.
+
+Value becomes:
+
+0
+
+Others wait.
+
+Looks similar to Mutex.
+
+But there is an important difference.
+
+2. Counting Semaphore
+
+Can have values:
+
+0
+1
+2
+3
+4
+5
+...
+
+Example:
+
+Semaphore = 5
+
+Allows:
+
+5 threads
+
+simultaneously.
+
+Binary Semaphore Example
+
+Printer:
+
+Only One Printer
+
+Semaphore:
+
+1
+
+Thread A prints.
+
+Value becomes:
+
+0
+
+Thread B waits.
+
+Counting Semaphore Example
+
+Swimming Pool:
+
+Capacity:
+
+50 People
+
+Semaphore:
+
+50
+
+Each entry:
+
+wait()
+
+Each exit:
+
+signal()
+Semaphore Internals
+
+Imagine:
+
+Semaphore = 2
+
+Thread A:
+
+wait()
+
+Value:
+
+1
+
+Thread B:
+
+wait()
+
+Value:
+
+0
+
+Thread C:
+
+wait()
+
+No resources.
+
+Blocked.
+
+Thread A finishes:
+
+signal()
+
+Value becomes:
+
+1
+
+Thread C wakes up.
+
+Semaphore vs Mutex
+
+Most Important Interview Question.
+
+Feature	Mutex	Semaphore
+Ownership	Yes	No
+Counter	No	Yes
+Values	Locked/Unlocked	Any Integer
+Purpose	Mutual Exclusion	Resource Management
+Unlock By	Owner Only	Any Thread
+Ownership Difference
+
+Suppose:
+
+Thread A locks Mutex.
+
+Thread A
+
+must unlock it.
+
+But in Semaphore:
+
+Thread A wait()
+Thread B signal()
+
+Allowed.
+
+This is the biggest conceptual difference.
+
+Why Semaphore Is Powerful
+
+Mutex:
+
+Allows 1
+
+Semaphore:
+
+Allows N
+
+Much more flexible.
+
+Producer Consumer Problem
+
+Classic Interview Problem.
+
+Buffer size:
+
+5
+
+Producer:
+
+Creates Data
+
+Consumer:
+
+Consumes Data
+
+Need semaphores to ensure:
+
+Buffer not Full
+Buffer not Empty
+Reader Writer Problem
+
+Readers:
+
+Read Data
+
+Writer:
+
+Modify Data
+
+Semaphores coordinate access.
+
+Dining Philosophers
+
+Five philosophers.
+
+Need forks.
+
+Semaphores help control resource access.
+
+Common Mistakes
+Forgetting signal()
+
+Example:
+
+wait()
+
+but never:
+
+signal()
+
+Result:
+
+Everyone waits forever.
+
+Wrong Initialization
+
+Example:
+
+Semaphore = 0
+
+instead of:
+
+Semaphore = 5
+
+Can block everything.
+
+Advantages
+Flexible
+
+Can manage multiple resources.
+
+Prevents Race Conditions
+
+When used correctly.
+
+Widely Used
+
+Used in:
+
+Linux
+Windows
+Databases
+Web Servers
+Disadvantages
+Harder Than Mutex
+
+More chances of mistakes.
+
+Deadlocks Possible
+
+Incorrect use can freeze system.
+
+Starvation Possible
+
+Some threads may wait too long.
+
+Interview Questions
+Q1. What is Semaphore?
+
+Answer:
+
+A synchronization mechanism that controls access to resources using a counter.
+
+Q2. What Are the Two Operations?
+
+Answer:
+
+wait()
+signal()
+Q3. Types of Semaphore?
+
+Answer:
+
+Binary Semaphore
+Counting Semaphore
+Q4. Difference Between Mutex and Semaphore?
+
+Answer:
+
+Mutex has ownership and allows one thread; semaphore is a counter-based mechanism and can allow multiple threads.
+
+Q5. What Is Counting Semaphore?
+
+Answer:
+
+A semaphore whose value can be greater than one and represents multiple available resources.
+
+Hindi Revision
+Semaphore kya hai?
+
+Ek counter-based synchronization mechanism jo shared resources ko control karta hai.
+
+wait() kya karta hai?
+Resource leta hai
+Count kam karta hai
+signal() kya karta hai?
+Resource return karta hai
+Count badhata hai
+Binary Semaphore
+0 ya 1
+Counting Semaphore
+0,1,2,3,4...
+Mutex vs Semaphore
+Mutex = Lock
+
+Semaphore = Counter
+Roadmap Status
+
+✅ Process Synchronization
+✅ Critical Section
+✅ Race Condition
+✅ Mutual Exclusion
+✅ Mutex
+✅ Semaphore
