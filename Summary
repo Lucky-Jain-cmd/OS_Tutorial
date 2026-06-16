@@ -1582,3 +1582,33 @@ No
 ✅ Second Chance
 ✅ Clock Algorithm
 ✅ Belady's Anomaly
+
+File kya hai?
+Data store karne ka container.
+File System kya hai?
+OS ka mechanism jo files ko
+store aur organize karta hai.
+Directory kya hai?
+Folder
+Root Directory kya hai?
+Sabse top-level directory.
+Absolute Path?
+Root se poora path.
+Relative Path?
+Current location se path.
+🎯 Roadmap Status
+
+✅ Process Management
+✅ CPU Scheduling
+✅ Synchronization
+✅ Deadlocks
+✅ Memory Management
+✅ Paging
+✅ Segmentation
+✅ Virtual Memory
+✅ Page Replacement Algorithms
+✅ File Basics
+✅ File Attributes
+✅ File Operations
+✅ Directory Structures
+✅ Absolute & Relative Paths
