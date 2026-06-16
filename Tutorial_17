@@ -1,0 +1,585 @@
+Producer–Consumer Problem
+
+This problem appears everywhere:
+
+Operating Systems
+Databases
+Message Queues
+Kafka
+RabbitMQ
+Network Buffers
+Streaming Platforms
+Banking Systems
+
+If you understand this problem deeply, many real-world systems become easy to understand.
+
+First Understand the Story
+
+Imagine a bakery.
+
+Baker
+
+Produces bread.
+
+Bread
+Bread
+Bread
+Bread
+Customer
+
+Consumes bread.
+
+Take Bread
+Take Bread
+Take Bread
+
+Between them is a shelf.
+
++-------+
+| Shelf |
++-------+
+
+This shelf stores bread temporarily.
+
+In OS terminology:
+
+Baker      = Producer
+Customer   = Consumer
+Shelf      = Buffer
+What Is a Producer?
+
+Producer creates data.
+
+Examples:
+
+Keyboard
+
+Produces:
+
+A
+B
+C
+Camera
+
+Produces:
+
+Images
+Microphone
+
+Produces:
+
+Audio Data
+Network Card
+
+Produces:
+
+Packets
+What Is a Consumer?
+
+Consumer uses data.
+
+Examples:
+
+Text Editor
+
+Consumes keyboard input.
+
+Gallery App
+
+Consumes images.
+
+Music Player
+
+Consumes audio data.
+
+Browser
+
+Consumes network packets.
+
+Buffer
+
+Producer and consumer rarely work at the same speed.
+
+So we need temporary storage.
+
+Called:
+
+Buffer
+
+Example:
+
+Producer
+     ↓
+ Buffer
+     ↓
+Consumer
+Why Is Buffer Needed?
+
+Suppose producer generates:
+
+100 items/sec
+
+Consumer processes:
+
+80 items/sec
+
+Without a buffer:
+
+Data may be lost.
+
+Buffer absorbs the difference.
+
+Real-Life Example
+
+Water Tank.
+
+Motor
+  ↓
+Tank
+  ↓
+Tap
+
+Motor = Producer
+
+Tap = Consumer
+
+Tank = Buffer
+
+The Core Problem
+
+Suppose buffer size:
+
+5
+
+Initially:
+
+[ ]
+
+Empty.
+
+Producer adds:
+
+[A]
+
+Then:
+
+[A B]
+
+Then:
+
+[A B C]
+
+Eventually:
+
+[A B C D E]
+
+Full.
+
+Question:
+
+What happens if producer tries to add another item?
+
+Problem 1: Buffer Full
+
+Buffer:
+
+[A B C D E]
+
+Full.
+
+Producer wants to add:
+
+F
+
+No space.
+
+Producer must wait.
+
+Problem 2: Buffer Empty
+
+Buffer:
+
+[ ]
+
+Empty.
+
+Consumer wants data.
+
+Nothing available.
+
+Consumer must wait.
+
+Therefore We Need Two Rules
+Rule 1
+
+If buffer is full:
+
+Producer waits.
+Rule 2
+
+If buffer is empty:
+
+Consumer waits.
+
+This is the Producer–Consumer Problem.
+
+Visualization
+Producer
+    ↓
+ Buffer
+    ↓
+Consumer
+
+Producer:
+
+Adds Data
+
+Consumer:
+
+Removes Data
+
+Need synchronization.
+
+Another Problem: Race Condition
+
+Suppose:
+
+Buffer contains:
+
+[A B C]
+
+Producer:
+
+Insert D
+
+Consumer:
+
+Remove A
+
+Both access buffer simultaneously.
+
+Data may become corrupted.
+
+Need:
+
+Mutual Exclusion
+Requirements
+
+Producer–Consumer requires:
+
+Mutual Exclusion
+
+Only one thread accesses buffer at a time.
+
+Synchronization
+
+Producer waits if full.
+
+Consumer waits if empty.
+
+Semaphore Solution
+
+Classic interview solution.
+
+We use:
+
+Mutex
+
+Protects buffer.
+
+Empty Semaphore
+
+Counts empty slots.
+
+Full Semaphore
+
+Counts filled slots.
+
+Example
+
+Buffer size:
+
+5
+
+Initially:
+
+empty = 5
+full = 0
+mutex = 1
+
+Meaning:
+
+5 Empty Slots
+0 Filled Slots
+Buffer Unlocked
+Producer Flow
+
+Before inserting:
+
+wait(empty)
+
+Check for free space.
+
+Then:
+
+wait(mutex)
+
+Lock buffer.
+
+Insert item.
+
+Then:
+
+signal(mutex)
+
+Unlock buffer.
+
+Then:
+
+signal(full)
+
+One more item available.
+
+Visualization:
+
+wait(empty)
+wait(mutex)
+
+Insert Item
+
+signal(mutex)
+signal(full)
+Consumer Flow
+
+Before removing:
+
+wait(full)
+
+Need data available.
+
+Then:
+
+wait(mutex)
+
+Lock buffer.
+
+Remove item.
+
+Then:
+
+signal(mutex)
+
+Unlock.
+
+Then:
+
+signal(empty)
+
+Free one slot.
+
+Visualization:
+
+wait(full)
+wait(mutex)
+
+Remove Item
+
+signal(mutex)
+signal(empty)
+Example Walkthrough
+
+Buffer Size:
+
+5
+
+Initial:
+
+empty = 5
+full = 0
+
+Producer adds item.
+
+Result:
+
+empty = 4
+full = 1
+
+Producer adds second item.
+
+empty = 3
+full = 2
+
+Eventually:
+
+empty = 0
+full = 5
+
+Buffer Full.
+
+Next producer:
+
+wait(empty)
+
+Blocked.
+
+Consumer removes one item.
+
+Now:
+
+empty = 1
+full = 4
+
+Producer wakes.
+
+System works correctly.
+
+Real Operating System Examples
+Keyboard Buffer
+
+You type:
+
+A
+B
+C
+D
+
+Keyboard produces data.
+
+OS stores keys in buffer.
+
+Application consumes them later.
+
+Producer:
+
+Keyboard
+
+Consumer:
+
+Text Editor
+Audio Streaming
+
+Producer:
+
+Network
+
+Consumer:
+
+Music Player
+
+Buffer prevents interruptions.
+
+YouTube
+
+Producer:
+
+Internet Download
+
+Buffer:
+
+Video Cache
+
+Consumer:
+
+Video Player
+
+That's why you see:
+
+Buffering...
+
+sometimes.
+
+Printer Queue
+
+Producer:
+
+Applications
+
+Buffer:
+
+Print Queue
+
+Consumer:
+
+Printer
+Why Is This Problem Important?
+
+It teaches:
+
+Synchronization
+Mutex
+Semaphores
+Buffers
+Queues
+Interprocess Communication
+
+Almost every modern system uses this idea.
+
+Common Interview Questions
+Q1. What is Producer–Consumer Problem?
+
+Answer:
+
+A synchronization problem where producers generate data and consumers use it through a shared buffer.
+
+Q2. What happens when buffer is full?
+
+Answer:
+
+Producer waits.
+
+Q3. What happens when buffer is empty?
+
+Answer:
+
+Consumer waits.
+
+Q4. Which semaphores are used?
+
+Answer:
+
+mutex
+empty
+full
+Q5. Why is mutex needed?
+
+Answer:
+
+To prevent race conditions while accessing the shared buffer.
+
+Hindi Revision
+Producer kaun hai?
+
+Data banane wala.
+
+Examples:
+
+Keyboard
+Camera
+Network Card
+Consumer kaun hai?
+
+Data use karne wala.
+
+Examples:
+
+Browser
+Music Player
+Text Editor
+Buffer kya hai?
+
+Temporary storage area.
+
+Buffer Full?
+Producer Wait
+Buffer Empty?
+Consumer Wait
+Synchronization ke liye kya use karte hain?
+Mutex
+Semaphore
+Roadmap Status
+
+✅ Mutex
+✅ Semaphore
+✅ Monitor
+✅ Condition Variables
+✅ Producer–Consumer Problem
