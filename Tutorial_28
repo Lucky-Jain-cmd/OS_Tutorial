@@ -1,0 +1,589 @@
+Contiguous Memory Allocation
+
+Welcome to the first practical memory allocation technique in Operating Systems.
+
+After learning:
+
+RAM
+MMU
+Logical Address
+Physical Address
+Address Binding
+
+Now the question is:
+
+How does OS actually place processes inside RAM?
+
+Answer:
+
+Contiguous Memory Allocation
+🧠 What Does Contiguous Mean?
+
+Contiguous means:
+
+Continuous
+Adjacent
+Without Gaps
+
+Example:
+
+Contiguous memory:
+
+100
+101
+102
+103
+104
+105
+
+Non-Contiguous memory:
+
+100
+101
+500
+501
+900
+901
+Definition
+
+In Contiguous Memory Allocation, each process gets one continuous block of memory.
+
+Example:
+
+RAM
+
++----------------+
+|      P1        |
++----------------+
+|      P2        |
++----------------+
+|      P3        |
++----------------+
+
+Each process occupies one continuous region.
+
+🏠 Real-Life Analogy
+
+Imagine a train.
+
+Contiguous allocation:
+
+Seat 10
+Seat 11
+Seat 12
+Seat 13
+
+All together.
+
+Non-contiguous allocation:
+
+Seat 10
+Seat 50
+Seat 100
+Seat 200
+
+Scattered.
+
+Why Was It Used?
+
+Early computers had:
+
+Very little RAM
+Simple hardware
+
+Contiguous allocation was:
+
+Easy
+Fast
+Simple
+Types of Contiguous Allocation
+
+Two major types:
+
+1. Fixed Partitioning
+2. Variable Partitioning
+🔹 Fixed Partitioning
+
+RAM is divided beforehand into fixed-size partitions.
+
+Example:
+
+RAM = 1000 MB
+
+Partitions:
+
+250 MB
+250 MB
+250 MB
+250 MB
+
+Visualization:
+
++---------+
+| Part 1  |
++---------+
+| Part 2  |
++---------+
+| Part 3  |
++---------+
+| Part 4  |
++---------+
+Example
+
+Suppose:
+
+P1 = 200 MB
+P2 = 150 MB
+P3 = 100 MB
+
+Each gets one partition.
+
+Looks good.
+
+Problem
+
+Suppose:
+
+Partition = 250 MB
+
+Process = 100 MB
+
+Used:
+
+100 MB
+
+Unused:
+
+150 MB
+
+This unused memory cannot be used by others.
+
+Internal Fragmentation
+Definition
+
+Unused space inside an allocated partition.
+
+Example:
+
+Partition = 250 MB
+Process = 100 MB
+
+Wasted:
+
+150 MB
+
+Visualization:
+
++------------------+
+| Process 100 MB   |
+|------------------|
+| Waste 150 MB     |
++------------------+
+Easy Memory Trick
+Internal
+=
+Inside allocated block
+Real-Life Example
+
+You book:
+
+4-seater table
+
+but only:
+
+2 people arrive
+
+Empty seats are:
+
+Internal Fragmentation
+Advantages of Fixed Partitioning
+
+✅ Very Simple
+
+✅ Easy Implementation
+
+✅ Fast Allocation
+
+Disadvantages
+
+❌ Internal Fragmentation
+
+❌ Limited Number of Processes
+
+❌ Poor Memory Utilization
+
+🔹 Variable Partitioning
+
+To solve waste, OS creates partitions dynamically.
+
+Instead of:
+
+250 MB fixed partition
+
+OS allocates exactly what process needs.
+
+Example:
+
+P1 = 100 MB
+P2 = 200 MB
+P3 = 300 MB
+
+RAM:
+
++----------+
+| P1 100MB |
++----------+
+| P2 200MB |
++----------+
+| P3 300MB |
++----------+
+
+Much less waste.
+
+Problem Appears Again 😈
+
+Suppose:
+
+P2 finishes
+
+Memory becomes:
+
++----------+
+| P1       |
++----------+
+| 200 MB   |
+| FREE     |
++----------+
+| P3       |
++----------+
+
+Now another process arrives:
+
+P4 = 250 MB
+
+Question:
+
+Can P4 fit?
+
+No
+
+Even if total free memory elsewhere is enough.
+
+External Fragmentation
+Definition
+
+Free memory exists but is scattered into small holes.
+
+Visualization:
+
++---------+
+| P1      |
++---------+
+| Free    |
++---------+
+| P2      |
++---------+
+| Free    |
++---------+
+| P3      |
++---------+
+
+Total free memory:
+
+400 MB
+
+Largest hole:
+
+150 MB
+
+Process needs:
+
+300 MB
+
+Cannot fit.
+
+This is:
+
+External Fragmentation
+Easy Memory Trick
+External
+=
+Outside processes
+=
+Free holes
+Internal vs External Fragmentation
+Internal	External
+Waste inside allocated block	Waste outside as holes
+Fixed partitioning	Variable partitioning
+Memory allocated but unused	Memory free but unusable
+Interview Trick Question
+
+Suppose:
+
+Partition = 500 MB
+Process = 300 MB
+
+Unused:
+
+200 MB
+
+Which fragmentation?
+
+Answer:
+
+Internal Fragmentation
+
+Suppose:
+
+100 MB free
+150 MB free
+200 MB free
+
+Total:
+
+450 MB
+
+Process needs:
+
+300 MB contiguous
+
+Cannot fit.
+
+Answer:
+
+External Fragmentation
+🧹 Compaction
+
+Solution to External Fragmentation.
+
+Idea:
+
+Move processes together.
+
+Before:
+
+P1
+FREE
+P2
+FREE
+P3
+
+After:
+
+P1
+P2
+P3
+FREE FREE
+
+Visualization:
+
+Before:
+
++----+
+|P1  |
++----+
+|Free|
++----+
+|P2  |
++----+
+|Free|
++----+
+|P3  |
++----+
+
+After:
+
++----+
+|P1  |
++----+
+|P2  |
++----+
+|P3  |
++----+
+|FREE|
+|FREE|
++----+
+
+Now one large block exists.
+
+Problem with Compaction
+
+Moving processes costs:
+
+CPU Time
+Memory Operations
+Overhead
+
+Therefore:
+
+Compaction is expensive.
+
+Memory Allocation Strategies
+
+Suppose free holes:
+
+100 MB
+500 MB
+200 MB
+300 MB
+
+Process needs:
+
+180 MB
+
+Where should OS place it?
+
+Three famous algorithms answer this.
+
+1️⃣ First Fit
+
+Take the first hole large enough.
+
+Example:
+
+100 MB ❌
+
+500 MB ✅
+
+Allocate here.
+
+Result:
+
+Fastest
+Advantage
+
+✅ Very Fast
+
+Disadvantage
+
+❌ Creates fragmentation over time.
+
+2️⃣ Best Fit
+
+Choose the smallest hole that can fit.
+
+Example:
+
+100 MB ❌
+
+500 MB
+
+200 MB ✅
+
+300 MB
+
+Choose:
+
+200 MB
+
+because it wastes least memory.
+
+Advantage
+
+✅ Less immediate waste
+
+Disadvantage
+
+❌ Must search entire list
+
+❌ Slower
+
+3️⃣ Worst Fit
+
+Choose the largest hole.
+
+Example:
+
+100 MB
+
+500 MB ✅
+
+200 MB
+
+300 MB
+
+Choose:
+
+500 MB
+
+Idea:
+
+Leave larger leftover pieces.
+
+Advantage
+
+✅ Large leftover holes remain
+
+Disadvantage
+
+❌ Usually poor utilization
+
+Comparison
+Algorithm	Strategy
+First Fit	First suitable hole
+Best Fit	Smallest suitable hole
+Worst Fit	Largest hole
+Which One Is Used Most?
+
+Generally:
+
+First Fit
+
+because:
+
+Simple
+Fast
+Good Performance
+Complete Memory Allocation Flow
+Process Arrives
+       ↓
+Need Memory
+       ↓
+Find Hole
+       ↓
+Allocate
+       ↓
+Process Ends
+       ↓
+Memory Freed
+       ↓
+Fragmentation Appears
+       ↓
+Compaction (if needed)
+🎯 Interview Questions
+Q1. What is Contiguous Memory Allocation?
+
+Answer:
+
+A memory allocation technique where each process occupies one continuous block of memory.
+
+Q2. What is Fixed Partitioning?
+
+Answer:
+
+RAM is divided into fixed-size partitions before execution.
+
+Q3. What is Internal Fragmentation?
+
+Answer:
+
+Unused memory inside an allocated partition.
+
+Q4. What is External Fragmentation?
+
+Answer:
+
+Free memory exists but is scattered into small holes.
+
+Q5. What is Compaction?
+
+Answer:
+
+Combining scattered free memory into one large block.
+
+Q6. Difference between First Fit and Best Fit?
+
+Answer:
+
+First Fit → first suitable hole.
+Best Fit → smallest suitable hole.
