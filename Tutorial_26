@@ -1,0 +1,435 @@
+Deadlock Recovery
+
+Now we have reached the final part of the Deadlock chapter.
+
+So far:
+
+Deadlock Occurs
+       ↓
+Deadlock Detected
+       ↓
+Deadlock Recovery ← We are here
+First Understand the Problem
+
+Suppose OS detects:
+
+P1 ↔ P2
+
+Deadlock exists.
+
+Question:
+
+How do we break it?
+
+Because:
+
+Detection ≠ Solution
+
+Detection only says:
+
+"Boss, deadlock mil gaya!"
+
+Now OS must recover.
+
+What is Deadlock Recovery?
+Definition
+
+Deadlock Recovery is the process of removing deadlocked processes from a deadlock state and restoring normal system operation.
+
+Easy Definition
+Deadlock mil gaya
+        ↓
+Usko todna hai
+        ↓
+Recovery
+Main Recovery Techniques
+
+There are three major techniques:
+
+1. Process Termination
+2. Resource Preemption
+3. Rollback
+Method 1: Process Termination
+
+The simplest method.
+
+Imagine:
+
+P1 holds Printer
+Needs Scanner
+
+P2 holds Scanner
+Needs Printer
+
+Deadlock.
+
+OS can do:
+
+Kill P1
+
+Then:
+
+Printer Released
+
+P2 gets Printer.
+
+Deadlock removed.
+
+Two Ways of Termination
+Option A: Kill All Deadlocked Processes
+
+Example:
+
+Kill P1
+Kill P2
+Kill P3
+
+Advantage:
+
+Fast
+Simple
+
+Disadvantage:
+
+Huge Loss
+
+All work lost.
+
+Example
+
+Imagine:
+
+10-hour simulation
+
+running.
+
+Killed.
+
+All progress gone.
+
+Option B: Kill One Process at a Time
+
+Choose:
+
+Victim Process
+
+Terminate it.
+
+Check again.
+
+If deadlock remains:
+
+Kill another.
+
+Continue until deadlock disappears.
+
+Advantage:
+
+Less work lost.
+
+Disadvantage:
+
+Slower.
+Victim Selection
+
+Interview favorite.
+
+Question:
+
+Which process should be killed?
+
+OS considers:
+
+1. Priority
+
+Low-priority process preferred.
+
+2. Resources Used
+
+Process using fewer resources preferred.
+
+3. Execution Time
+
+Process that has run less time preferred.
+
+4. Remaining Time
+
+Process closest to completion usually spared.
+
+5. User Importance
+
+Critical process should survive.
+
+Example
+
+Suppose:
+
+P1 = Database Server
+
+P2 = Calculator App
+
+Which one should die?
+
+P2
+
+Obviously.
+
+Method 2: Resource Preemption
+
+Instead of killing processes:
+
+Take resources away.
+
+Example:
+
+Printer → P1
+Scanner → P2
+
+Deadlock.
+
+OS does:
+
+Take Printer from P1
+
+Give it to:
+
+P2
+
+P2 finishes.
+
+Releases Scanner.
+
+P1 continues.
+
+Deadlock solved.
+
+Problem
+
+Can every resource be preempted?
+
+Answer:
+
+No
+Easy Example
+
+Can you take away:
+
+Half-printed paper?
+
+Not easily.
+
+Can you take away:
+
+CPU Time
+
+Yes.
+
+Can you take away:
+
+Memory Pages
+
+Usually yes.
+
+Therefore:
+
+Resource preemption works best for:
+
+CPU
+Memory
+Virtual Resources
+
+Not ideal for:
+
+Printers
+Tape Drives
+Physical Devices
+Starvation Problem
+
+Suppose OS always chooses:
+
+P1
+
+as victim.
+
+Result:
+
+P1 repeatedly loses resources.
+
+P1 may never finish.
+
+This becomes:
+
+Starvation
+Method 3: Rollback
+
+One of the smartest methods.
+
+Idea
+
+Return process to an earlier safe state.
+
+Think:
+
+Undo
+
+button.
+
+Checkpoint
+
+OS periodically saves process state.
+
+Called:
+
+Checkpoint
+
+Example:
+
+Time 1 → Save
+Time 2 → Save
+Time 3 → Save
+
+Deadlock occurs at:
+
+Time 4
+
+OS restores:
+
+Time 3 checkpoint
+
+Deadlock removed.
+
+Visualization
+Start
+  ↓
+Checkpoint A
+  ↓
+Checkpoint B
+  ↓
+Checkpoint C
+  ↓
+Deadlock
+  ↓
+Rollback to B
+Real Example
+
+Database transaction:
+
+Transfer ₹1000
+
+Deadlock occurs.
+
+Database restores previous consistent state.
+
+Retry transaction.
+
+This is rollback.
+
+Advantages
+Less Work Lost
+
+Better than killing process.
+
+Safe
+
+System returns to known good state.
+
+Disadvantages
+Need Checkpoints
+
+Extra storage required.
+
+Checkpoint Overhead
+
+Saving state costs time.
+
+Comparison of Recovery Methods
+Method	Idea
+Termination	Kill process
+Preemption	Take resources
+Rollback	Return to earlier state
+Which Method Is Best?
+
+Depends on system.
+
+Databases
+
+Often use:
+
+Rollback
+Operating Systems
+
+Often use:
+
+Termination
+Memory Systems
+
+Often use:
+
+Preemption
+Complete Deadlock Handling Flow
+Process Requests Resources
+            ↓
+Deadlock Occurs
+            ↓
+Deadlock Detection
+            ↓
+Deadlock Recovery
+     ↙      ↓      ↘
+Termination
+Preemption
+Rollback
+Real-Life Analogy
+
+Imagine 3 friends fighting over chairs.
+
+Deadlock.
+
+Solution 1:
+
+Kick one friend out.
+
+(Termination)
+
+Solution 2:
+
+Take chair away and reassign.
+
+(Preemption)
+
+Solution 3:
+
+Reset game to previous round.
+
+(Rollback)
+
+Interview Questions
+Q1. What is Deadlock Recovery?
+
+Answer:
+
+The process of removing a deadlock after it has been detected.
+
+Q2. Main Recovery Methods?
+
+Answer:
+
+Process Termination
+Resource Preemption
+Rollback
+Q3. What is a Victim Process?
+
+Answer:
+
+The process selected for termination or resource removal to break a deadlock.
+
+Q4. What is Rollback?
+
+Answer:
+
+Returning a process/system to a previously saved checkpoint.
+
+Q5. What is Checkpoint?
+
+Answer:
+
+A saved state of a process that can be restored later.
