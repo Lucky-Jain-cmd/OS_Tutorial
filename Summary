@@ -1299,3 +1299,27 @@ Roadmap Status
 ✅ Safe State
 ✅ Unsafe State
 ✅ Safe Sequence
+
+Banker's Algorithm kya karta hai?
+
+OS resource dene se pehle check karta hai ki system safe rahega ya nahi.
+
+Need ka formula?
+Safe Sequence kya hai?
+
+Processes ko complete karne ka aisa order jisme sab finish ho jayein.
+
+Selection Rule?
+Unsafe State = Deadlock?
+Nahi.
+
+Unsafe state sirf warning hai ki future mein deadlock ho sakta hai.
+
+Roadmap Status
+
+✅ Deadlock Prevention
+✅ Deadlock Avoidance
+✅ Safe State / Unsafe State
+✅ Banker's Algorithm
+✅ Safety Algorithm
+✅ Resource Request Algorithm
