@@ -1,0 +1,535 @@
+CPU Scheduling Algorithms (Deep Dive)
+
+This is one of the most important OS interview topics because it answers:
+
+When multiple processes are waiting for the CPU, who gets the CPU first?
+
+Why Do We Need CPU Scheduling?
+
+Suppose Ready Queue contains:
+
+Chrome
+VS Code
+Spotify
+Notepad
+
+CPU can execute only one process per core at a time.
+
+Question:
+
+Who should run first?
+
+OS needs a decision-making mechanism.
+
+That mechanism is:
+
+CPU Scheduling
+Definition
+
+CPU Scheduling is the process of selecting a process from the Ready Queue and allocating the CPU to it.
+
+Real-Life Example
+
+Imagine a doctor.
+
+Patients arrive:
+
+Patient A
+Patient B
+Patient C
+Patient D
+
+Doctor can examine only one patient at a time.
+
+A rule is needed.
+
+Examples:
+
+First Come First Serve
+Emergency First
+Shortest Treatment First
+
+These are like scheduling algorithms.
+
+Goals of CPU Scheduling
+
+A good scheduler tries to:
+
+Maximize CPU Utilization
+
+Keep CPU busy.
+
+Maximize Throughput
+
+Complete more processes per unit time.
+
+Minimize Waiting Time
+
+Reduce time spent in Ready Queue.
+
+Minimize Turnaround Time
+
+Reduce total completion time.
+
+Improve Response Time
+
+Important for interactive systems.
+
+Important Terms First
+
+Before algorithms, learn these.
+
+Arrival Time (AT)
+
+Time when process enters Ready Queue.
+
+Example:
+
+Process	Arrival Time
+P1	0
+P2	2
+P3	4
+Burst Time (BT)
+
+CPU time required.
+
+Example:
+
+Process	Burst Time
+P1	5 ms
+P2	3 ms
+P3	2 ms
+Completion Time (CT)
+
+Time when process finishes.
+
+Turnaround Time (TAT)
+
+Formula:
+
+Meaning:
+
+Total time process spent in system.
+
+Waiting Time (WT)
+
+Formula:
+
+Meaning:
+
+Time spent waiting in Ready Queue.
+
+Response Time (RT)
+
+Time from arrival until first CPU allocation.
+
+Types of Scheduling
+
+Two major categories.
+
+1. Non-Preemptive Scheduling
+
+Once CPU is given:
+
+Process keeps CPU
+until completion or blocking.
+
+OS cannot forcibly take CPU away.
+
+Example:
+
+You start speaking in class.
+
+Teacher lets you finish.
+
+Algorithms:
+
+FCFS
+Non-Preemptive SJF
+Non-Preemptive Priority
+2. Preemptive Scheduling
+
+OS can take CPU away.
+
+Example:
+
+Teacher says:
+
+Your 5 minutes are over.
+Next student.
+
+Algorithms:
+
+Round Robin
+SRTF
+Preemptive Priority
+Algorithm 1: FCFS (First Come First Serve)
+
+Simplest scheduling algorithm.
+
+Rule
+
+Process arriving first gets CPU first.
+
+Example:
+
+Process	Burst
+P1	5
+P2	3
+P3	2
+
+Arrival order:
+
+P1 → P2 → P3
+
+Gantt Chart:
+
+0-----5---8--10
+| P1 |P2|P3|
+
+Completion Times
+
+Process	CT
+P1	5
+P2	8
+P3	10
+
+Advantages
+
+✔ Simple
+
+✔ Easy to implement
+
+Disadvantages
+
+✖ Convoy Effect
+
+Convoy Effect
+
+Suppose:
+
+Process	Burst
+P1	100
+P2	2
+P3	1
+
+FCFS:
+
+P1 first
+
+Result:
+
+Small processes wait behind giant process.
+
+Inefficient.
+
+Algorithm 2: SJF (Shortest Job First)
+
+Very important interview topic.
+
+Rule
+
+Shortest Burst Time executes first.
+
+Example:
+
+Process	Burst
+P1	8
+P2	4
+P3	2
+
+Execution:
+
+P3 → P2 → P1
+
+Gantt:
+
+0--2----6--------14
+ P3 P2      P1
+
+Advantage
+
+✔ Minimum average waiting time (theoretically optimal among non-preemptive algorithms)
+
+Disadvantage
+
+✖ Difficult to know future burst time.
+
+Algorithm 3: SRTF
+
+Shortest Remaining Time First
+
+Preemptive version of SJF.
+
+Rule:
+
+Process with shortest remaining CPU time runs.
+
+Example:
+
+P1 starts.
+
+Suddenly:
+
+Shorter process arrives.
+
+CPU switches immediately.
+
+This uses:
+
+Timer Interrupt
+Context Switching
+
+which you learned earlier.
+
+Algorithm 4: Priority Scheduling
+
+Each process receives a priority.
+
+Example:
+
+Process	Priority
+P1	1
+P2	3
+P3	5
+
+Assume:
+
+Lower number = Higher priority
+
+Execution:
+
+P1 → P2 → P3
+
+Real-Life Example
+
+Hospital:
+
+Heart Attack Patient
+Cold Patient
+Checkup Patient
+
+Emergency first.
+
+Problem: Starvation
+
+Low-priority process may wait forever.
+
+Example:
+
+Every time:
+
+Higher priority process arrives.
+
+Low-priority process never gets CPU.
+
+Solution: Aging
+
+Increase priority gradually.
+
+Example:
+
+Waiting 10 minutes
+Priority increases
+
+Eventually process runs.
+
+Algorithm 5: Round Robin (RR)
+
+Most important for interviews and real OS.
+
+Used in:
+
+Time-sharing systems
+Interactive systems
+
+Rule
+
+Every process gets a fixed:
+
+Time Quantum
+
+Example:
+
+Quantum = 4 ms
+
+Processes:
+
+Process	Burst
+P1	10
+P2	5
+P3	8
+
+Execution:
+
+P1 (4)
+P2 (4)
+P3 (4)
+P1 (4)
+P2 (1)
+P3 (4)
+P1 (2)
+
+Like sharing turns in a game.
+
+Advantages
+
+✔ Fair
+
+✔ Good response time
+
+✔ Interactive systems
+
+Disadvantages
+
+Too many context switches if quantum is very small.
+
+Time Quantum Selection
+
+Very Important Interview Question.
+
+Small Quantum
+
+More Context Switching
+Higher Overhead
+
+Large Quantum
+
+Behaves like FCFS
+
+Need balance.
+
+Algorithm 6: Multilevel Queue Scheduling
+
+Processes divided into queues.
+
+Example:
+
+System Processes
+Interactive Processes
+Batch Processes
+
+Each queue has its own algorithm.
+
+Example:
+
+System Queue → Priority
+User Queue → Round Robin
+Algorithm 7: Multilevel Feedback Queue
+
+Most advanced classical scheduler.
+
+Processes can move between queues.
+
+Example:
+
+Queue 1 → Highest Priority
+Queue 2 → Medium Priority
+Queue 3 → Lowest Priority
+
+CPU-Hungry Process
+
+moves downward.
+
+Interactive Process
+
+stays near top.
+
+Provides:
+
+✔ Flexibility
+
+✔ Good response time
+
+✔ Reduced starvation
+
+Comparison Table
+Algorithm	Preemptive	Main Idea
+FCFS	No	Arrival Order
+SJF	No	Shortest Job
+SRTF	Yes	Shortest Remaining Time
+Priority	Both	Highest Priority
+Round Robin	Yes	Time Quantum
+Multilevel Queue	Both	Multiple Queues
+MLFQ	Yes	Dynamic Queues
+Which Algorithms Are Used Today?
+
+Modern OS rarely use pure FCFS or pure SJF.
+
+Systems like:
+
+Linux
+Windows
+macOS
+
+use sophisticated schedulers inspired by:
+
+Priority Scheduling
+Round Robin
+Multilevel Feedback Queues
+Interview Favorites
+
+Most commonly asked:
+
+FCFS
+
+Advantages & Convoy Effect
+
+SJF
+
+Why optimal?
+
+SRTF
+
+Difference from SJF?
+
+Round Robin
+
+What is Time Quantum?
+
+Priority Scheduling
+
+What is Starvation?
+
+What is Aging?
+
+Difference
+
+FCFS vs Round Robin
+
+SJF vs SRTF
+
+Priority vs Round Robin
+
+Hindi Revision
+CPU Scheduling kya hai?
+
+Ready Queue me se process select karke CPU dena.
+
+FCFS
+
+Jo pehle aaye, woh pehle chale.
+
+SJF
+
+Sabse chhota burst time pehle.
+
+SRTF
+
+Sabse kam remaining time wala process pehle.
+
+Priority Scheduling
+
+Highest priority process pehle.
+
+Round Robin
+
+Har process ko fixed time quantum milta hai.
+
+Starvation
+
+Koi process bahut der tak CPU na paaye.
+
+Aging
+
+Waiting process ki priority badhana.
