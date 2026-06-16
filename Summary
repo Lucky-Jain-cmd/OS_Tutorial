@@ -987,3 +987,41 @@ Special-purpose devices me use hota hai.
 Mobile OS
 
 Smartphones ke liye design kiya jata hai.
+
+
+User Mode
+
+Applications yahan run karti hain.
+
+Examples:
+
+Chrome
+VS Code
+Spotify
+
+Restrictions hoti hain.
+
+Hardware ko directly access nahi kar sakti.
+
+Kernel Mode
+
+OS kernel yahan run karta hai.
+
+Full permissions hoti hain.
+
+CPU, RAM, SSD, drivers sab manage kar sakta hai.
+
+System Call kya karta hai?
+User Mode
+      ↓
+Kernel Mode
+      ↓
+OS Service
+      ↓
+User Mode
+Golden Interview Line
+
+User Mode provides a restricted execution environment for applications, while Kernel Mode provides privileged access to hardware and critical system resources.
+System calls act as the bridge between the two modes.
+
+Next Topic (11)
