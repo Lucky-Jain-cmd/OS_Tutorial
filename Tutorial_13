@@ -1,0 +1,502 @@
+Process Synchronization
+
+This topic answers a very important question:
+
+What happens when multiple processes or threads try to access the same data at the same time?
+
+First Understand the Problem
+
+Suppose a bank account contains:
+
+Balance = ₹1000
+
+Two ATM transactions happen simultaneously.
+
+Thread 1
+
+Withdraw:
+
+₹100
+Thread 2
+
+Withdraw:
+
+₹100
+
+Expected Balance:
+
+1000 - 100 - 100
+= ₹800
+
+But something strange can happen.
+
+What Actually Happens?
+
+Thread 1 reads:
+
+Balance = 1000
+
+Before Thread 1 updates it,
+
+Thread 2 also reads:
+
+Balance = 1000
+
+Thread 1 writes:
+
+Balance = 900
+
+Thread 2 writes:
+
+Balance = 900
+
+Final Balance:
+
+₹900
+
+Wrong!
+
+Expected:
+
+₹800
+Why Did This Happen?
+
+Because both threads accessed shared data simultaneously.
+
+This problem is called:
+
+Race Condition
+Race Condition
+Definition
+
+A race condition occurs when multiple processes or threads access and modify shared data simultaneously, causing unpredictable results.
+
+Easy Definition
+
+The result depends on:
+
+Who executes first?
+Who executes faster?
+
+Hence the name:
+
+Race
+Real-Life Example
+
+Imagine a whiteboard.
+
+Current value:
+
+10
+
+Rahul and Mohit both see:
+
+10
+
+Rahul adds:
+
++5
+
+writes:
+
+15
+
+Mohit adds:
+
++3
+
+writes:
+
+13
+
+Expected:
+
+18
+
+Actual:
+
+13
+
+Wrong result.
+
+Shared Data
+
+Race conditions happen when threads share:
+
+Variables
+Memory
+Files
+Databases
+Critical Section
+
+Most Important Synchronization Concept.
+
+Suppose code:
+
+balance = balance - 100;
+
+looks like one statement.
+
+Actually CPU performs:
+
+Read balance
+Modify balance
+Write balance
+
+This part accesses shared data.
+
+Called:
+
+Critical Section
+Definition
+
+A critical section is a part of a program where shared resources are accessed.
+
+Example:
+
+balance = balance - 100;
+
+Critical section.
+
+Why Is Critical Section Dangerous?
+
+Because multiple threads entering simultaneously can corrupt data.
+
+Example:
+
+Thread 1 enters
+Thread 2 enters
+
+at the same time.
+
+Data becomes inconsistent.
+
+Goal of Synchronization
+
+Ensure:
+
+Only one thread/process
+enters critical section
+at a time.
+Critical Section Problem
+
+OS designers wanted:
+
+Mutual Exclusion
+
+Only one thread in critical section.
+
+Progress
+
+If nobody is inside, someone should be allowed to enter.
+
+Bounded Waiting
+
+Nobody should wait forever.
+
+These three conditions form the famous:
+
+Critical Section Requirements
+1. Mutual Exclusion
+
+Most important.
+
+Rule:
+
+At most one thread
+inside critical section.
+
+Example:
+
+Bathroom with one lock.
+
+If Rahul enters:
+
+Mohit waits.
+2. Progress
+
+If critical section is empty:
+
+Someone should be allowed in.
+
+Bad system:
+
+Nobody inside
+Everyone waiting
+
+Makes no sense.
+
+3. Bounded Waiting
+
+A thread should not wait forever.
+
+Example:
+
+Rahul keeps entering.
+
+Mohit never gets chance.
+
+Bad system.
+
+Visualization
+Thread 1
+     |
+     |
+Critical Section
+     |
+     |
+Thread 2
+
+Synchronization ensures:
+
+Only One At A Time
+Why Synchronization Is Needed?
+
+Without synchronization:
+
+Banking Errors
+
+Wrong balances.
+
+Database Corruption
+
+Incorrect records.
+
+File Corruption
+
+Two processes writing simultaneously.
+
+Operating System Failure
+
+Shared kernel data corrupted.
+
+Producer-Consumer Example
+
+Classic Interview Problem.
+
+Producer:
+
+Creates Data
+
+Consumer:
+
+Uses Data
+
+Shared Buffer:
+
+[ ]
+
+Problems:
+
+Buffer Full
+
+Producer must wait.
+
+Buffer Empty
+
+Consumer must wait.
+
+Synchronization required.
+
+Reader-Writer Example
+
+Another famous problem.
+
+Readers:
+
+Only Read Data
+
+Writers:
+
+Modify Data
+
+Multiple readers can read together.
+
+But writer needs exclusive access.
+
+Dining Philosophers Problem
+
+Very famous interview question.
+
+Five philosophers sit around a table.
+
+Need two forks to eat.
+
+Possible issue:
+
+Everyone picks left fork.
+
+Nobody gets right fork.
+
+System gets stuck.
+
+This introduces:
+
+Deadlock
+
+which we'll study later.
+
+Software Solutions (Historical)
+
+Early synchronization used algorithms like:
+
+Peterson's Algorithm
+
+Two-process synchronization algorithm.
+
+Interview concept.
+
+Rarely used practically today.
+
+Hardware Solutions
+
+Modern CPUs provide atomic instructions.
+
+Examples:
+
+Test-and-Set
+Compare-and-Swap
+
+Used to build locks.
+
+Synchronization Tools
+
+OS provides mechanisms.
+
+Mutex
+
+Mutual Exclusion Lock.
+
+Think:
+
+Room Lock
+
+If locked:
+
+Others Wait
+Semaphore
+
+General synchronization tool.
+
+Can allow:
+
+1 thread
+2 threads
+5 threads
+
+depending on value.
+
+Monitor
+
+High-level synchronization construct.
+
+Often used in programming languages.
+
+We'll study these separately because they are huge topics themselves.
+
+Process Synchronization vs Scheduling
+
+Students confuse these.
+
+Scheduling
+
+Question:
+
+Who gets CPU?
+Synchronization
+
+Question:
+
+Who gets shared resource?
+
+Different problems.
+
+Real Example From Chrome
+
+Suppose:
+
+Thread A:
+
+Download File
+
+Thread B:
+
+Show Download Progress
+
+Both access:
+
+downloadPercentage
+
+shared variable.
+
+Without synchronization:
+
+Wrong values may appear.
+
+Real Example From Banking
+
+Thread A:
+
+Deposit ₹500
+
+Thread B:
+
+Withdraw ₹200
+
+Same account balance.
+
+Need synchronization.
+
+Interview Questions
+Q1. What is Process Synchronization?
+
+Answer:
+
+Coordinating processes/threads so shared data remains consistent.
+
+Q2. What is Race Condition?
+
+Answer:
+
+When multiple threads access shared data simultaneously causing unpredictable results.
+
+Q3. What is Critical Section?
+
+Answer:
+
+Code section where shared resources are accessed.
+
+Q4. What is Mutual Exclusion?
+
+Answer:
+
+Only one thread/process may enter critical section at a time.
+
+Q5. Why Is Synchronization Needed?
+
+Answer:
+
+To prevent data inconsistency and race conditions.
+
+Hindi Revision
+Synchronization kya hai?
+
+Processes aur threads ko coordinate karna taaki shared data safe rahe.
+
+Race Condition kya hai?
+
+Jab multiple threads ek hi data ko ek saath modify karte hain aur result unpredictable ho jata hai.
+
+Critical Section kya hai?
+
+Program ka woh hissa jo shared resource access karta hai.
+
+Mutual Exclusion kya hai?
+
+Ek time par sirf ek thread critical section me enter kare.
+
+Synchronization Tools
+Mutex
+Semaphore
+Monitor
+Locks
