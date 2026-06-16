@@ -1,0 +1,545 @@
+Page Replacement Algorithms
+
+This is one of the most important interview, placement, and GATE topics in Operating Systems.
+
+🤔 Why Do We Need Page Replacement?
+
+Suppose RAM has only:
+
+3 Frames
+
+Current pages in RAM:
+
+1
+2
+3
+
+Now CPU needs:
+
+Page 4
+
+But RAM is full.
+
+Question:
+
+Which page should be removed?
+
+This decision is made by:
+
+Page Replacement Algorithms
+📖 Definition
+
+A Page Replacement Algorithm decides which page should be removed from RAM when a new page needs to be loaded and memory is full.
+
+Real-Life Analogy 🏠
+
+Imagine:
+
+Bookshelf Capacity = 3 Books
+
+Current books:
+
+Math
+Physics
+Chemistry
+
+Need:
+
+Biology
+
+Shelf is full.
+
+You must remove one book.
+
+Question:
+
+Which one?
+
+Different strategies give different answers.
+
+Goal of Every Algorithm
+Minimize Page Faults
+
+because:
+
+More Page Faults
+       ↓
+More Disk Access
+       ↓
+Slower System
+1️⃣ FIFO (First In First Out)
+
+Most basic algorithm.
+
+Idea
+
+Remove the oldest page.
+
+First Entered
+      ↓
+First Removed
+Example
+
+Frames = 3
+
+Reference String:
+
+1 2 3 4
+
+Step 1:
+
+1
+
+Fault
+
+Step 2:
+
+1 2
+
+Fault
+
+Step 3:
+
+1 2 3
+
+Fault
+
+Step 4:
+
+Need:
+
+4
+
+RAM full.
+
+Oldest page:
+
+1
+
+Remove:
+
+1
+
+Load:
+
+4
+
+Result:
+
+2 3 4
+
+Fault
+
+FIFO Visualization
+
+Queue:
+
+Front → Oldest
+Rear  → Newest
+Advantage
+
+✅ Very Easy
+
+Disadvantage
+
+❌ Can remove frequently used pages.
+
+Example Problem
+
+Reference String:
+
+1 2 3 1 2 4
+
+FIFO may remove:
+
+1
+
+even though it will be needed again.
+
+2️⃣ Optimal Page Replacement (OPT)
+
+Theoretical best algorithm.
+
+Idea
+
+Remove the page that will not be used for the longest time in the future.
+
+Example:
+
+Frames:
+
+1 2 3
+
+Need:
+
+4
+
+Future references:
+
+2 4 1 2 5
+
+Check future:
+
+1 → used soon
+
+2 → used soon
+
+3 → never used
+
+Remove:
+
+3
+
+Best choice.
+
+Why Important?
+
+Provides:
+
+Minimum Possible Page Faults
+
+Used as benchmark.
+
+Disadvantage
+
+❌ Future cannot be known in real systems.
+
+Therefore:
+
+Ideal
+Not Practical
+3️⃣ LRU (Least Recently Used)
+
+Most famous interview algorithm.
+
+Idea
+
+Remove the page that has not been used for the longest time in the past.
+
+Logic:
+
+Used recently
+      ↓
+Likely needed again
+
+Example
+
+Frames:
+
+1 2 3
+
+Recent usage:
+
+1 → just used
+
+2 → used recently
+
+3 → long ago
+
+Remove:
+
+3
+Real-Life Analogy
+
+Study Table:
+
+Books:
+
+Math
+Physics
+Chemistry
+
+You used:
+
+Math today
+
+Physics yesterday
+
+Chemistry 1 month ago
+
+Need space.
+
+Remove:
+
+Chemistry
+
+Exactly LRU.
+
+Advantage
+
+✅ Usually very good performance
+
+Disadvantage
+
+❌ Must track recent usage
+
+❌ Extra overhead
+
+FIFO vs LRU Example
+
+Pages:
+
+1 2 3 4
+
+FIFO removes:
+
+Oldest
+
+LRU removes:
+
+Least Recently Used
+
+LRU is usually smarter.
+
+4️⃣ Second Chance Algorithm
+
+Improved FIFO.
+
+Problem with FIFO:
+
+Can remove useful pages.
+
+Solution:
+
+Give pages a second chance.
+
+Each page gets:
+
+Reference Bit
+
+Values:
+
+0 → Not recently used
+
+1 → Recently used
+
+When FIFO wants to remove page:
+
+Check bit.
+
+If:
+
+Bit = 0
+
+Remove page.
+
+If:
+
+Bit = 1
+
+Don't remove.
+
+Set:
+
+Bit = 0
+
+Give another chance.
+
+Move page to back.
+
+Hence:
+
+Second Chance
+Advantage
+
+✅ Better than FIFO
+
+5️⃣ Clock Algorithm
+
+Most practical implementation of Second Chance.
+
+Visualization:
+
+       1
+    /     \
+   2       3
+   |       |
+   5       4
+
+Pages arranged like a clock.
+
+Clock Hand moves.
+
+Checks:
+
+Reference Bit
+
+If:
+
+0
+
+Replace page.
+
+If:
+
+1
+
+Change to:
+
+0
+
+Move ahead.
+
+Very common in OS implementations.
+
+🎯 Belady's Anomaly
+
+Extremely Important Interview Question.
+
+Definition
+
+Increasing the number of frames sometimes increases page faults.
+
+Sounds impossible.
+
+But happens in FIFO.
+
+Example
+
+FIFO
+
+Frames:
+
+3
+
+Page Faults:
+
+9
+
+Increase Frames:
+
+4
+
+Page Faults:
+
+10
+
+More memory.
+
+More faults.
+
+😲
+
+This strange phenomenon is:
+
+Belady's Anomaly
+
+Named after László Bélády
+
+Which Algorithms Suffer?
+FIFO
+
+✅ Yes
+
+LRU
+
+❌ No
+
+Optimal
+
+❌ No
+
+Interview favorite.
+
+Comparison Table
+Algorithm	Idea
+FIFO	Remove oldest page
+Optimal	Remove page used farthest in future
+LRU	Remove least recently used page
+Second Chance	FIFO + Reference Bit
+Clock	Efficient Second Chance
+Performance Ranking
+
+Generally:
+
+Optimal
+   ↓
+LRU
+   ↓
+Clock
+   ↓
+Second Chance
+   ↓
+FIFO
+Easy Memory Tricks
+FIFO
+First Come
+First Go
+LRU
+Not Used Recently
+Remove It
+OPT
+Future Knowledge
+Second Chance
+Recently Used?
+One More Chance
+Clock
+Circular Second Chance
+Real-Life Comparison
+
+Imagine a hostel room with only 3 chairs.
+
+Students:
+
+A B C
+
+already sitting.
+
+New student:
+
+D
+
+arrives.
+
+FIFO:
+
+Remove A
+
+(oldest)
+
+LRU:
+
+Remove whoever hasn't used chair recently.
+
+OPT:
+
+Remove student who won't return for longest time.
+
+(impossible to know perfectly)
+
+Interview Questions
+Q1. Why do we need Page Replacement?
+
+Answer:
+
+Because RAM is full and a new page must be loaded.
+
+Q2. Which algorithm gives minimum page faults?
+
+Answer:
+
+Optimal
+Q3. Most practical algorithm?
+
+Answer:
+
+LRU
+
+(or Clock-based approximations in many systems)
+
+Q4. What is Belady's Anomaly?
+
+Answer:
+
+Increasing frames causes more page faults.
+
+Q5. Which algorithm suffers from Belady's Anomaly?
+
+Answer:
+
+FIFO
+Q6. Does LRU suffer from Belady's Anomaly?
+
+Answer:
+
+No
