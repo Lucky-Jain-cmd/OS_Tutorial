@@ -1,0 +1,545 @@
+Paging (One of the Most Important OS Topics)
+
+Memory Management ka sabse famous aur practical concept:
+
+Paging
+
+Modern Operating Systems like:
+
+Microsoft Windows
+Linux
+macOS
+Android
+
+sab Paging ka use karte hain.
+
+🤔 Why Was Paging Invented?
+
+Remember Contiguous Allocation?
+
+Problem:
+
+P1
+FREE
+P2
+FREE
+P3
+
+Lots of free memory.
+
+But:
+
+Process needs 300 MB
+
+and no single large hole exists.
+
+Result:
+
+External Fragmentation 😭
+
+OS engineers thought:
+
+Why force a process to stay in one continuous block?
+
+Why not allow:
+
+Part 1 → Here
+Part 2 → There
+Part 3 → Somewhere else
+
+This idea became:
+
+Paging
+🧠 Basic Idea of Paging
+
+Instead of storing a process in one large block:
+
+Split process into small equal-size pieces.
+
+These pieces are called:
+
+Pages
+
+Similarly RAM is divided into equal-size pieces called:
+
+Frames
+Memory Trick
+Process → Pages
+
+RAM → Frames
+
+Remember forever.
+
+Example
+
+Process Size:
+
+16 KB
+
+Page Size:
+
+4 KB
+
+Process becomes:
+
+Page 0
+Page 1
+Page 2
+Page 3
+
+RAM:
+
+Frame 0
+Frame 1
+Frame 2
+Frame 3
+Frame 4
+Frame 5
+...
+Visualization
+
+Process:
+
++--------+
+| Page 0 |
++--------+
+| Page 1 |
++--------+
+| Page 2 |
++--------+
+| Page 3 |
++--------+
+
+RAM:
+
++---------+
+| Frame 0 |
++---------+
+| Frame 1 |
++---------+
+| Frame 2 |
++---------+
+| Frame 3 |
++---------+
+
+Now OS can place:
+
+Page 0 → Frame 5
+
+Page 1 → Frame 12
+
+Page 2 → Frame 2
+
+Page 3 → Frame 18
+
+Anywhere.
+
+Huge Advantage
+
+Process no longer needs:
+
+One large continuous space
+
+Therefore:
+
+External Fragmentation Eliminated ✅
+Important Question
+
+If pages are scattered everywhere,
+
+how does CPU find them?
+
+Answer:
+
+Page Table
+What is a Page Table?
+
+A data structure maintained by OS.
+
+It stores:
+
+Page Number → Frame Number
+
+mapping.
+
+Example
+
+Page	Frame
+0	5
+1	12
+2	2
+3	18
+
+Meaning:
+
+Page 0 stored in Frame 5
+Page 1 stored in Frame 12
+
+etc.
+
+Real-Life Analogy
+
+Imagine a book.
+
+Pages:
+
+1
+2
+3
+4
+
+Stored in different cupboards.
+
+Directory tells:
+
+Page 1 → Cupboard 5
+
+Page 2 → Cupboard 12
+
+Page 3 → Cupboard 2
+
+Directory = Page Table
+
+Address Structure in Paging
+
+This is extremely important.
+
+A logical address is divided into:
+
+Page Number
++
+Offset
+
+Visualization:
+
+Logical Address
+
++-------------+----------+
+| Page Number | Offset   |
++-------------+----------+
+What is Offset?
+
+Offset means:
+
+Position inside page
+
+Example
+
+Page Size:
+
+1024 Bytes
+
+Address:
+
+2500
+
+Can be represented as:
+
+Page Number = 2
+
+Offset = 452
+
+Meaning:
+
+Page 2
+452 bytes inside Page 2
+Address Translation
+
+This is the heart of Paging.
+
+CPU generates:
+
+(Page Number, Offset)
+
+MMU performs:
+
+Page Table Lookup
+
+Gets:
+
+Frame Number
+
+Then creates:
+
+(Frame Number, Offset)
+
+Physical Address.
+
+Visualization
+CPU
+ ↓
+Page Number + Offset
+ ↓
+Page Table
+ ↓
+Frame Number
+ ↓
+Frame Number + Offset
+ ↓
+RAM
+Numerical Example
+
+Suppose:
+
+Page Size:
+
+1000 bytes
+
+Logical Address:
+
+2500
+
+Find:
+
+Page Number
+Offset
+
+Calculation:
+
+2500 ÷ 1000
+
+Quotient:
+
+2
+
+Remainder:
+
+500
+
+Therefore:
+
+Page Number = 2
+
+Offset = 500
+
+Suppose Page Table says:
+
+Page 2 → Frame 8
+
+Physical Address:
+
+Frame 8 + Offset 500
+
+Memory location reached successfully.
+
+Internal Fragmentation in Paging
+
+Important interview question.
+
+We eliminated:
+
+External Fragmentation
+
+But one small problem remains.
+
+Example:
+
+Page Size:
+
+4 KB
+
+Process needs:
+
+10 KB
+
+Pages allocated:
+
+4 KB
+4 KB
+4 KB
+
+Total:
+
+12 KB
+
+Used:
+
+10 KB
+
+Waste:
+
+2 KB
+
+This is:
+
+Internal Fragmentation
+
+Why?
+
+Because last page may not be completely filled.
+
+Important Interview Question
+
+Paging removes:
+
+External Fragmentation
+
+But may still have:
+
+Internal Fragmentation
+Page Table Problem
+
+Suppose:
+
+1000 Processes
+
+Each process has:
+
+Huge Page Table
+
+Memory overhead becomes large.
+
+Solution?
+
+Advanced page-table structures.
+
+We'll study later.
+
+TLB (Translation Lookaside Buffer)
+
+One of the most important interview topics.
+
+Problem:
+
+Every memory access needs:
+
+CPU
+ ↓
+Page Table Lookup
+ ↓
+RAM Access
+
+Too slow.
+
+Solution:
+
+TLB
+
+TLB is a small, very fast cache.
+
+Stores recently used page-table entries.
+
+Think:
+
+Frequently Used Mappings
+
+stored nearby.
+
+Example
+
+Recently used:
+
+Page 1 → Frame 10
+
+Page 2 → Frame 15
+
+Page 7 → Frame 25
+
+Stored inside TLB.
+
+Now CPU asks:
+
+Where is Page 2?
+
+TLB immediately answers:
+
+Frame 15
+
+No page-table lookup needed.
+
+Much faster.
+
+TLB Hit
+
+Required entry found.
+
+Fast
+TLB Miss
+
+Not found.
+
+Must consult page table.
+
+Slower
+Easy Analogy
+
+Think of TLB as:
+
+Bookmarks in a book
+
+Instead of checking the entire index repeatedly.
+
+Paging Advantages
+
+✅ No External Fragmentation
+
+✅ Efficient Memory Usage
+
+✅ Easy Allocation
+
+✅ Supports Virtual Memory
+
+✅ Used in Modern OS
+
+Paging Disadvantages
+
+❌ Internal Fragmentation
+
+❌ Page Table Overhead
+
+❌ Address Translation Cost
+
+Complete Flow
+Process
+ ↓
+Pages
+ ↓
+Page Table
+ ↓
+Frames
+ ↓
+RAM
+Interview Questions
+Q1. Why was Paging introduced?
+
+Answer:
+
+To eliminate external fragmentation and allow non-contiguous memory allocation.
+
+Q2. What is a Page?
+
+Answer:
+
+Fixed-size block of a process.
+
+Q3. What is a Frame?
+
+Answer:
+
+Fixed-size block of physical memory (RAM).
+
+Q4. Difference between Page and Frame?
+Page	Frame
+Part of Process	Part of RAM
+Logical Memory	Physical Memory
+Q5. What is a Page Table?
+
+Answer:
+
+A table that maps page numbers to frame numbers.
+
+Q6. Paging removes which fragmentation?
+
+Answer:
+
+External Fragmentation
+Q7. Paging may still suffer from?
+
+Answer:
+
+Internal Fragmentation
+Q8. What is TLB?
+
+Answer:
+
+A high-speed cache storing recent page-table entries.
