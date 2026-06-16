@@ -1,0 +1,536 @@
+Virtual Memory
+
+This is one of the most important concepts in Operating Systems.
+
+If someone asks:
+
+🤔 "Mere laptop mein 8 GB RAM hai, phir bhi itne saare applications kaise chal jaate hain?"
+
+The answer is:
+
+🧠 Virtual Memory
+🤔 First Understand the Problem
+
+Suppose your laptop has:
+
+RAM = 8 GB
+
+Open:
+
+Chrome (many tabs)
+VS Code
+Android Studio
+Spotify
+Zoom
+Docker
+
+Total memory needed:
+
+12 GB
+
+Question:
+
+8 GB RAM me 12 GB kaise chalega?
+
+Should OS say:
+
+Sorry, impossible.
+
+❌ No.
+
+Instead OS uses:
+
+Virtual Memory
+📖 Definition
+
+Virtual Memory is a memory management technique that allows a process to execute even if it is not completely loaded into RAM.
+
+Easy Definition
+
+Virtual Memory creates an illusion that:
+
+Process thinks:
+
+"Mere paas bahut saari memory hai."
+
+Even though actual RAM is limited.
+
+🏠 Real-Life Analogy
+
+Imagine:
+
+You have a study table.
+
+Table size:
+
+2 feet
+
+But books:
+
+20 feet
+
+worth.
+
+Do you keep all books on the table?
+
+No.
+
+You keep:
+
+Currently needed books
+
+on table.
+
+Remaining books:
+
+Shelf
+
+Whenever needed:
+
+Shelf → Table
+
+move them.
+
+Exactly what OS does.
+
+RAM vs Disk
+
+Think:
+
+RAM = Study Table
+SSD/HDD = Bookshelf
+
+Virtual Memory allows:
+
+SSD/HDD
+
+to act as an extension of RAM.
+
+Core Idea
+
+Only the required pages are kept in RAM.
+
+Remaining pages stay on disk.
+
+Visualization:
+
+Process
+ ↓
+Many Pages
+ ↓
+Some Pages → RAM
+Remaining → Disk
+Why Virtual Memory?
+Reason 1: Run Large Programs
+
+Example:
+
+Program = 10 GB
+RAM Available = 4 GB
+
+Still possible.
+
+Reason 2: More Multiprogramming
+
+More processes can run simultaneously.
+
+Reason 3: Better RAM Utilization
+
+Load only required pages.
+
+Demand Paging
+
+This is the most common implementation.
+
+Idea:
+
+Load page only when needed.
+
+Instead of:
+
+Load entire process
+
+OS does:
+
+Load page on demand.
+
+Hence:
+
+Demand Paging
+Example
+
+Process contains:
+
+Page 0
+Page 1
+Page 2
+Page 3
+Page 4
+Page 5
+
+Initially RAM contains:
+
+Page 0
+Page 1
+
+Only.
+
+Other pages remain on disk.
+
+When process needs:
+
+Page 4
+
+OS loads it.
+
+Page Fault
+
+Most important interview topic.
+
+Suppose CPU needs:
+
+Page 4
+
+But Page 4 is not in RAM.
+
+What happens?
+
+CPU raises:
+
+Page Fault
+Definition
+
+A Page Fault occurs when a process accesses a page that is not currently present in RAM.
+
+Easy Definition
+Page chahiye
+RAM me nahi hai
+↓
+Page Fault
+Page Fault Handling Steps
+
+Suppose:
+
+Page 7 needed
+
+Not in RAM.
+
+OS performs:
+
+Step 1
+
+Detect page fault.
+
+Step 2
+
+Pause process.
+
+Step 3
+
+Find page on disk.
+
+Step 4
+
+Load page into RAM.
+
+Step 5
+
+Update page table.
+
+Step 6
+
+Restart instruction.
+
+Visualization:
+
+Page Needed
+      ↓
+Not in RAM
+      ↓
+Page Fault
+      ↓
+Load from Disk
+      ↓
+Resume Process
+Why Page Fault is Expensive?
+
+Because:
+
+RAM → Nanoseconds
+SSD/HDD → Micro/Milliseconds
+
+Disk is much slower.
+
+Therefore:
+
+Too many page faults:
+
+Bad Performance
+Valid Bit and Invalid Bit
+
+Each page-table entry contains a bit.
+
+Valid Bit
+
+Means:
+
+Page belongs to process.
+Invalid Bit
+
+Means:
+
+Page doesn't belong.
+
+or
+
+Illegal Access
+
+Example:
+
+Process has:
+
+Pages 0 to 5
+
+Trying:
+
+Page 20
+
+Result:
+
+Invalid Access
+
+OS may terminate process.
+
+Minor vs Major Page Fault
+Minor Page Fault
+
+Page already in memory somewhere.
+
+Fast.
+
+Major Page Fault
+
+Page must be loaded from disk.
+
+Slow.
+
+Interviewers sometimes ask this.
+
+Page Replacement
+
+Suppose RAM is full.
+
+Need:
+
+Page 10
+
+Question:
+
+Where to place it?
+
+Need to remove an existing page.
+
+This is called:
+
+Page Replacement
+
+Visualization:
+
+RAM Full
+     ↓
+New Page Needed
+     ↓
+Remove Old Page
+     ↓
+Insert New Page
+Example
+
+RAM contains:
+
+Page 1
+Page 2
+Page 3
+
+Need:
+
+Page 4
+
+OS removes one page.
+
+Loads Page 4.
+
+We'll study algorithms later.
+
+Thrashing
+
+Extremely Important Interview Topic.
+
+Imagine:
+
+RAM is very small.
+
+OS keeps doing:
+
+Load Page
+Remove Page
+Load Page
+Remove Page
+Load Page
+Remove Page
+
+again and again.
+
+CPU spends most time:
+
+Moving pages
+
+instead of:
+
+Executing programs
+
+This condition is called:
+
+Thrashing
+Definition
+
+Thrashing occurs when the system spends more time swapping pages than executing processes.
+
+Visualization
+Page Fault
+     ↓
+Load Page
+     ↓
+Page Fault
+     ↓
+Load Page
+     ↓
+Page Fault
+     ↓
+Load Page
+
+Forever.
+
+Symptoms of Thrashing
+CPU Utilization Drops
+Page Fault Rate Increases
+System Becomes Slow
+Disk Activity Increases
+Real-Life Analogy
+
+Imagine studying.
+
+Every 10 seconds:
+
+Get book from shelf
+Put book back
+Get another book
+Put it back
+
+You spend more time:
+
+Moving books
+
+than:
+
+Studying
+
+That's Thrashing.
+
+Working Set Model
+
+Solution to Thrashing.
+
+Idea:
+
+Keep only actively used pages in RAM.
+
+These active pages form:
+
+Working Set
+
+Example
+
+Program repeatedly uses:
+
+Page 1
+Page 2
+Page 3
+Page 4
+
+Keep them in RAM.
+
+Remove rarely used pages.
+
+Result:
+
+Fewer Page Faults
+Benefits of Virtual Memory
+1. Large Programs Run
+
+Even with small RAM.
+
+2. Better Multiprogramming
+
+More processes can execute.
+
+3. Efficient Memory Usage
+
+Load only needed pages.
+
+4. Process Isolation
+
+Improved protection.
+
+Disadvantages
+Page Fault Overhead
+Disk Access Cost
+Thrashing Risk
+Complex Implementation
+Complete Flow
+Program Starts
+       ↓
+Only Required Pages Loaded
+       ↓
+Need Missing Page
+       ↓
+Page Fault
+       ↓
+Load from Disk
+       ↓
+Continue Execution
+Interview Questions
+Q1. What is Virtual Memory?
+
+Answer:
+
+A memory management technique that allows execution of processes without loading the entire process into RAM.
+
+Q2. What is Demand Paging?
+
+Answer:
+
+Pages are loaded only when required.
+
+Q3. What is a Page Fault?
+
+Answer:
+
+An event that occurs when a required page is not present in RAM.
+
+Q4. Why is Page Fault expensive?
+
+Answer:
+
+Because disk access is much slower than RAM access.
+
+Q5. What is Thrashing?
+
+Answer:
+
+A condition where the system spends more time swapping pages than executing processes.
+
+Q6. What is Working Set?
+
+Answer:
+
+The set of pages actively used by a process.
