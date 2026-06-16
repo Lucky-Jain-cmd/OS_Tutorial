@@ -1427,3 +1427,33 @@ Execution Time
 ✅ MMU
 ✅ Address Binding
 ✅ Dynamic Relocation
+
+Contiguous Allocation kya hai?
+
+Process ko ek continuous memory block dena.
+
+Fixed Partitioning?
+RAM ko pehle se
+fixed parts me divide karna.
+Internal Fragmentation?
+Allocated block ke andar
+wasted memory.
+External Fragmentation?
+Free memory hone ke baad bhi
+process fit na ho paye.
+Compaction?
+Chhote-chhote holes ko
+jodkar ek bada hole banana.
+Most Popular Allocation Strategy?
+First Fit
+📍 Roadmap Status
+
+✅ Memory Management Introduction
+✅ Logical vs Physical Address
+✅ MMU
+✅ Address Binding
+✅ Contiguous Memory Allocation
+✅ Internal Fragmentation
+✅ External Fragmentation
+✅ Compaction
+✅ First Fit / Best Fit / Worst Fit
