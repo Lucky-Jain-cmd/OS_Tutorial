@@ -1,0 +1,487 @@
+Banker's Algorithm
+
+Created by:
+
+Edsger W. Dijkstra
+
+Why Is It Called "Banker's" Algorithm?
+
+Imagine a bank.
+
+Bank has:
+
+₹10,00,000
+
+Customers take loans.
+
+Bank must ensure:
+
+Even after giving loans,
+it can satisfy all customers eventually.
+
+A bank never gives all money blindly.
+
+It checks:
+
+Will I remain safe?
+
+If yes:
+
+Approve Loan
+
+Otherwise:
+
+Reject Loan
+
+Operating System does exactly the same with resources.
+
+Core Idea
+
+Before granting a resource request, OS checks:
+
+Will system remain in Safe State?
+
+If:
+
+Safe
+
+Grant request.
+
+If:
+
+Unsafe
+
+Deny request.
+
+Important Terms
+
+Banker's Algorithm uses four data structures.
+
+You must remember them.
+
+1. Available
+
+Represents:
+
+Currently free resources
+
+Example:
+
+Available = 3
+
+Meaning:
+
+3 resource units free
+2. Maximum
+
+Represents:
+
+Maximum resources a process may ever need
+
+Example:
+
+P1 = 7
+
+Meaning:
+
+P1 may require at most 7 units
+3. Allocation
+
+Represents:
+
+Resources currently assigned
+
+Example:
+
+P1 = 3
+
+Meaning:
+
+P1 currently owns 3 units
+4. Need
+
+Most important matrix.
+
+Formula:
+
+Example:
+
+Maximum = 7
+Allocation = 3
+
+Then:
+
+Need = 4
+Memory Trick
+Maximum
+   -
+Allocation
+   =
+Need
+Example System
+
+Total resources:
+
+10
+
+Processes:
+
+P1
+P2
+P3
+
+Allocation:
+
+Process	Allocation
+P1	1
+P2	2
+P3	2
+
+Maximum:
+
+Process	Maximum
+P1	6
+P2	4
+P3	3
+Step 1: Calculate Need
+
+Using:
+
+P1:
+
+6 - 1 = 5
+
+P2:
+
+4 - 2 = 2
+
+P3:
+
+3 - 2 = 1
+
+Need Table
+
+Process	Need
+P1	5
+P2	2
+P3	1
+Step 2: Calculate Available
+
+Allocated:
+
+1 + 2 + 2 = 5
+
+Total:
+
+10
+
+Available:
+
+10 - 5 = 5
+
+Current state:
+
+Available = 5
+Safety Algorithm
+
+This determines whether the system is safe.
+
+Rule
+
+Find a process whose:
+
+Need ≤ Available
+
+If found:
+
+Pretend it finishes.
+
+Then:
+
+Available += Allocation
+
+because resources are returned.
+
+Continue until all processes finish.
+
+Example
+
+Available:
+
+5
+
+Need:
+
+P1 = 5
+P2 = 2
+P3 = 1
+
+Choose P3 first.
+
+Because:
+
+1 ≤ 5
+
+P3 finishes.
+
+Returns:
+
+2 resources
+
+New Available:
+
+7
+
+Choose P2.
+
+Because:
+
+2 ≤ 7
+
+P2 finishes.
+
+Returns:
+
+2 resources
+
+New Available:
+
+9
+
+Choose P1.
+
+Because:
+
+5 ≤ 9
+
+P1 finishes.
+
+Returns:
+
+1 resource
+
+New Available:
+
+10
+
+All processes finished.
+
+Safe Sequence
+
+The order was:
+
+P3 → P2 → P1
+
+This is called:
+
+Safe Sequence
+
+Therefore:
+
+System is Safe
+Unsafe Example
+
+Suppose:
+
+Available:
+
+1
+
+Need:
+
+P1 = 3
+P2 = 4
+P3 = 2
+
+Can any process finish?
+
+No
+
+Safe sequence exists?
+
+No
+
+System is:
+
+Unsafe
+Important Interview Question
+
+Does Unsafe Mean Deadlock?
+
+Answer:
+
+NO
+
+Remember:
+
+Safe State
+     ↓
+Unsafe State
+     ↓
+Possible Deadlock
+
+Unsafe means:
+
+Danger Ahead
+
+not:
+
+Deadlock Already Happened
+Resource Request Algorithm
+
+Suppose P1 requests:
+
+2 resources
+
+OS performs three checks.
+
+Check 1
+
+Request ≤ Need ?
+
+Example:
+
+Request = 2
+Need = 5
+
+Valid.
+
+If:
+
+Request > Need
+
+Error.
+
+Check 2
+
+Request ≤ Available ?
+
+Example:
+
+Request = 2
+Available = 5
+
+Valid.
+
+If:
+
+Request > Available
+
+Process waits.
+
+Check 3
+
+Pretend Allocation
+
+OS temporarily grants resources and runs Safety Algorithm.
+
+If safe:
+
+Grant Request
+
+If unsafe:
+
+Rollback
+Reject Request
+Real-Life Analogy
+
+Bank:
+
+Customer wants ₹5 lakh loan.
+
+Bank checks:
+
+Enough money available?
+
+Yes.
+
+Customer allowed this much?
+
+Yes.
+
+After giving loan, can all customers still be served?
+
+Yes.
+
+Approve.
+
+Otherwise:
+
+Reject.
+
+Why Banker's Algorithm Works
+
+It never lets the system enter an unsafe state.
+
+Therefore:
+
+Deadlock avoided.
+Advantages
+Avoids Deadlocks
+
+Main purpose.
+
+Better Utilization
+
+Compared to Prevention.
+
+Flexible
+
+Processes request resources dynamically.
+
+Disadvantages
+Complex Calculations
+
+Lots of checking.
+
+Requires Maximum Need in Advance
+
+OS must know future requirements.
+
+Not Practical for Many Real Systems
+
+Programs often don't know future needs exactly.
+
+Complete Memory Diagram
+Maximum
+    |
+    |
+    v
+Allocation
+    |
+    |
+    v
+Need
+
+Need = Maximum - Allocation
+
+Safety Check:
+
+Need ≤ Available ?
+
+If yes:
+
+Process Finishes
+
+Then:
+
+Available += Allocation
+
+Repeat.
+
+Interview Questions
+Q1. Why is it called Banker's Algorithm?
+
+Because it works like a banker granting loans while ensuring future safety.
+
+Q2. Formula for Need?
+Q3. What is a Safe Sequence?
+
+An order in which all processes can complete successfully.
+
+Q4. Main condition for selecting a process?
+Q5. Does Unsafe State mean Deadlock?
+
+No.
+
+Unsafe state only means deadlock is possible in the future.
