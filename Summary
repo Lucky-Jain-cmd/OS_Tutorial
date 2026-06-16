@@ -1056,3 +1056,35 @@ Now that you understand:
 ✅ System Calls
 ✅ User Mode vs Kernel Mode
 ✅ Interrupts
+
+
+Thread kya hai?
+
+Process ke andar chalne wali execution unit.
+
+Process kya hai?
+
+Resource container.
+
+Thread kya karta hai?
+
+Actual work execute karta hai.
+
+Example
+
+Chrome Process:
+
+Chrome
+   |
+ ----------------
+ |      |      |
+ UI   Network Video
+Thread ka fayda?
+
+✔ Fast
+
+✔ Responsive
+
+✔ Less memory
+
+✔ Better multitasking
