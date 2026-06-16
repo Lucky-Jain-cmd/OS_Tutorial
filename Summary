@@ -1349,3 +1349,49 @@ Roadmap Status
 ✅ Deadlock Avoidance
 ✅ Banker's Algorithm
 ✅ Deadlock Detection
+
+Deadlock Recovery kya hai?
+
+Deadlock detect hone ke baad usse todne ki process.
+
+Recovery ke main methods?
+1. Process Termination
+2. Resource Preemption
+3. Rollback
+Rollback kya hai?
+Undo karke
+purani safe state me jana.
+Victim Process kya hai?
+Woh process jise
+terminate ya preempt kiya jata hai.
+Checkpoint kya hai?
+Process ki saved state.
+🎯 Deadlock Chapter Completed
+
+You have now covered:
+
+✅ Deadlock Introduction
+✅ Coffman Conditions
+✅ Resource Allocation Graph (RAG)
+✅ Deadlock Prevention
+✅ Deadlock Avoidance
+✅ Safe State / Unsafe State
+✅ Banker's Algorithm
+✅ Deadlock Detection
+✅ Deadlock Recovery
+
+Roadmap Status
+
+We have completed:
+
+OS Basics
+Processes
+Threads
+CPU Scheduling
+Synchronization
+Semaphores
+Monitors
+Producer–Consumer
+Reader–Writer
+Dining Philosophers
+Deadlocks (Complete)
