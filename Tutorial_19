@@ -1,0 +1,417 @@
+Dining Philosophers Problem
+
+This problem was proposed by Edsger W. Dijkstra to explain resource sharing and synchronization issues.
+
+This problem teaches:
+
+✅ Resource Allocation
+✅ Synchronization
+✅ Starvation
+✅ Deadlock
+
+and serves as the gateway to the Deadlock chapter.
+
+The Story
+
+Imagine:
+
+5 Philosophers
+
+sitting around a round table.
+
+Arrangement:
+
+        P1
+     /      \
+   F1        F2
+
+ P5            P2
+
+ F5            F3
+
+   P4        P3
+      \    /
+        F4
+
+Where:
+
+P = Philosopher
+F = Fork
+Rules
+
+Each philosopher alternates between:
+
+Thinking
+Eating
+Thinking
+Eating
+...
+
+To eat, a philosopher needs:
+
+Left Fork
++
+Right Fork
+
+Both forks are required.
+
+Example:
+
+Philosopher P1 needs:
+
+F1 + F2
+
+Philosopher P2 needs:
+
+F2 + F3
+
+Notice:
+
+Forks are shared resources.
+Resource Sharing
+
+Fork F2 is shared by:
+
+P1
+P2
+
+Fork F3 is shared by:
+
+P2
+P3
+
+and so on.
+
+Normal Situation
+
+Suppose only P1 is hungry.
+
+P1 picks:
+
+F1
+F2
+
+Eats.
+
+Returns forks.
+
+Everything works perfectly.
+
+The Problem Starts
+
+Now suppose:
+
+All 5 philosophers become hungry simultaneously.
+
+Each philosopher picks up their left fork.
+
+Result:
+
+P1 has F1
+P2 has F2
+P3 has F3
+P4 has F4
+P5 has F5
+
+Table now:
+
+P1 waiting for F2
+P2 waiting for F3
+P3 waiting for F4
+P4 waiting for F5
+P5 waiting for F1
+
+Nobody can continue.
+
+Visualization
+P1 waits for P2
+P2 waits for P3
+P3 waits for P4
+P4 waits for P5
+P5 waits for P1
+
+This forms a circle.
+
+Result
+
+Everyone waits forever.
+
+Nobody eats.
+
+Nobody releases forks.
+
+System is stuck.
+
+This is called:
+
+Deadlock
+What is Deadlock?
+Definition
+
+A deadlock occurs when a set of processes are permanently waiting for resources held by each other.
+
+Easy Definition
+
+Think:
+
+I am waiting for you.
+You are waiting for me.
+
+Nobody moves.
+
+Real-Life Example
+
+Imagine a road intersection.
+
+Car A waits for Car B.
+
+Car B waits for Car C.
+
+Car C waits for Car D.
+
+Car D waits for Car A.
+
+Result:
+
+Traffic Freeze
+
+Deadlock.
+
+Why Is Dining Philosophers Important?
+
+Because forks represent:
+
+Resources
+
+and philosophers represent:
+
+Processes or Threads
+
+OS faces the same problem.
+
+Example:
+
+Process A needs Printer + Scanner
+
+Process B needs Scanner + Printer
+
+Possible deadlock.
+
+Four Possible States
+1. Thinking
+No forks needed.
+2. Hungry
+Wants forks.
+3. Picking Forks
+Trying to acquire resources.
+4. Eating
+Using resources.
+Main Goal
+
+Ensure:
+
+Everyone eventually eats.
+
+without:
+
+Deadlock
+Starvation
+Solution 1: Limit Philosophers
+
+Suppose only:
+
+4 philosophers
+
+can attempt to eat simultaneously.
+
+Now at least one philosopher can always get both forks.
+
+Deadlock avoided.
+
+Solution 2: Resource Ordering
+
+Number forks:
+
+F1
+F2
+F3
+F4
+F5
+
+Rule:
+
+Always pick lower-numbered fork first.
+
+Then:
+
+No circular waiting.
+
+Deadlock avoided.
+
+Example
+
+P5 needs:
+
+F5 and F1
+
+Instead of:
+
+F5 first
+
+P5 takes:
+
+F1 first
+
+because:
+
+1 < 5
+
+This breaks the circular chain.
+
+Solution 3: One Philosopher Does Opposite
+
+Rule:
+
+P1-P4:
+Left then Right
+
+P5:
+Right then Left
+
+Now circular waiting cannot form.
+
+Deadlock avoided.
+
+Solution 4: Waiter (Monitor)
+
+Introduce a waiter.
+
+Think restaurant.
+
+Before eating:
+
+Ask Waiter
+
+Waiter checks:
+
+Are both forks available?
+
+If yes:
+
+Permission granted.
+
+Otherwise:
+
+Wait.
+
+This is similar to:
+
+Monitor
+Condition Variables
+
+that we studied earlier.
+
+Starvation Problem
+
+Deadlock is not the only issue.
+
+Suppose:
+
+P1 always gets forks.
+
+P2 keeps waiting.
+
+P3 keeps waiting.
+
+Forever.
+
+This is:
+
+Starvation
+Difference Between Deadlock and Starvation
+Deadlock	Starvation
+Everyone waits	One/few wait
+Nobody progresses	Others may progress
+System frozen	System running
+Circular dependency	Unfair scheduling
+
+Example:
+
+Deadlock:
+
+Nobody eats.
+
+Starvation:
+
+P1 eats repeatedly.
+P2 never eats.
+Operating System Analogy
+
+Philosophers:
+
+Processes
+
+Forks:
+
+Resources
+
+Examples:
+
+Printers
+Files
+Memory
+Database locks
+
+Eating:
+
+Resource Usage
+
+Thinking:
+
+Normal Execution
+Why Interviewers Love This Problem
+
+Because it combines:
+
+Synchronization
+Mutex
+Semaphores
+Monitors
+Deadlocks
+Starvation
+
+into one scenario.
+
+Interview Questions
+Q1. What is the Dining Philosophers Problem?
+
+Answer:
+
+A synchronization problem where philosophers share forks and must coordinate access to avoid deadlocks and starvation.
+
+Q2. What do philosophers represent?
+
+Answer:
+
+Processes or threads.
+
+Q3. What do forks represent?
+
+Answer:
+
+Shared resources.
+
+Q4. What is the main issue?
+
+Answer:
+
+Deadlock.
+
+Q5. How can deadlock be avoided?
+
+Answer:
+
+Resource ordering
+Limiting philosophers
+Waiter/monitor approach
+One philosopher picking forks differently
