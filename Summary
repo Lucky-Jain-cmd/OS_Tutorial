@@ -1024,4 +1024,35 @@ Golden Interview Line
 User Mode provides a restricted execution environment for applications, while Kernel Mode provides privileged access to hardware and critical system resources.
 System calls act as the bridge between the two modes.
 
-Next Topic (11)
+Interrupt kya hai?
+
+CPU ko diya gaya signal jo uska current kaam temporarily rok kar kisi important event ko handle karne ke liye bolta hai.
+
+Examples
+
+✔ Keyboard Press
+
+✔ Mouse Movement
+
+✔ Network Packet
+
+✔ Timer Expiry
+
+ISR kya hai?
+
+Interrupt ko handle karne wala OS function.
+
+Timer Interrupt kyu important hai?
+
+Ye CPU Scheduling aur Multitasking ka base hai.
+
+Next Step (12)
+
+Now that you understand:
+
+✅ Processes
+✅ Schedulers
+✅ Dispatcher
+✅ System Calls
+✅ User Mode vs Kernel Mode
+✅ Interrupts
