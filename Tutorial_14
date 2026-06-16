@@ -1,0 +1,503 @@
+Mutex (Mutual Exclusion)
+
+This is the first practical solution to the synchronization problem.
+
+Until now, we learned:
+
+Race Condition
+        ↓
+Critical Section
+        ↓
+Need Synchronization
+        ↓
+Mutex
+First Understand the Problem Again
+
+Suppose:
+
+Bank Balance = ₹1000
+
+Two threads:
+
+Thread A → Withdraw ₹100
+Thread B → Withdraw ₹100
+
+Both access:
+
+Balance
+
+simultaneously.
+
+Without protection:
+
+Thread A reads 1000
+Thread B reads 1000
+
+Thread A writes 900
+Thread B writes 900
+
+Final balance:
+
+₹900
+
+Wrong.
+
+Expected:
+
+₹800
+
+This is a:
+
+Race Condition
+Solution: Allow Only One Thread
+
+We want:
+
+Thread A enters
+Thread B waits
+
+or
+
+Thread B enters
+Thread A waits
+
+but never:
+
+Thread A + Thread B together
+
+inside the critical section.
+
+What is a Mutex?
+Definition
+
+A Mutex is a synchronization mechanism that allows only one thread or process to access a critical section at a time.
+
+Easy Definition
+
+Think of a mutex as:
+
+A Lock
+
+If the lock is free:
+
+Enter
+
+If the lock is occupied:
+
+Wait
+Real-Life Example: Bathroom
+
+Suppose a bathroom has one door.
+
+Door lock:
+
+Unlocked
+
+Rahul enters.
+
+Door becomes:
+
+Locked
+
+Mohit arrives.
+
+Can he enter?
+
+No
+
+He waits.
+
+Rahul exits.
+
+Door becomes:
+
+Unlocked
+
+Now Mohit enters.
+
+Exactly how Mutex works.
+
+Why Is It Called Mutual Exclusion?
+
+Break the words:
+
+Mutual = Shared among everyone
+Exclusion = Keep others out
+
+Meaning:
+
+Only one allowed.
+Others excluded.
+Basic Mutex Flow
+Step 1
+
+Thread wants critical section.
+
+Step 2
+
+Acquire Mutex.
+
+Step 3
+
+If available:
+
+Lock Obtained
+
+Enter.
+
+Step 4
+
+Execute critical section.
+
+Step 5
+
+Release Mutex.
+
+Step 6
+
+Next waiting thread enters.
+
+Visualization:
+
+Thread A
+     |
+Acquire Lock
+     |
+Critical Section
+     |
+Release Lock
+
+Thread B waits
+Mutex States
+
+Very simple.
+
+Only two states:
+
+Locked
+Someone inside
+Unlocked
+Nobody inside
+Example in Simple Pseudocode
+
+Without Mutex:
+
+balance = balance - 100;
+
+Dangerous.
+
+With Mutex:
+
+lock();
+
+balance = balance - 100;
+
+unlock();
+
+Safe.
+
+What Happens Internally?
+
+Suppose:
+
+Mutex = Unlocked
+
+Thread A arrives.
+
+Acquire Mutex
+
+Success.
+
+Mutex becomes:
+
+Locked
+
+Thread B arrives.
+
+Acquire Mutex
+
+Fails.
+
+Thread B waits.
+
+Thread A finishes.
+
+Release Mutex
+
+Mutex becomes:
+
+Unlocked
+
+Thread B gets lock.
+
+Important Operations
+
+Most mutex systems provide:
+
+Lock()
+
+Acquire mutex.
+
+Unlock()
+
+Release mutex.
+
+Visualization:
+
+lock()
+    ↓
+Critical Section
+    ↓
+unlock()
+Example: ATM System
+
+Account:
+
+₹1000
+
+Thread A:
+
+Withdraw ₹100
+
+Thread B:
+
+Withdraw ₹100
+
+Using Mutex:
+
+Mutex Locked
+
+Thread A enters.
+
+Thread B waits.
+
+Thread A finishes.
+
+Mutex Released
+
+Thread B enters.
+
+Final:
+
+₹800
+
+Correct.
+
+Mutex Ownership
+
+Very Important.
+
+Mutex has an owner.
+
+Example:
+
+Thread A locks mutex.
+
+Only:
+
+Thread A
+
+can unlock it.
+
+This is a major difference from semaphores (which we'll study next).
+
+Busy Waiting Problem
+
+Suppose Thread B repeatedly checks:
+
+Is lock free?
+Is lock free?
+Is lock free?
+
+Again and again.
+
+This wastes CPU.
+
+This behavior is called:
+
+Busy Waiting
+
+or
+
+Spinning
+
+Example:
+
+While(lock == occupied)
+{
+   keep checking
+}
+
+CPU keeps running.
+
+Blocking Mutex
+
+Modern OS usually avoid excessive spinning.
+
+Instead:
+
+Lock Busy
+      ↓
+Thread Sleeps
+      ↓
+Wakes Up Later
+
+More efficient.
+
+Spinlock vs Mutex
+
+Students often confuse these.
+
+Spinlock
+
+If lock busy:
+
+Keep Checking
+
+Consumes CPU.
+
+Mutex
+
+If lock busy:
+
+Sleep
+
+Usually more efficient for longer waits.
+
+Advantages of Mutex
+1. Prevents Race Conditions
+
+Most important.
+
+2. Ensures Data Consistency
+
+Shared data remains correct.
+
+3. Simple Concept
+
+Easy to understand.
+
+4. Widely Used
+
+Used everywhere:
+
+Linux
+Windows
+Databases
+Browsers
+Banking systems
+Disadvantages of Mutex
+1. Waiting
+
+Other threads may be blocked.
+
+2. Deadlocks Possible
+
+Example:
+
+Thread A waits for B
+Thread B waits for A
+
+System gets stuck.
+
+We'll study this later.
+
+3. Performance Overhead
+
+Locking and unlocking have costs.
+
+Real Examples
+Bank Account
+
+Protect balance.
+
+File Writing
+
+Prevent simultaneous writes.
+
+Database Updates
+
+Protect records.
+
+Operating System Kernel
+
+Protect kernel data structures.
+
+Mutex vs Critical Section
+
+Many students confuse these.
+
+Critical Section
+
+The code.
+
+Example:
+
+balance = balance - 100;
+Mutex
+
+The lock protecting that code.
+
+Example:
+
+lock();
+balance = balance - 100;
+unlock();
+Mutex vs Semaphore (Preview)
+Feature	Mutex	Semaphore
+Ownership	Yes	No
+Binary Lock	Yes	Can be many
+Purpose	Mutual Exclusion	Synchronization
+Unlock By	Owner Only	Any Thread
+
+We'll go much deeper into this next.
+
+Interview Questions
+Q1. What is a Mutex?
+
+Answer:
+A mutex is a locking mechanism used to ensure mutual exclusion by allowing only one thread/process to access a critical section at a time.
+
+Q2. Why Do We Need Mutex?
+
+Answer:
+To prevent race conditions and protect shared resources.
+
+Q3. What Are the States of a Mutex?
+
+Answer:
+
+Locked
+Unlocked
+Q4. What Is Busy Waiting?
+
+Answer:
+Repeatedly checking whether a lock is available while consuming CPU cycles.
+
+Q5. Difference Between Critical Section and Mutex?
+
+Answer:
+
+Critical Section = protected code
+Mutex = lock protecting the code
+Hindi Revision
+Mutex kya hai?
+
+Ek lock jo ensure karta hai ki ek time par sirf ek thread critical section me enter kare.
+
+Mutex ka main purpose?
+Race Condition ko rokna
+States
+Locked
+Unlocked
+Real Example
+
+Bathroom lock.
+
+Ek andar
+Baaki wait
+Mutex kis cheez ko protect karta hai?
+Shared Data
+Shared Memory
+Shared Files
+Database Records
