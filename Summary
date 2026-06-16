@@ -1545,3 +1545,40 @@ Frequently used pages ka group.
 ✅ TLB
 ✅ Segmentation
 ✅ Paging vs Segmentation
+
+
+Page Replacement kyu chahiye?
+RAM Full
+↓
+New Page Chahiye
+↓
+Purani Page Hatani Padegi
+FIFO kya karta hai?
+Sabse purani page hatao.
+LRU kya karta hai?
+Jo page sabse lambe samay se use nahi hui,
+use hatao.
+OPT kya karta hai?
+Future me sabse der se use hone wali
+page hatao.
+Belady's Anomaly kya hai?
+Frames badhane par
+Page Faults bhi badh jaye.
+FIFO me hota hai?
+Yes
+LRU me hota hai?
+No
+🎯 Roadmap Status
+
+✅ Virtual Memory
+✅ Demand Paging
+✅ Page Faults
+✅ Thrashing
+✅ Working Set Model
+✅ Page Replacement Algorithms
+✅ FIFO
+✅ Optimal
+✅ LRU
+✅ Second Chance
+✅ Clock Algorithm
+✅ Belady's Anomaly
