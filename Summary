@@ -1680,3 +1680,51 @@ Speed + Reliability
 ✅ Caching
 ✅ Spooling
 ✅ RAID
+
+
+Protection kya hai?
+System ke andar
+access control karna.
+Security kya hai?
+System ko attacks se
+bachana.
+Authentication?
+Tum kaun ho?
+Authorization?
+Tum kya kar sakte ho?
+Virus?
+Host program ke saath
+chipak kar failta hai.
+Worm?
+Khud fail sakta hai.
+Trojan?
+Asli software jaisa
+dikhne wala malware.
+Firewall?
+Network ka security guard.
+Encryption?
+Data ko unreadable banana.
+🎓 OS Roadmap Status
+
+✅ Introduction to OS
+✅ Process Management
+✅ Threads
+✅ CPU Scheduling
+✅ Synchronization
+✅ Deadlocks
+✅ Memory Management
+✅ Paging
+✅ Segmentation
+✅ Virtual Memory
+✅ Page Replacement Algorithms
+✅ File Systems
+✅ Disk Scheduling
+✅ I/O Systems
+✅ Device Drivers
+✅ DMA
+✅ Interrupts
+✅ Buffering
+✅ Caching
+✅ Spooling
+✅ RAID
+✅ Security & Protection
