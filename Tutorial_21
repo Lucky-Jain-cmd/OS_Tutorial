@@ -1,0 +1,419 @@
+Resource Allocation Graph (RAG)
+
+After learning:
+
+Deadlock
+      ↓
+Coffman Conditions
+
+the next question is:
+
+How can we visually represent which process owns which resource and who is waiting for what?
+
+The answer is:
+
+Resource Allocation Graph (RAG)
+What is a Resource Allocation Graph?
+Definition
+
+A Resource Allocation Graph is a directed graph used to represent:
+
+Processes
+Resources
+Resource Allocation
+Resource Requests
+
+and to analyze deadlocks.
+
+Easy Definition
+
+Think of it as a map showing:
+
+Who owns what?
+Who wants what?
+Components of RAG
+
+There are only two main components.
+
+1. Process
+
+Represented by:
+
+Circle
+
+Example:
+
+(P1)
+(P2)
+(P3)
+2. Resource
+
+Represented by:
+
+Square
+
+Example:
+
+[Printer]
+[Scanner]
+[File]
+Two Types of Arrows
+
+This is very important.
+
+Request Edge
+
+Process wants a resource.
+
+Arrow:
+
+Process → Resource
+
+Example:
+
+P1 → Printer
+
+Meaning:
+
+P1 is requesting Printer.
+Allocation Edge
+
+Resource assigned to process.
+
+Arrow:
+
+Resource → Process
+
+Example:
+
+Printer → P1
+
+Meaning:
+
+Printer is allocated to P1.
+Easy Memory Trick
+Arrow starts from Process
+Process → Resource
+
+means:
+
+"I want it."
+Arrow starts from Resource
+Resource → Process
+
+means:
+
+"I own it."
+Example 1: No Deadlock
+
+Suppose:
+
+P1 owns Printer.
+
+Graph:
+
+[Printer] → (P1)
+
+Meaning:
+
+Printer allocated to P1.
+
+No waiting.
+
+No deadlock.
+
+Example 2: Process Requesting Resource
+
+Suppose:
+
+P1 needs Scanner.
+
+Graph:
+
+(P1) → [Scanner]
+
+Meaning:
+
+P1 waiting for Scanner.
+Example 3: Two Processes
+
+Suppose:
+
+P1 owns Printer.
+
+P2 owns Scanner.
+
+Graph:
+
+[Printer] → P1
+
+[Scanner] → P2
+
+Everything okay.
+
+Deadlock Example
+
+Now let's create a deadlock.
+
+P1 owns:
+
+Printer
+
+and wants:
+
+Scanner
+
+P2 owns:
+
+Scanner
+
+and wants:
+
+Printer
+
+Graph:
+
+[Printer] → P1
+
+P1 → [Scanner]
+
+[Scanner] → P2
+
+P2 → [Printer]
+
+Visualization:
+
+Printer → P1
+   ↑        ↓
+   |        |
+   |        |
+P2 ← Scanner
+
+Notice:
+
+P1 waits for P2
+
+P2 waits for P1
+
+Forms a cycle.
+
+Cycle
+
+Most important RAG concept.
+
+A cycle means:
+
+Circular Waiting
+
+which is one of Coffman's conditions.
+
+Does Every Cycle Mean Deadlock?
+
+Interview favorite.
+
+Answer:
+
+It Depends
+Case 1: Single Instance Resources
+
+Example:
+
+1 Printer
+1 Scanner
+
+Rule:
+
+Cycle ⇒ Deadlock
+
+Always.
+
+Case 2: Multiple Instance Resources
+
+Example:
+
+3 Printers
+2 Scanners
+
+Rule:
+
+Cycle ≠ Always Deadlock
+
+Cycle only indicates:
+
+Possibility of Deadlock
+
+This is a very important distinction.
+
+Why?
+
+Suppose:
+
+Printer has:
+
+3 instances
+
+One instance may still be free.
+
+A waiting process could obtain it.
+
+Deadlock may be avoided.
+
+Therefore:
+
+Single Instance
+Cycle = Deadlock
+Multiple Instance
+Cycle = Maybe Deadlock
+Resource Instances
+
+Suppose:
+
+Printer:
+
+[Printer]
+ • • •
+
+Three copies available.
+
+Scanner:
+
+[Scanner]
+ • •
+
+Two copies available.
+
+In diagrams:
+
+Dots represent instances.
+
+Real-Life Analogy
+
+Imagine hostel rooms.
+
+Only one room key:
+
+Single Instance
+
+Cycle likely causes deadlock.
+
+But suppose:
+
+100 room keys
+
+Many students can still get access.
+
+Deadlock less likely.
+
+Wait-For Graph
+
+A simplified version of RAG.
+
+Used when every resource has only one instance.
+
+Instead of showing resources:
+
+Show only processes.
+
+Example:
+
+P1 waiting for resource held by P2.
+
+Graph:
+
+P1 → P2
+
+Meaning:
+
+P1 waits for P2.
+
+Suppose:
+
+P1 → P2
+
+P2 → P3
+
+P3 → P1
+
+Cycle exists.
+
+Deadlock.
+
+Resource Allocation Graph vs Wait-For Graph
+Feature	RAG	Wait-For Graph
+Shows Resources	Yes	No
+Shows Processes	Yes	Yes
+More Detailed	Yes	No
+Simpler	No	Yes
+Real OS Example
+
+Suppose:
+
+Process A
+
+Owns:
+
+Database Lock 1
+
+Needs:
+
+Database Lock 2
+Process B
+
+Owns:
+
+Database Lock 2
+
+Needs:
+
+Database Lock 1
+
+RAG immediately reveals:
+
+Cycle
+
+Possible deadlock.
+
+Interview Questions
+Q1. What is Resource Allocation Graph?
+
+Answer:
+
+A directed graph representing processes, resources, allocations, and requests.
+
+Q2. How is a process represented?
+
+Answer:
+
+Circle
+Q3. How is a resource represented?
+
+Answer:
+
+Square
+Q4. What is a Request Edge?
+
+Answer:
+
+Process → Resource
+
+Meaning process is waiting for the resource.
+
+Q5. What is an Allocation Edge?
+
+Answer:
+
+Resource → Process
+
+Meaning resource is assigned to the process.
+
+Q6. In single-instance resources, what does a cycle mean?
+
+Answer:
+
+Deadlock.
+
+Q7. In multiple-instance resources, what does a cycle mean?
+
+Answer:
+
+Only a possibility of deadlock.
