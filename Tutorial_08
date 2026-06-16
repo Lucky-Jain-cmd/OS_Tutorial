@@ -1,0 +1,505 @@
+User Mode vs Kernel Mode
+
+This is one of the most important OS concepts because it explains:
+
+Why applications can't directly access hardware
+How system security works
+What happens during a system call
+Why modern operating systems don't crash easily when an application crashes
+First Understand the Problem
+
+Suppose there is no restriction on applications.
+
+Then Chrome could:
+
+Delete SSD
+Format Disk
+Modify RAM
+Shutdown System
+Access Other Processes
+
+Or a virus could directly control hardware.
+
+This would be disastrous.
+
+Solution: CPU Modes
+
+Modern CPUs have different execution modes.
+
+The two most important are:
+
+User Mode
+Kernel Mode
+
+Think of them as different permission levels.
+
+Real-Life Example: Airport
+
+Imagine an airport.
+
+Normal Passenger
+
+Can:
+
+✔ Sit in waiting area
+
+✔ Buy food
+
+✔ Board flight
+
+Cannot:
+
+❌ Enter control tower
+
+❌ Control airplanes
+
+❌ Access security systems
+
+Air Traffic Controller
+
+Can:
+
+✔ Control aircraft
+
+✔ Access critical systems
+
+✔ Issue commands
+
+Similarly:
+
+Passenger = User Mode
+Controller = Kernel Mode
+What is User Mode?
+
+User Mode is the restricted mode where normal applications execute.
+
+Examples:
+
+Chrome
+Spotify
+VS Code
+Notepad
+WhatsApp
+
+run in User Mode.
+
+Characteristics of User Mode
+
+Applications can:
+
+✔ Perform calculations
+
+✔ Display windows
+
+✔ Process user input
+
+✔ Request OS services
+
+Applications cannot:
+
+❌ Access hardware directly
+
+❌ Modify kernel memory
+
+❌ Execute privileged instructions
+
+❌ Access other processes freely
+
+Example
+
+Chrome wants to save a PDF.
+
+Can Chrome directly write to SSD?
+
+No.
+
+Chrome must request the OS.
+
+Flow:
+
+Chrome
+   ↓
+System Call
+   ↓
+Kernel
+   ↓
+SSD
+Why User Mode Exists?
+
+Main reason:
+
+Protection
+
+If Chrome crashes:
+
+Chrome Crash
+
+OS continues running.
+
+Without User Mode:
+
+Chrome Crash
+      ↓
+Entire System Crash
+
+Possible.
+
+What is Kernel Mode?
+
+Kernel Mode is the privileged mode where the Operating System kernel executes.
+
+Examples of kernel components:
+
+Scheduler
+Memory Manager
+File System
+Device Drivers
+Process Manager
+
+Kernel Mode has full access.
+
+Can:
+
+✔ Access hardware
+
+✔ Access RAM
+
+✔ Execute privileged instructions
+
+✔ Manage processes
+
+✔ Control devices
+
+Think:
+
+Kernel Mode = Administrator
+User Mode = Normal User
+Visual Diagram
+Applications
+(Chrome, VS Code)
+        |
+        |
+   User Mode
+        |
+   System Calls
+        |
+   Kernel Mode
+        |
+Operating System
+        |
+Hardware
+Why Not Run Everything in Kernel Mode?
+
+Good interview question.
+
+Suppose Chrome has a bug.
+
+Example:
+
+int *p = NULL;
+*p = 100;
+
+Program crashes.
+
+If Chrome runs in User Mode:
+
+Chrome crashes
+
+Only Chrome affected.
+
+If Chrome runs in Kernel Mode:
+
+Chrome crashes
+      ↓
+Kernel crashes
+      ↓
+System crashes
+
+Dangerous.
+
+Privileged Instructions
+
+Certain CPU instructions are dangerous.
+
+Examples:
+
+Shutdown machine
+Access hardware registers
+Modify page tables
+Change interrupt settings
+
+These are called:
+
+Privileged Instructions
+
+Only Kernel Mode can execute them.
+
+Example
+
+Application tries:
+
+Format SSD
+
+CPU says:
+
+Permission Denied
+
+because it's in User Mode.
+
+Mode Bit
+
+CPU maintains a special bit.
+
+Called:
+
+Mode Bit
+
+Example:
+
+0 = Kernel Mode
+
+1 = User Mode
+
+(Exact representation can vary by architecture.)
+
+CPU checks this bit before executing sensitive instructions.
+
+What Happens During a System Call?
+
+This is extremely important.
+
+Let's save a file.
+
+Step 1
+
+Notepad running.
+
+Current state:
+
+User Mode
+Step 2
+
+User clicks Save.
+
+Notepad executes:
+
+write()
+Step 3
+
+System Call occurs.
+
+CPU changes:
+
+User Mode
+      ↓
+Kernel Mode
+Step 4
+
+Kernel performs file write operation.
+
+Step 5
+
+Operation completes.
+
+CPU changes:
+
+Kernel Mode
+      ↓
+User Mode
+Step 6
+
+Notepad continues.
+
+Visualization:
+
+Notepad (User Mode)
+          ↓
+      write()
+          ↓
+      System Call
+          ↓
+ Kernel Mode Entered
+          ↓
+ Write File to SSD
+          ↓
+ Return Result
+          ↓
+ User Mode Again
+User Mode → Kernel Mode Triggers
+
+Three major things can move CPU into Kernel Mode.
+
+1. System Calls
+
+Example:
+
+open()
+read()
+write()
+2. Interrupts
+
+Example:
+
+Keyboard pressed.
+
+Keyboard Interrupt
+
+CPU enters Kernel Mode.
+
+3. Exceptions
+
+Example:
+
+Divide by zero.
+
+10 / 0
+
+CPU raises exception.
+
+Kernel handles it.
+
+Example: Keyboard Press
+
+You press:
+
+A
+
+Flow:
+
+Keyboard
+    ↓
+Interrupt
+    ↓
+Kernel Mode
+    ↓
+Driver Handles Input
+    ↓
+User Mode
+    ↓
+Chrome Receives 'A'
+Memory Protection
+
+Another major reason for modes.
+
+Suppose:
+
+Chrome memory:
+
+1000 - 5000
+
+Spotify memory:
+
+6000 - 9000
+
+Chrome cannot access:
+
+6000 - 9000
+
+directly.
+
+Kernel enforces this protection.
+
+User Space vs Kernel Space
+
+Students often confuse this.
+
+User Space
+
+Contains:
+
+Chrome
+VS Code
+Spotify
+Notepad
+Kernel Space
+
+Contains:
+
+Scheduler
+Memory Manager
+Drivers
+File System
+
+Diagram:
+
++------------------+
+|    User Space    |
+|------------------|
+| Chrome           |
+| Spotify          |
+| VS Code          |
++------------------+
+
+        ↓
+   System Calls
+
++------------------+
+|   Kernel Space   |
+|------------------|
+| Scheduler        |
+| Memory Manager   |
+| Drivers          |
+| File System      |
++------------------+
+Comparison Table
+Feature	User Mode	Kernel Mode
+Access Level	Limited	Full
+Hardware Access	No	Yes
+Privileged Instructions	No	Yes
+Applications Run Here	Yes	No
+Kernel Runs Here	No	Yes
+Security Risk	Low	High
+Crash Impact	Application Only	Entire System
+Real-Life Example: Laptop Startup
+
+During boot:
+
+BIOS
+ ↓
+Bootloader
+ ↓
+Kernel Starts
+
+Kernel starts in:
+
+Kernel Mode
+
+Later:
+
+Chrome Starts
+Spotify Starts
+VS Code Starts
+
+They run in:
+User Mode
+Interview Questions
+Q1: Why do we need User Mode and Kernel Mode?
+
+Answer:
+
+For security, protection, and system stability.
+
+Q2: Can applications directly access hardware?
+
+Answer:
+
+No. They must use system calls.
+
+Q3: Which mode has full access to hardware?
+
+Answer:
+
+Kernel Mode.
+
+Q4: What causes a switch from User Mode to Kernel Mode?
+
+Answer:
+
+System Calls
+Interrupts
+Exceptions
+Q5: What happens after a system call finishes?
+
+Answer:
+
+CPU switches back from Kernel Mode to User Mode.
