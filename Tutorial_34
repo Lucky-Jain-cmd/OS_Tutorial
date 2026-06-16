@@ -1,0 +1,606 @@
+File Allocation Methods & Disk Scheduling
+
+अब हम Operating System के उस हिस्से में पहुँच गए हैं जो सीधे SSD/HDD और files की storage से जुड़ा है।
+
+जब आप save करते हो:
+
+Resume.pdf
+Movie.mp4
+Photo.jpg
+
+तो OS को पता होना चाहिए:
+
+🤔 File disk में कहाँ रखी जाए?
+
+🤔 File का अगला हिस्सा कहाँ है?
+
+🤔 File को जल्दी कैसे access करें?
+
+इसीलिए हमें File Allocation Methods की जरूरत पड़ती है।
+
+📁 File Allocation Methods
+Definition
+
+File Allocation Method बताता है कि:
+
+Disk पर file के blocks को
+कैसे store किया जाएगा।
+🧠 First Understand Disk Blocks
+
+Suppose Disk:
+
+Block 0
+Block 1
+Block 2
+Block 3
+Block 4
+Block 5
+...
+
+में divide है।
+
+Example:
+
+Resume.pdf = 3 Blocks
+
+OS को decide करना होगा:
+
+कौन से blocks दिए जाएँ?
+1️⃣ Contiguous Allocation
+
+सबसे simple method.
+
+Idea
+
+File के सारे blocks continuous होने चाहिए।
+
+Example
+
+Resume.pdf
+
+Block 10
+Block 11
+Block 12
+Block 13
+
+Visualization
+
+Disk
+
+[10][11][12][13]
+Advantages
+Very Fast Access 🚀
+
+क्योंकि blocks साथ-साथ हैं।
+
+Example
+
+10 → 11 → 12 → 13
+
+को directly पढ़ सकते हैं।
+
+Easy Implementation
+
+Simple.
+
+Disadvantages
+External Fragmentation 😭
+
+Suppose:
+
+Free 5 Blocks
+
+Used
+
+Free 4 Blocks
+
+Used
+
+Free 3 Blocks
+
+Need:
+
+8 Blocks
+
+Total free:
+
+12 Blocks
+
+But contiguous नहीं हैं।
+
+File store नहीं हो सकती।
+
+File Growth Problem
+
+Suppose file:
+
+10 Blocks
+
+की थी।
+
+अब:
+
+15 Blocks
+
+हो गई।
+
+पास में space नहीं है।
+
+Problem.
+
+Real-Life Analogy
+
+Train seats:
+
+Seat 10
+11
+12
+13
+
+साथ में चाहिए।
+
+2️⃣ Linked Allocation
+
+Contiguous allocation की problem solve करने के लिए।
+
+Idea
+
+Blocks कहीं भी हो सकते हैं।
+
+हर block next block का address store करेगा।
+
+Example
+
+Block 5 → Block 22 → Block 1 → Block 90
+
+Visualization
+
+5 → 22 → 1 → 90
+
+File stored successfully.
+
+Advantages
+No External Fragmentation
+
+Blocks कहीं भी हो सकते हैं।
+
+Easy File Growth
+
+नई block जोड़ दो।
+
+Disadvantages
+Slow Random Access
+
+Suppose:
+
+Need:
+
+4th Block
+
+Must traverse:
+
+1st
+2nd
+3rd
+4th
+Pointer Overhead
+
+हर block में pointer store करना पड़ता है।
+
+Real-Life Analogy
+
+Treasure Hunt:
+
+Clue 1 → Clue 2 → Clue 3
+3️⃣ Indexed Allocation
+
+Most elegant solution.
+
+Idea
+
+Separate index block maintain करो।
+
+Index Block stores:
+
+All block addresses
+
+Example
+
+Index Block:
+
+5
+22
+1
+90
+
+Meaning:
+
+File stored in:
+
+5
+22
+1
+90
+
+Visualization
+
+Index Block
+     ↓
+[5][22][1][90]
+Advantages
+Fast Random Access
+
+Directly:
+
+3rd Block
+
+find कर सकते हैं।
+
+No External Fragmentation
+
+Blocks anywhere.
+
+Easy Expansion
+Disadvantages
+Index Block Overhead
+
+Extra memory needed.
+
+Comparison
+Method	Speed	Fragmentation
+Contiguous	Fastest	External
+Linked	Slow	No External
+Indexed	Fast	No External
+FAT (File Allocation Table)
+
+Extremely Important.
+
+Used in older:
+
+MS-DOS
+Early Windows systems
+What is FAT?
+
+A giant table storing:
+
+Current Block
+      ↓
+Next Block
+
+Example
+
+Block	Next
+5	22
+22	1
+1	90
+90	EOF
+
+Meaning:
+
+5 → 22 → 1 → 90
+Advantage
+
+Easy implementation.
+
+Disadvantage
+
+Large FAT for large disks.
+
+🐧 Inodes
+
+One of the most important Linux interview topics.
+
+Used in:
+
+Linux
+Unix
+What is an Inode?
+
+Inode stores metadata of a file.
+
+Contains:
+
+Owner
+Permissions
+Size
+Timestamps
+Block Addresses
+
+Does NOT store:
+
+File Name
+
+Interview Favorite Question ⚡
+
+Example
+
+File:
+
+resume.pdf
+
+Inode contains:
+
+Size = 2 MB
+
+Owner = Lucky
+
+Permissions = rwx
+
+Blocks = 5,22,1,90
+HDD Structure
+
+Before Disk Scheduling, understand HDD.
+
+Components
+Platter
+
+Circular magnetic disk.
+
+Track
+
+Circular rings.
+
+Visualization
+
+O O O O
+
+Each ring = Track
+
+Sector
+
+Track divided into pieces.
+
+Visualization
+
+Pizza Slices 🍕
+Cylinder
+
+Tracks of same radius across platters.
+
+Interview favorite.
+
+Read/Write Head
+
+Reads data.
+
+Moves over tracks.
+
+Disk Access Time
+
+When OS reads data:
+
+Total Time =
+
+Seek Time
++
+Rotational Latency
++
+Transfer Time
+1. Seek Time
+
+Time taken to move head.
+
+Example:
+
+Track 10
+      ↓
+Track 200
+
+Movement time.
+
+2. Rotational Latency
+
+Wait for sector to rotate.
+
+Example
+
+Desired sector not under head
+
+Need to wait.
+
+3. Transfer Time
+
+Actual reading time.
+
+Disk Scheduling
+
+Many requests arrive.
+
+Example:
+
+98
+183
+37
+122
+14
+124
+65
+67
+
+Question:
+
+Which request should be served first?
+1️⃣ FCFS
+
+First Come First Serve.
+
+Example
+
+98
+183
+37
+122
+
+Serve in same order.
+
+Advantage
+
+Simple.
+
+Disadvantage
+
+Poor performance.
+
+2️⃣ SSTF
+
+Shortest Seek Time First.
+
+Idea:
+
+Choose nearest request.
+
+Example
+
+Current Head:
+
+50
+
+Requests:
+
+10
+55
+90
+
+Nearest:
+
+55
+
+Choose first.
+
+Advantage
+
+Less head movement.
+
+Disadvantage
+
+Starvation possible.
+
+3️⃣ SCAN (Elevator Algorithm)
+
+Most famous.
+
+Idea:
+
+Head moves in one direction.
+
+Serves all requests.
+
+Then reverses.
+
+Visualization
+
+0 ---------------- 200
+      →
+
+Then:
+
+←
+
+Like elevator.
+
+Advantage
+
+Fair.
+
+4️⃣ C-SCAN
+
+Circular SCAN.
+
+Instead of reversing:
+
+0 → 200
+
+Jump back:
+
+200 → 0
+
+Then continue.
+
+Provides more uniform waiting time.
+
+5️⃣ LOOK
+
+Like SCAN.
+
+But doesn't go till disk end.
+
+Example
+
+Last request:
+
+170
+
+Stop at:
+
+170
+
+Not:
+
+200
+
+Less movement.
+
+6️⃣ C-LOOK
+
+LOOK + Circular behavior.
+
+Most efficient practical variation.
+
+Comparison Table
+Algorithm	Idea
+FCFS	Arrival Order
+SSTF	Nearest Request
+SCAN	Elevator
+C-SCAN	Circular Elevator
+LOOK	Smart SCAN
+C-LOOK	Smart Circular SCAN
+Interview Questions
+Q1. Fastest File Allocation Method?
+
+Answer:
+
+Contiguous Allocation
+Q2. Which allocation removes external fragmentation?
+
+Answer:
+
+Linked
+Indexed
+Q3. What is FAT?
+
+Answer:
+
+File Allocation Table storing next-block information.
+
+Q4. What does Inode store?
+
+Answer:
+
+Size
+Owner
+Permissions
+Timestamps
+Block Addresses
+Q5. Does inode store file name?
+
+Answer:
+
+No
+Q6. What is Seek Time?
+
+Answer:
+
+Time required to move disk head.
+
+Q7. Which disk scheduling is called Elevator Algorithm?
+
+Answer:
+
+SCAN
+Q8. Best practical disk scheduling?
+
+Common answer:
+
+LOOK
+or
+C-LOOK
