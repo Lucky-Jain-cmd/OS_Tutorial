@@ -1169,3 +1169,25 @@ Roadmap Status
 
 ✅ Producer–Consumer Problem
 ✅ Reader–Writer Problem
+
+Philosophers kya represent karte hain?
+Processes / Threads
+Forks kya represent karte hain?
+Resources
+Eating kya represent karta hai?
+Resource Use Karna
+Main Problem?
+Deadlock
+Deadlock kab hota hai?
+
+Jab sab philosophers ek fork pakad lete hain aur doosre fork ka wait karte rehte hain.
+
+Starvation kya hai?
+
+Jab kuch philosophers ko kabhi chance hi nahi milta.
+
+Roadmap Status
+
+✅ Producer–Consumer Problem
+✅ Reader–Writer Problem
+✅ Dining Philosophers Problem
