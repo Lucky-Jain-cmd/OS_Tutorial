@@ -1217,3 +1217,34 @@ Roadmap Status
 ✅ Dining Philosophers
 ✅ Deadlock Introduction
 ✅ Coffman Conditions
+
+RAG kya hai?
+
+Ek graph jo dikhata hai:
+
+Kaun sa process
+Kaun sa resource use kar raha hai
+Aur kis resource ka wait kar raha hai.
+Process ka symbol?
+Circle
+Resource ka symbol?
+Square
+Process → Resource
+Request
+Resource → Process
+Allocation
+Cycle ka matlab?
+
+Single resource instance me:
+
+Deadlock
+
+Multiple instances me:
+
+Deadlock ho bhi sakta hai,
+nahi bhi.
+Roadmap Status
+
+✅ Deadlock Introduction
+✅ Coffman Conditions
+✅ Resource Allocation Graph (RAG)
