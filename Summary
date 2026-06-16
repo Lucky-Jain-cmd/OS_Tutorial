@@ -1395,3 +1395,35 @@ Producer–Consumer
 Reader–Writer
 Dining Philosophers
 Deadlocks (Complete)
+
+Memory Management kya hai?
+
+RAM ko manage karne ka OS ka mechanism.
+
+RAM kyu manage karni padti hai?
+Limited hoti hai
+Multiple processes chalti hain
+Protection chahiye
+Logical Address kya hai?
+Process ko dikhne wala address.
+Physical Address kya hai?
+RAM ka asli address.
+MMU kya karta hai?
+Logical Address
+        ↓
+Physical Address
+
+convert karta hai.
+
+Address Binding ke types?
+Compile Time
+Load Time
+Execution Time
+🎯 Roadmap Status
+
+✅ Deadlocks Complete
+✅ Memory Management Introduction
+✅ Logical vs Physical Address
+✅ MMU
+✅ Address Binding
+✅ Dynamic Relocation
