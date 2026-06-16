@@ -1248,3 +1248,28 @@ Roadmap Status
 ✅ Deadlock Introduction
 ✅ Coffman Conditions
 ✅ Resource Allocation Graph (RAG)
+
+Deadlock Prevention kya hai?
+
+Aisi technique jisme Coffman conditions me se kam se kam ek condition ko tod diya jata hai.
+
+Deadlock kab impossible ho jata hai?
+Jab 4 me se
+1 bhi Coffman condition
+remove ho jaye.
+Hold and Wait kaise break karte hain?
+Saare resources
+ek saath maango.
+No Preemption kaise break karte hain?
+Resource wapas le lo.
+Circular Wait kaise break karte hain?
+Resource numbering
+aur fixed ordering.
+Sabse practical method?
+Resource Ordering
+Roadmap Status
+
+✅ Deadlock Introduction
+✅ Coffman Conditions
+✅ Resource Allocation Graph
+✅ Deadlock Prevention
