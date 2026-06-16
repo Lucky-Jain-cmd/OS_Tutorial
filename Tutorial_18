@@ -1,0 +1,498 @@
+Reader–Writer Problem
+
+This problem is extremely important because it appears in:
+
+Databases
+Operating Systems
+Banking Systems
+Web Servers
+File Systems
+Caches
+First Understand the Idea
+
+Suppose there is a book.
+
+Database Record
+
+Many people want to read it.
+
+Some people want to modify it.
+
+There are two types of users:
+
+Readers
+
+Only read data.
+
+Example:
+
+Check Balance
+View Profile
+Read File
+Writers
+
+Modify data.
+
+Example:
+
+Update Balance
+Edit Profile
+Modify File
+Important Observation
+
+Suppose 100 students are reading a newspaper.
+
+Problem?
+
+No
+
+Everyone can read simultaneously.
+
+Nothing changes.
+
+But suppose one person starts writing on the newspaper.
+
+Now readers may see inconsistent data.
+
+Problem?
+
+Yes
+Therefore Rules Are
+Rule 1
+
+Multiple readers allowed.
+
+Reader
+Reader
+Reader
+Reader
+
+All together.
+
+Rule 2
+
+Writer must be alone.
+
+Writer
+
+Only one.
+
+Rule 3
+
+Reader and writer cannot access simultaneously.
+
+Reader + Writer
+
+Not allowed.
+
+Why?
+
+Imagine a bank account.
+
+Balance:
+
+₹1000
+
+Reader:
+
+Check Balance
+
+Writer:
+
+Deposit ₹500
+
+Suppose reader reads during update.
+
+It might see:
+
+Incomplete Data
+
+leading to inconsistency.
+
+Visualization
+
+Allowed:
+
+R R R R
+
+Allowed:
+
+W
+
+Not Allowed:
+
+R W
+
+Not Allowed:
+
+W W
+Real-Life Example: Library
+
+Think of a library book.
+
+Many students can read it together.
+
+But when librarian updates:
+
+New Edition
+
+Nobody should read.
+
+After update completes:
+
+Readers can continue.
+
+Database Example
+
+Suppose database contains:
+
+Customer Data
+
+Many customers:
+
+View Balance
+
+simultaneously.
+
+No problem.
+
+But when database updates records:
+
+Modify Data
+
+Exclusive access required.
+
+Why Not Use Simple Mutex?
+
+Good question.
+
+Mutex allows:
+
+Only One Thread
+
+Then:
+
+Reader 1
+Reader 2
+Reader 3
+
+cannot read together.
+
+Waste of performance.
+
+Reader–Writer solution improves efficiency.
+
+Reader Count Concept
+
+We maintain:
+
+readCount
+
+which stores:
+
+How many readers are active?
+
+Example:
+
+Initially:
+
+readCount = 0
+
+Reader 1 enters:
+
+readCount = 1
+
+Reader 2 enters:
+
+readCount = 2
+
+Reader 3 enters:
+
+readCount = 3
+
+All read simultaneously.
+
+Writer Logic
+
+Writer can enter only if:
+
+readCount = 0
+
+and
+
+No Writer Active
+
+Otherwise writer waits.
+
+First Reader Locks
+
+Interesting trick.
+
+When first reader enters:
+
+readCount becomes 1
+
+First reader locks writers.
+
+Now:
+
+Writer Blocked
+
+Additional readers can still enter.
+
+Last Reader Unlocks
+
+Suppose:
+
+readCount = 1
+
+Last reader exits.
+
+Now:
+
+readCount = 0
+
+Writers become allowed.
+
+Example Walkthrough
+
+Initial:
+
+readCount = 0
+
+Reader A enters.
+
+readCount = 1
+
+Reader B enters.
+
+readCount = 2
+
+Reader C enters.
+
+readCount = 3
+
+Writer arrives.
+
+Must wait.
+
+Reader A exits.
+
+readCount = 2
+
+Reader B exits.
+
+readCount = 1
+
+Reader C exits.
+
+readCount = 0
+
+Writer enters.
+
+Reader Preference Problem
+
+Classic version.
+
+Readers are given priority.
+
+Scenario:
+
+Reader
+Reader
+Reader
+Reader
+
+keep arriving continuously.
+
+Writer waits.
+
+More readers arrive.
+
+Writer still waits.
+
+Possible result:
+
+Writer waits forever
+
+This is called:
+
+Writer Starvation
+Writer Starvation
+
+Definition:
+
+A writer never gets a chance because readers keep arriving.
+
+Example:
+
+R R R R R R R R R
+
+Continuous flow.
+
+Writer:
+
+Waiting...
+Waiting...
+Waiting...
+Waiting...
+
+Forever.
+
+Writer Preference Solution
+
+Alternative approach.
+
+When writer arrives:
+
+New Readers Blocked
+
+Writer eventually gets access.
+
+Advantage:
+
+No Writer Starvation
+
+Disadvantage:
+
+Readers may wait longer.
+
+Fair Reader–Writer Solution
+
+Modern systems often use:
+
+Fair Scheduling
+
+Rule:
+
+First Come First Serve
+
+Whoever arrives first gets served first.
+
+Prevents starvation on both sides.
+
+Reader–Writer Lock
+
+Modern systems provide:
+
+RW Lock
+
+or
+
+Read Write Lock
+
+It supports:
+
+Many Readers
+
+OR
+
+One Writer
+
+Used heavily in:
+
+Database engines
+Operating system kernels
+High-performance servers
+Real-World Examples
+Banking
+
+Readers:
+
+Check Balance
+
+Writer:
+
+Deposit Money
+Withdraw Money
+File System
+
+Readers:
+
+Open File
+Read File
+
+Writer:
+
+Modify File
+Website
+
+Readers:
+
+View Product
+
+Thousands simultaneously.
+
+Writer:
+
+Update Product Price
+
+Must be exclusive.
+
+Operating System
+
+Readers:
+
+Read Kernel Data
+
+Writer:
+
+Modify Kernel Data
+Advantages
+High Performance
+
+Many readers work together.
+
+Better Resource Utilization
+
+No unnecessary blocking.
+
+Common in Databases
+
+Huge practical importance.
+
+Disadvantages
+More Complex
+
+Harder than mutex.
+
+Starvation Possible
+
+Depending on implementation.
+
+Interview Questions
+Q1. What is Reader–Writer Problem?
+
+Answer:
+
+A synchronization problem where multiple readers may access shared data simultaneously, but writers require exclusive access.
+
+Q2. Can multiple readers read together?
+
+Answer:
+
+Yes.
+
+Q3. Can two writers write together?
+
+Answer:
+
+No.
+
+Q4. Can a reader and writer access simultaneously?
+
+Answer:
+
+No.
+
+Q5. What is Writer Starvation?
+
+Answer:
+
+When writers wait indefinitely because readers continuously enter the system.
+
+Q6. Why not use a simple mutex?
+
+Answer:
+
+Mutex allows only one thread at a time, while Reader–Writer locks allow many readers simultaneously, improving performance.
