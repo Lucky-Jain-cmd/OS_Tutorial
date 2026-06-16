@@ -1273,3 +1273,29 @@ Roadmap Status
 ✅ Coffman Conditions
 ✅ Resource Allocation Graph
 ✅ Deadlock Prevention
+
+Deadlock Avoidance kya hai?
+
+OS har resource request ko check karta hai aur sirf tab grant karta hai jab system safe state me rahe.
+
+Safe State kya hai?
+Sabhi processes
+future me complete ho sakte hain.
+Unsafe State kya hai?
+Deadlock nahi hua,
+par future me ho sakta hai.
+Safe Sequence kya hai?
+Processes ko execute karne ka
+aisa order
+jisme sab complete ho jaye.
+Unsafe State = Deadlock?
+Nahi.
+Safe State ka opposite?
+Unsafe State
+Roadmap Status
+
+✅ Deadlock Prevention
+✅ Deadlock Avoidance
+✅ Safe State
+✅ Unsafe State
+✅ Safe Sequence
