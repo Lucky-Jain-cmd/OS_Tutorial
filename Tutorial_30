@@ -1,0 +1,474 @@
+Segmentation
+
+After Paging, we now study another famous memory management technique:
+
+Segmentation
+
+This topic is extremely important because interviewers often ask:
+
+❓ Difference between Paging and Segmentation?
+
+Before understanding the difference, let's understand Segmentation deeply.
+
+🤔 Why Was Segmentation Invented?
+
+Remember Paging?
+
+Paging divides memory into:
+
+Page 0
+Page 1
+Page 2
+Page 3
+
+All pages have equal size.
+
+Problem:
+
+The program itself is not naturally organized that way.
+
+A program actually contains:
+
+Code
+Functions
+Variables
+Stack
+Heap
+Libraries
+
+Example:
+
+A C Program
+
+int main() {
+   int x = 10;
+   printf("Hello");
+}
+
+Internally:
+
+Code Segment
+Data Segment
+Stack Segment
+Heap Segment
+
+Programmer thinks in terms of:
+
+Functions
+Arrays
+Variables
+Modules
+
+NOT:
+
+Page 0
+Page 1
+Page 2
+
+So OS designers thought:
+
+Why not divide memory according to logical parts of the program?
+
+This became:
+
+Segmentation
+📖 Definition
+
+Segmentation is a memory management technique in which a process is divided into logical units called segments.
+
+Easy Definition
+
+Instead of dividing memory into fixed-size pages:
+
+Program
+   ↓
+Logical Parts
+   ↓
+Segments
+Real-Life Analogy
+
+Imagine a book.
+
+Paging:
+
+Page 1
+Page 2
+Page 3
+Page 4
+
+Equal-sized divisions.
+
+Segmentation:
+
+Chapter 1
+Chapter 2
+Chapter 3
+Appendix
+Index
+
+Logical divisions.
+
+Example Process
+
+Suppose process contains:
+
+Main Function
+Variables
+Stack
+Heap
+
+Segmentation creates:
+
+Segment 0 → Code
+
+Segment 1 → Data
+
+Segment 2 → Stack
+
+Segment 3 → Heap
+
+Visualization
+
+Process
+
++--------+
+| Code   |
++--------+
+| Data   |
++--------+
+| Stack  |
++--------+
+| Heap   |
++--------+
+Important Difference from Paging
+
+Paging:
+
+All pages same size
+
+Segmentation:
+
+Segments can have different sizes
+
+Example:
+
+Code  = 100 KB
+
+Data  = 50 KB
+
+Stack = 20 KB
+
+Heap  = 500 KB
+
+Perfectly valid.
+
+Segment Table
+
+Just as Paging uses:
+
+Page Table
+
+Segmentation uses:
+
+Segment Table
+
+Stores information about every segment.
+
+Each entry contains:
+
+Base Address
+Limit
+Base Address
+
+Starting address of segment.
+
+Example:
+
+Code Segment starts at 5000
+
+Then:
+
+Base = 5000
+Limit
+
+Size of segment.
+
+Example:
+
+Code Segment size = 1000 bytes
+
+Then:
+
+Limit = 1000
+Segment Table Example
+Segment	Base	Limit
+0	5000	1000
+1	7000	500
+2	9000	300
+3	12000	2000
+
+Meaning:
+
+Segment 0 starts at 5000
+and size is 1000 bytes.
+Logical Address in Segmentation
+
+In Paging:
+
+(Page Number, Offset)
+
+In Segmentation:
+
+(Segment Number, Offset)
+
+Visualization:
+
++------------------+
+| Segment | Offset |
++------------------+
+Address Translation
+
+This is the heart of Segmentation.
+
+Suppose CPU generates:
+
+(2, 100)
+
+Meaning:
+
+Segment 2
+Offset 100
+
+Segment Table says:
+
+Segment 2
+
+Base = 9000
+
+Limit = 300
+
+Check:
+
+Offset < Limit ?
+100 < 300
+
+Valid.
+
+Then:
+
+Physical Address
+
+= Base + Offset
+
+Calculation:
+
+9000 + 100
+
+Result:
+
+9100
+
+RAM location:
+
+9100
+
+accessed.
+
+Another Example
+
+CPU generates:
+
+(2, 500)
+
+Segment 2 limit:
+
+300
+
+Check:
+
+500 < 300 ?
+
+No.
+
+Result:
+
+Segmentation Fault
+What is Segmentation Fault?
+
+One of the most famous interview questions.
+
+It occurs when:
+
+Process accesses memory
+outside segment boundary.
+
+Example:
+
+Segment size = 300
+
+Offset = 500
+
+Invalid.
+
+OS throws:
+
+Segmentation Fault
+Real-Life Analogy
+
+Suppose hotel room:
+
+Room 101
+
+contains:
+
+Beds 1 to 4
+
+Trying to access:
+
+Bed 10
+
+Impossible.
+
+That's segmentation fault.
+
+Advantages of Segmentation
+1. Matches Programmer View
+
+Programmers think:
+
+Code
+Data
+Functions
+Modules
+
+Not pages.
+
+2. Better Protection
+
+Different permissions possible.
+
+Example:
+
+Code Segment → Read Only
+
+Data Segment → Read Write
+3. Easy Sharing
+
+Multiple processes can share:
+
+Library Segment
+Disadvantages
+1. External Fragmentation
+
+Because segments have variable sizes.
+
+Example:
+
+100 KB Free
+
+50 KB Free
+
+200 KB Free
+
+Total:
+
+350 KB
+
+Need:
+
+300 KB contiguous
+
+May not fit.
+
+Therefore:
+
+External Fragmentation Returns 😭
+2. Compaction Needed
+
+Sometimes memory must be rearranged.
+
+3. More Complex
+
+Compared to simple paging.
+
+Paging vs Segmentation
+
+This is one of the most asked interview questions.
+
+Paging	Segmentation
+Fixed-size blocks	Variable-size blocks
+Pages	Segments
+Programmer Invisible	Programmer Visible
+No External Fragmentation	External Fragmentation
+Internal Fragmentation Possible	Internal Fragmentation Rare
+Based on Physical Memory Management	Based on Logical Program Structure
+Easy Memory Trick
+Paging
+Memory-Oriented
+
+OS thinks:
+
+How should RAM be divided?
+Segmentation
+Program-Oriented
+
+OS thinks:
+
+How is the program organized?
+Modern Systems
+
+Pure segmentation is rare today.
+
+Most modern systems use:
+
+Paging
+
+or
+
+Segmentation + Paging
+
+combination.
+
+Examples include:
+
+Linux
+Microsoft Windows
+
+which primarily rely on paging-based virtual memory.
+
+Interview Questions
+Q1. What is Segmentation?
+
+Answer:
+
+A memory management technique that divides a process into logical segments.
+
+Q2. What are the components of a Segment Table?
+
+Answer:
+
+Base Address
+Limit
+Q3. Logical Address Format?
+
+Answer:
+
+(Segment Number, Offset)
+Q4. Formula for Physical Address?
+Q5. What is a Segmentation Fault?
+
+Answer:
+
+Accessing memory beyond the limit of a segment.
+
+Q6. Biggest advantage of Segmentation?
+
+Answer:
+
+Matches the logical structure of programs.
+
+Q7. Biggest disadvantage?
+
+Answer:
+
+External Fragmentation.
