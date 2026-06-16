@@ -1130,3 +1130,42 @@ Roadmap Status
 ✅ Interrupts
 ✅ Threads
 ✅ Multithreading
+
+
+Reader kaun hai?
+
+Sirf data read karta hai.
+
+Examples:
+
+Balance Check
+View File
+View Profile
+Writer kaun hai?
+
+Data modify karta hai.
+
+Examples:
+
+Deposit
+Update File
+Edit Profile
+Rules
+Readers + Readers = Allowed
+
+Writer + Writer = Not Allowed
+
+Reader + Writer = Not Allowed
+Writer Starvation kya hai?
+
+Jab readers lagataar aate rahein aur writer ko kabhi chance na mile.
+
+Real Example
+Database
+Banking
+File System
+Website
+Roadmap Status
+
+✅ Producer–Consumer Problem
+✅ Reader–Writer Problem
