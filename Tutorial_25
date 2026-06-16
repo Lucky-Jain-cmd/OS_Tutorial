@@ -1,0 +1,362 @@
+Deadlock Detection
+First Understand the Philosophy
+Prevention says:
+Never allow deadlock conditions.
+Avoidance says:
+Allow requests,
+but stay in safe states.
+Detection says:
+I don't care if deadlock happens.
+
+Let it happen.
+
+I'll find it later.
+
+This is actually used in many real systems because:
+
+Deadlocks are relatively rare.
+
+Checking every request continuously can be expensive.
+
+Definition
+
+Deadlock Detection is a strategy in which:
+
+Resources are allocated normally.
+Deadlocks may occur.
+OS periodically checks for deadlocks.
+If found, recovery actions are taken.
+Real-Life Example
+
+Imagine a city.
+
+Instead of:
+
+Preventing all traffic jams
+
+the city does:
+
+Allow traffic normally
+       ↓
+Detect jam
+       ↓
+Send police
+
+This is deadlock detection.
+
+Basic Idea
+Allow Deadlock
+      ↓
+Detect Deadlock
+      ↓
+Recover
+When Is Detection Useful?
+
+Useful when:
+
+Deadlocks are rare
+
+because:
+
+Checking continuously
+can waste CPU time.
+Detection for Single-Instance Resources
+
+Remember RAG?
+
+We learned:
+
+Process = Circle
+Resource = Square
+
+Example:
+
+Printer → P1
+
+P1 → Scanner
+
+Scanner → P2
+
+P2 → Printer
+
+Cycle exists.
+
+For Single-Instance Resources:
+
+Cycle = Deadlock
+
+Very important interview point.
+
+Wait-For Graph (WFG)
+
+Detection often uses:
+
+Wait-For Graph
+
+It is a simplified RAG.
+
+Remove resources.
+
+Keep only processes.
+
+Example:
+
+P1 waits for resource held by P2.
+
+Graph:
+
+P1 → P2
+
+Meaning:
+
+P1 waits for P2
+
+Another:
+
+P2 → P3
+
+Meaning:
+
+P2 waits for P3
+Example
+P1 → P2
+
+P2 → P3
+
+P3 → P1
+
+Visualization:
+
+P1
+↑  ↓
+|   |
+P3←P2
+
+Cycle exists.
+
+Therefore:
+
+Deadlock Detected
+Detection Rule
+
+For single-instance resources:
+
+Cycle Present
+      ↓
+Deadlock Exists
+
+No cycle:
+
+No Deadlock
+Multiple-Instance Resources
+
+Now things become harder.
+
+Suppose:
+
+3 Printers
+2 Scanners
+
+A cycle may exist.
+
+But deadlock may not.
+
+Remember:
+
+Cycle ≠ Always Deadlock
+
+for multiple instances.
+
+Therefore:
+
+Simple cycle detection isn't enough.
+
+Need a more advanced algorithm.
+
+Detection Algorithm for Multiple Instances
+
+Looks very similar to:
+
+Banker's Safety Algorithm
+
+We maintain:
+
+Available
+
+Currently free resources.
+
+Allocation
+
+Resources held by processes.
+
+Request
+
+Resources still needed.
+
+Detection Procedure
+
+Find process whose:
+
+Request ≤ Available
+
+If found:
+
+Pretend process finishes.
+
+Release resources:
+
+Available += Allocation
+
+Continue.
+
+If all processes finish:
+
+No Deadlock
+
+If some cannot finish:
+
+Deadlock Exists
+Example
+
+Available:
+
+1
+
+Processes:
+
+P1 needs 2
+P2 needs 3
+P3 needs 4
+
+Can anyone finish?
+
+No
+
+No process satisfies:
+
+Request ≤ Available
+
+Result:
+
+Deadlock Detected
+Difference Between Detection and Avoidance
+
+Students often confuse these.
+
+Avoidance	Detection
+Avoid deadlock beforehand	Allow deadlock
+Uses Safe State	Looks for existing deadlock
+Prevents unsafe state	Finds deadlocked processes
+More proactive	Reactive
+How Often Should Detection Run?
+
+Interesting OS question.
+
+Possible options:
+
+Every Resource Request
+Very Accurate
+
+but:
+
+Expensive
+Periodically
+
+Example:
+
+Every 5 Seconds
+
+Common approach.
+
+When CPU Usage Drops
+
+Sometimes systems suspect deadlock if:
+
+Processes stop progressing.
+Advantages
+High Resource Utilization
+
+No strict restrictions.
+
+Better Performance
+
+When deadlocks are rare.
+
+Simpler Resource Allocation
+
+Processes request resources normally.
+
+Disadvantages
+Deadlocks Actually Occur
+
+Unlike prevention.
+
+Detection Costs CPU Time
+
+OS must periodically analyze.
+
+Recovery Needed
+
+Detection alone doesn't solve the problem.
+
+Real-World Examples
+Database Systems
+
+Databases often:
+
+Allow locks
+
+Then periodically:
+
+Detect deadlock
+
+Then abort one transaction.
+
+Examples include systems from Oracle Corporation and Microsoft database products.
+
+Operating Systems
+
+Many OS kernels use detection mechanisms for certain lock situations.
+
+Detection vs Prevention vs Avoidance
+Feature	Prevention	Avoidance	Detection
+Deadlock Allowed?	No	No	Yes
+Need Future Information?	No	Yes	No
+Resource Utilization	Lower	Medium	High
+Complexity	Low	High	Medium
+Recovery Required?	No	No	Yes
+Interview Questions
+Q1. What is Deadlock Detection?
+
+Answer:
+
+A strategy that allows deadlocks to occur and then identifies them later.
+
+Q2. Which graph is used for single-instance deadlock detection?
+
+Answer:
+
+Wait-For Graph.
+
+Q3. In a Wait-For Graph, what does:
+P1 → P2
+
+mean?
+
+Answer:
+
+P1 is waiting for P2.
+
+Q4. For single-instance resources:
+
+Cycle means?
+
+Answer:
+
+Deadlock.
+
+Q5. Why is recovery needed?
+
+Answer:
+
+Because detection only finds deadlocks; it doesn't remove them.
