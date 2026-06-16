@@ -1,0 +1,529 @@
+Multithreading
+
+This is one of the most frequently asked topics in interviews and is heavily used in modern software like browsers, games, banking systems, servers, and mobile apps.
+
+First Understand the Problem
+
+Suppose a restaurant has only one worker.
+
+Worker:
+- Take Orders
+- Cook Food
+- Collect Payment
+- Clean Tables
+- Answer Phone Calls
+
+What happens?
+
+Everything becomes slow.
+
+Now suppose restaurant has:
+
+Cook
+Cashier
+Cleaner
+Manager
+
+All work simultaneously.
+
+Restaurant becomes efficient.
+
+Similarly:
+
+Single Thread vs Multithreading
+Single Thread
+Process
+   |
+   |
+Thread
+
+Only one execution path.
+
+Example:
+
+Download File
+      ↓
+Play Music
+      ↓
+Open Menu
+
+One task after another.
+
+Multithreading
+Process
+    |
+ ------------------
+ |       |        |
+ T1      T2       T3
+
+Multiple execution paths.
+
+Example:
+
+Download File
+Play Music
+Respond to Mouse
+
+All happening concurrently.
+
+Definition
+
+Multithreading is the ability of a process to have multiple threads executing concurrently.
+
+Easy Definition
+
+Multithreading means:
+
+One process doing multiple tasks using multiple threads.
+
+Real Example: Chrome Browser
+
+When you open Chrome:
+
+Chrome Process may contain:
+
+UI Thread
+Rendering Thread
+Network Thread
+Audio Thread
+JavaScript Thread
+UI Thread
+
+Handles:
+
+Buttons
+Menus
+Mouse Clicks
+Keyboard Input
+Network Thread
+
+Handles:
+
+Internet Requests
+Downloading Web Pages
+Audio Thread
+
+Handles:
+
+YouTube Sound
+Music Playback
+Rendering Thread
+
+Handles:
+
+Drawing Web Page
+Displaying Images
+
+If one thread becomes busy:
+
+Others continue working.
+
+Example: Watching YouTube
+
+Suppose you're watching YouTube.
+
+Tasks:
+
+Play Video
+Play Audio
+Download Future Video Chunks
+Handle User Input
+Show Comments
+
+Without Multithreading:
+
+Play Video
+      ↓
+Download
+      ↓
+Handle Mouse
+
+Slow.
+
+With Multithreading:
+
+Video Thread
+Audio Thread
+Network Thread
+UI Thread
+
+Everything feels smooth.
+
+How Threads Share Resources
+
+This is VERY important.
+
+Remember:
+
+Threads belong to the same process.
+
+Therefore they share:
+
+Code
+Data
+Heap Memory
+Files
+
+But each thread has its own:
+
+Program Counter
+Registers
+Stack
+
+Visualization:
+
+Process
+------------------------------------------------
+Shared:
+Code
+Data
+Heap
+Files
+------------------------------------------------
+
+Thread 1 -> Own Stack
+Thread 2 -> Own Stack
+Thread 3 -> Own Stack
+Why Is Multithreading Faster?
+
+Suppose process creation takes:
+
+10 ms
+
+Thread creation takes:
+
+1 ms
+
+Creating threads is much cheaper.
+
+Benefits of Multithreading
+1. Responsiveness
+
+Most important benefit.
+
+Example:
+
+Microsoft Word.
+
+While typing:
+
+Typing Thread
+Spell Check Thread
+Auto Save Thread
+
+Even if spell check is running:
+
+Typing remains smooth.
+
+2. Resource Sharing
+
+Threads share memory.
+
+Easy communication.
+
+Example:
+
+Thread A
+      ↓
+Shared Memory
+      ↑
+Thread B
+3. Economy
+
+Thread creation is cheaper.
+
+Less memory.
+
+Less overhead.
+
+4. Better CPU Utilization
+
+Suppose CPU:
+
+8 Cores
+
+Threads:
+
+T1
+T2
+T3
+T4
+
+Can run simultaneously.
+
+Multithreading on Single Core CPU
+
+Important concept.
+
+Students often ask:
+
+If CPU has one core, can multithreading still work?
+
+Yes.
+
+CPU rapidly switches:
+
+T1
+T2
+T3
+T1
+T2
+
+This is called:
+
+Concurrency
+Multithreading on Multi-Core CPU
+
+Suppose:
+
+Core 1
+Core 2
+Core 3
+Core 4
+
+Threads:
+
+T1
+T2
+T3
+T4
+
+Can run truly simultaneously.
+
+This is:
+
+Parallelism
+Concurrency vs Parallelism
+
+Interview Favorite.
+
+Concurrency	Parallelism
+Tasks appear simultaneous	Tasks truly simultaneous
+Single Core Possible	Multiple Cores Required
+Context Switching Used	Actual Parallel Execution
+Example
+
+Single Core:
+
+T1
+T2
+T3
+T1
+T2
+
+Concurrency.
+
+Multi Core:
+
+Core 1 -> T1
+Core 2 -> T2
+Core 3 -> T3
+
+Parallelism.
+
+Problems in Multithreading
+
+Now comes the dangerous part.
+
+Shared Memory Problem
+
+Suppose:
+
+Bank Balance = 1000
+
+Two threads execute:
+
+Withdraw 100
+Withdraw 100
+
+Simultaneously.
+
+Thread 1 reads:
+
+1000
+
+Thread 2 reads:
+
+1000
+
+Thread 1 writes:
+
+900
+
+Thread 2 writes:
+
+900
+
+Expected:
+
+800
+
+Actual:
+
+900
+
+Wrong result.
+
+This is called:
+
+Race Condition
+What Is Race Condition?
+
+When multiple threads access shared data simultaneously and outcome depends on timing.
+
+Example:
+
+Thread A
+Thread B
+
+both updating same variable.
+
+Result becomes unpredictable.
+
+Real-Life Example
+
+Imagine two cashiers updating the same account balance without coordination.
+
+Errors occur.
+
+Thread Safety
+
+A program is thread-safe if multiple threads can execute correctly without corrupting data.
+
+Solution to Race Conditions
+
+OS provides:
+
+Mutex
+Semaphore
+Monitor
+Locks
+
+We'll study these later.
+
+Types of Multithreading Models
+
+Advanced Interview Topic.
+
+Many-to-One
+Many User Threads
+       ↓
+One Kernel Thread
+
+Fast but limited.
+
+One-to-One
+One User Thread
+       ↓
+One Kernel Thread
+
+Most common.
+
+Examples:
+
+Windows
+Linux
+Many-to-Many
+Many User Threads
+       ↓
+Many Kernel Threads
+
+More flexible.
+
+Context Switching Between Threads
+
+Remember Process Context Switching?
+
+Now thread switching is similar.
+
+Save:
+
+Registers
+Program Counter
+Stack Pointer
+
+Load another thread.
+
+Since memory is shared:
+
+Thread switching is faster than process switching.
+
+Process vs Multithreading Example
+
+Without Threads:
+
+Chrome Process
+Chrome Process
+Chrome Process
+
+Huge memory usage.
+
+With Threads:
+
+Chrome Process
+     |
+ -------------------
+ |    |    |    |
+ T1   T2   T3   T4
+
+Much more efficient.
+
+Real Applications Using Multithreading
+Chrome
+Rendering
+Networking
+Audio
+UI
+Microsoft Word
+Typing
+Spell Check
+Auto Save
+Games
+Graphics
+Physics
+Audio
+AI
+Networking
+Banking Systems
+Account Processing
+Transaction Verification
+Logging
+Notifications
+Servers
+
+A web server may handle:
+
+1000 Clients
+
+using multiple threads.
+
+Interview Questions
+Q1. What is Multithreading?
+
+Answer:
+
+Executing multiple threads within a single process.
+
+Q2. Why Use Multithreading?
+
+Answer:
+
+Responsiveness, better CPU utilization, resource sharing, and lower overhead.
+
+Q3. What Resources Are Shared?
+
+Answer:
+
+Code, data, heap, and files.
+
+Q4. What Resources Are Private?
+
+Answer:
+
+Stack, registers, and program counter.
+
+Q5. What Is Race Condition?
+
+Answer:
+
+When multiple threads access shared data simultaneously causing unpredictable results.
