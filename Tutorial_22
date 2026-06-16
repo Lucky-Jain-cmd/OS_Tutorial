@@ -1,0 +1,453 @@
+Deadlock Prevention
+
+After learning:
+
+Deadlock
+    ↓
+Coffman Conditions
+    ↓
+Resource Allocation Graph
+
+the next question is:
+
+Can we stop deadlocks before they ever happen?
+
+Answer:
+
+Yes — Deadlock Prevention
+Basic Idea
+
+Remember:
+
+Deadlock can occur only when all four Coffman conditions are present simultaneously.
+
+1. Mutual Exclusion
+2. Hold and Wait
+3. No Preemption
+4. Circular Wait
+
+Very Important Rule:
+
+If we break even ONE Coffman condition:
+
+Deadlock becomes impossible.
+Definition
+
+Deadlock Prevention is a strategy that ensures at least one Coffman condition can never occur.
+
+Therefore:
+
+Deadlock cannot happen.
+How Prevention Works
+
+Think of Coffman conditions as four pillars.
+
+Deadlock
+   ▲
+   │
+ ┌─┼─┐
+ │ │ │
+M H N C
+
+Where:
+
+M = Mutual Exclusion
+H = Hold and Wait
+N = No Preemption
+C = Circular Wait
+
+Break any pillar:
+
+Deadlock Falls
+Method 1: Break Mutual Exclusion
+Condition
+Only one process can use resource.
+
+Example:
+
+Printer.
+
+Only one process can print.
+
+Question:
+
+Can we always remove mutual exclusion?
+
+Answer:
+
+No
+
+Why?
+
+Some resources are inherently non-shareable.
+
+Examples:
+
+Printer
+Scanner
+Keyboard
+GPU (certain operations)
+
+But some resources can be shared.
+
+Example:
+
+Read-only file
+
+Many processes can read together.
+
+Advantage
+
+Deadlock prevented.
+
+Disadvantage
+
+Often impossible.
+
+Therefore:
+
+Rarely used.
+
+Method 2: Break Hold and Wait
+
+This is a very common prevention technique.
+
+Condition
+
+Process holds one resource and waits for another.
+
+Example:
+
+P1 holds Printer
+P1 waits for Scanner
+
+Deadlock becomes possible.
+
+Prevention Rule
+
+Require process to request ALL resources at once.
+
+Example:
+
+Instead of:
+
+Request Printer
+Later Request Scanner
+
+do:
+
+Request Printer + Scanner together
+
+Either:
+
+Get both
+
+or
+
+Get none
+
+No hold-and-wait situation.
+
+Example
+
+Bad:
+
+P1 gets Printer
+P1 waits for Scanner
+
+Good:
+
+P1 requests
+Printer + Scanner together
+Advantage
+
+Deadlock impossible.
+
+Disadvantage
+
+Poor resource utilization.
+
+Example:
+
+Process gets Scanner.
+
+But uses it 10 minutes later.
+
+Scanner sits idle.
+
+Real-Life Analogy
+
+Imagine a student.
+
+Needs:
+
+Laptop
+Notebook
+Calculator
+
+Prevention Rule:
+
+Get everything before starting.
+
+Problem:
+
+Some items may remain unused for a long time.
+
+Method 3: Break No Preemption
+Condition
+
+Resource cannot be taken away.
+
+Example:
+
+Printer assigned to P1.
+
+OS cannot forcefully take it back.
+
+Prevention Rule
+
+Allow preemption.
+
+Meaning:
+
+If process needs another resource:
+
+Take away currently held resources.
+
+Example:
+
+P1 holds Printer.
+
+Needs Scanner.
+
+Scanner unavailable.
+
+OS does:
+
+Take Printer back.
+
+P1 waits.
+
+Later gets both resources.
+
+Advantage
+
+Deadlock prevented.
+
+Disadvantage
+
+Not always practical.
+
+Example:
+
+Can you take away:
+
+Currently printing page?
+
+Not easily.
+
+Therefore:
+
+Works better for:
+
+CPU
+Memory
+Virtual Resources
+
+Not good for physical devices.
+
+Real-Life Example
+
+Teacher gives you:
+
+Pen
+
+You ask for:
+
+Notebook
+
+Notebook unavailable.
+
+Teacher says:
+
+Return pen first.
+
+No holding resources while waiting.
+
+Method 4: Break Circular Wait
+
+This is the most popular prevention method.
+
+Interviewers love it.
+
+Condition
+
+Processes form a cycle.
+
+Example:
+
+P1 waits for P2
+
+P2 waits for P3
+
+P3 waits for P1
+
+Cycle exists.
+
+Deadlock possible.
+
+Prevention Rule
+
+Assign numbers to resources.
+
+Example:
+
+R1 = Printer
+R2 = Scanner
+R3 = Tape Drive
+
+Rule:
+
+Always request resources
+in increasing order.
+
+Example:
+
+Allowed:
+
+Printer → Scanner
+
+because:
+
+1 → 2
+
+Not Allowed:
+
+Scanner → Printer
+
+because:
+
+2 → 1
+
+Now cycles cannot form.
+
+Why?
+
+Because resource requests always move:
+
+Low Number
+     ↓
+High Number
+
+Never reverse.
+
+Circular chain impossible.
+
+Dining Philosophers Revisited
+
+Remember:
+
+Fork1
+Fork2
+Fork3
+Fork4
+Fork5
+
+Rule:
+
+Always pick lower-numbered fork first.
+
+This breaks circular waiting.
+
+Deadlock prevented.
+
+Comparison of Prevention Methods
+Method	Breaks
+Share Resources	Mutual Exclusion
+Request All Resources Together	Hold and Wait
+Force Resource Release	No Preemption
+Resource Ordering	Circular Wait
+Which Method Is Most Practical?
+
+Usually:
+
+Resource Ordering
+
+because:
+
+Simple
+Efficient
+Widely Used
+
+Many databases use ordered locking.
+
+Why Prevention Is Not Perfect
+
+Prevention guarantees:
+
+No Deadlock
+
+But often causes:
+
+Lower Performance
+Resource Waste
+Reduced Concurrency
+Long Waiting Times
+Example
+
+Suppose process needs:
+
+Printer now
+Scanner after 20 minutes
+
+Hold-and-Wait prevention forces:
+
+Acquire both now
+
+Scanner remains unused.
+
+Waste.
+
+Real Operating System View
+
+Most modern OSes do NOT rely entirely on prevention because:
+
+Too restrictive
+
+Instead they often use:
+
+Detection
+Recovery
+Avoidance
+
+depending on the system.
+
+Interview Questions
+Q1. What is Deadlock Prevention?
+
+Answer:
+
+A strategy that prevents deadlock by ensuring at least one Coffman condition never holds.
+
+Q2. How many Coffman conditions exist?
+
+Answer:
+
+4
+Q3. If one Coffman condition is removed?
+
+Answer:
+
+Deadlock cannot occur.
+
+Q4. Which prevention method is most commonly used?
+
+Answer:
+
+Resource ordering (breaking Circular Wait).
+
+Q5. Why isn't prevention always preferred?
+
+Answer:
+
+Because it reduces resource utilization and concurrency.
