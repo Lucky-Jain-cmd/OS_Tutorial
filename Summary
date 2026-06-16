@@ -1508,6 +1508,38 @@ External Fragmentation
 
 ✅ Memory Management Introduction
 ✅ Contiguous Allocation
+
+
+Virtual Memory kya hai?
+
+RAM se zyada memory available hone ka illusion create karna.
+
+Demand Paging kya hai?
+Page tabhi load karo
+jab zarurat ho.
+Page Fault kya hai?
+Page chahiye
+RAM me nahi hai
+↓
+Page Fault
+Thrashing kya hai?
+Page Fault bahut zyada
+hone lagte hain
+aur system slow ho jata hai.
+Working Set kya hai?
+Frequently used pages ka group.
+🎯 Roadmap Status
+
+✅ Memory Management Introduction
+✅ Contiguous Allocation
+✅ Paging
+✅ TLB
+✅ Segmentation
+✅ Virtual Memory
+✅ Demand Paging
+✅ Page Fault
+✅ Thrashing
+✅ Working Set Model
 ✅ Paging
 ✅ Page Table
 ✅ TLB
