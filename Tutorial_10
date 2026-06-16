@@ -1,0 +1,521 @@
+Threads
+
+Before learning Threads, let's ask a simple question.
+
+The Big Question
+
+Suppose you open Chrome.
+
+Chrome can simultaneously:
+
+Load a webpage
+Download a file
+Play a YouTube video
+Respond to keyboard input
+Respond to mouse clicks
+
+Question:
+
+Is Chrome creating a separate process for every tiny task?
+
+Not necessarily.
+
+That would be expensive.
+
+Instead Chrome uses:
+
+Threads
+First Understand the Problem
+
+Imagine Chrome is a single process.
+
+Inside it:
+
+Load Website
+Download File
+Play Video
+Handle Mouse
+Handle Keyboard
+
+If only one execution path exists, everything would happen one after another.
+
+Example:
+
+Download File
+      ↓
+Play Video
+      ↓
+Respond to Mouse
+
+This would feel slow.
+
+Solution: Threads
+
+A process can contain multiple threads.
+
+Each thread performs a specific task.
+
+Simple Definition
+
+A Thread is the smallest unit of CPU execution inside a process.
+
+Interview Definition
+
+A Thread is a lightweight execution unit within a process that shares the process resources while having its own execution context.
+
+Easy Definition
+
+Think:
+
+Process = House
+Thread = People inside the House
+Real-Life Example
+
+Imagine a restaurant.
+
+Restaurant = Process
+
+Workers = Threads
+
+Workers:
+
+Cook
+Cashier
+Cleaner
+Manager
+
+All work simultaneously.
+
+Similarly:
+
+Chrome Process
+
+contains:
+
+Rendering Thread
+Download Thread
+Audio Thread
+UI Thread
+Process vs Thread
+
+Many students confuse these.
+
+Let's understand carefully.
+
+Process
+
+A process has:
+
+Own memory
+Own resources
+Own files
+Own PCB
+
+Example:
+
+Chrome
+VS Code
+Spotify
+
+Three separate processes.
+
+Thread
+
+A thread exists inside a process.
+
+Example:
+
+Chrome Process
+
+Chrome
+   |
+   |-- Thread 1
+   |-- Thread 2
+   |-- Thread 3
+Visualization
+
+Without Threads:
+
+Chrome Process
+      |
+      |
+ One Execution Path
+
+With Threads:
+
+Chrome Process
+      |
+ ----------------
+ |      |      |
+ T1     T2     T3
+
+Multiple execution paths.
+
+What Does a Thread Have?
+
+Each thread has its own:
+
+Program Counter (PC)
+Registers
+Stack
+
+But shares:
+
+Code
+Data
+Files
+Memory
+
+with other threads in the same process.
+
+Why Share Resources?
+
+Because creating a new process is expensive.
+
+Creating a thread is cheaper.
+
+Example:
+
+Instead of:
+
+Chrome Process A
+Chrome Process B
+Chrome Process C
+
+Use:
+
+Chrome Process
+   |
+ Multiple Threads
+
+Much more efficient.
+
+Example: YouTube
+
+Suppose you're watching YouTube.
+
+Possible threads:
+
+Thread 1
+
+Video Rendering
+
+Thread 2
+
+Audio Playback
+
+Thread 3
+
+Network Download
+
+Thread 4
+
+User Interface
+
+All run concurrently.
+
+What If Threads Didn't Exist?
+
+Imagine:
+
+Video Downloading
+
+takes 5 seconds.
+
+During that time:
+
+Mouse Click?
+Keyboard Input?
+Pause Button?
+
+No response.
+
+Bad user experience.
+
+Threads solve this problem.
+
+Single-Threaded Process
+
+Only one thread exists.
+
+Example:
+
+Process
+   |
+ Main Thread
+
+Only one task at a time.
+
+Real-Life Example
+
+One worker in a shop.
+
+Worker:
+
+Handle Customer
+Take Payment
+Clean Store
+Answer Calls
+
+Everything sequentially.
+
+Slow.
+
+Multi-Threaded Process
+
+Multiple threads.
+
+Example:
+
+Process
+   |
+ -------------------
+ |    |    |    |
+ T1   T2   T3   T4
+
+Real-Life Example:
+
+Shop has:
+
+Cashier
+Manager
+Cleaner
+Salesperson
+
+Work becomes faster.
+
+Thread States
+
+Threads also have states similar to processes.
+
+New
+ ↓
+Ready
+ ↓
+Running
+ ↓
+Waiting
+ ↓
+Terminated
+
+Exactly like processes.
+
+Thread Control Block (TCB)
+
+Just like processes have PCB.
+
+Threads have:
+
+Thread Control Block
+
+Stores:
+
+Thread ID
+State
+Registers
+Program Counter
+Types of Threads
+
+Very Important Interview Topic.
+
+Two major types.
+
+1. User-Level Threads (ULT)
+
+Managed by user-space thread library.
+
+Kernel doesn't know much about them.
+
+Examples:
+
+POSIX Threads library
+Java Threads
+
+Advantages:
+
+✔ Fast creation
+
+✔ Fast switching
+
+Disadvantages:
+
+If one thread blocks:
+
+Entire Process May Block
+
+depending on implementation.
+
+2. Kernel-Level Threads (KLT)
+
+Managed directly by OS kernel.
+
+Kernel schedules them individually.
+
+Advantages:
+
+✔ Better scheduling
+
+✔ Better concurrency
+
+Disadvantages:
+
+More overhead.
+
+Thread vs Process
+
+Very Important Interview Table.
+
+Feature	Process	Thread
+Resource Ownership	Own resources	Shares resources
+Memory	Separate	Shared
+Creation Cost	High	Low
+Context Switch Cost	High	Low
+Communication	Expensive	Easy
+Isolation	Strong	Weak
+Example
+
+Suppose:
+
+Chrome crashes.
+
+If Chrome is a process:
+
+Chrome Crashes
+
+Only Chrome affected.
+
+Spotify continues.
+
+If a thread crashes inside Chrome:
+
+Thread Problem
+
+Often entire Chrome process may be affected.
+
+Thread Communication
+
+Easy because threads share memory.
+
+Example:
+
+Thread A
+      ↓
+Shared Memory
+      ↑
+Thread B
+
+No complicated communication needed.
+
+Benefits of Threads
+1. Responsiveness
+
+UI remains responsive.
+
+Example:
+
+Downloading file while browsing.
+
+2. Resource Sharing
+
+Threads share memory.
+
+3. Economy
+
+Creation cheaper than processes.
+
+4. Better CPU Utilization
+
+Multiple threads can run on multiple CPU cores.
+
+Real-Life Examples
+Web Browser
+
+Chrome:
+
+UI Thread
+Rendering Thread
+Network Thread
+Audio Thread
+Microsoft Word
+
+While typing:
+
+Typing Thread
+Spell Check Thread
+Auto Save Thread
+Game
+
+Possible threads:
+
+Graphics
+Physics
+Audio
+AI
+Networking
+Multicore and Threads
+
+Suppose:
+
+CPU:
+
+8 Cores
+
+Threads:
+
+T1
+T2
+T3
+T4
+
+OS may run:
+
+Core 1 → T1
+Core 2 → T2
+Core 3 → T3
+Core 4 → T4
+
+True parallel execution.
+
+Process and Thread Relationship
+Process
+   |
+ ----------------------
+ |     |      |       |
+ T1    T2     T3      T4
+
+Process provides resources.
+
+Threads perform work.
+
+Interview Questions
+Q1. What is a Thread?
+
+Answer:
+
+A thread is the smallest execution unit inside a process.
+
+Q2. Why are threads called Lightweight Processes?
+
+Answer:
+
+Because they require fewer resources than processes.
+
+Q3. Do threads share memory?
+
+Answer:
+
+Yes.
+
+Threads of the same process share memory and resources.
+
+Q4. Difference Between Process and Thread?
+
+Answer:
+
+Processes have separate memory; threads share memory.
+
+Q5. Which is faster to create?
+
+Answer:
+
+Thread.
