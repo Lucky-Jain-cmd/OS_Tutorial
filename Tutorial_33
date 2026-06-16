@@ -1,0 +1,513 @@
+File Systems & Disk Management (Part 1)
+
+Congratulations! 🎉
+
+You have completed most of the Process Management and Memory Management part of Operating Systems.
+
+Now we enter the world of:
+
+📁 Files and File Systems
+
+This is where your:
+
+Photos 📸
+Videos 🎥
+PDFs 📄
+Programs 💻
+Games 🎮
+Documents 📝
+
+are stored permanently.
+
+🤔 First Question
+
+When you save:
+
+Resume.pdf
+
+Where does it go?
+
+Answer:
+
+SSD / HDD
+
+But how does OS know:
+
+Where it is stored?
+How big it is?
+Who owns it?
+When it was created?
+
+The answer is:
+
+📁 File System
+📖 What is a File?
+Definition
+
+A file is a named collection of related information stored on secondary storage.
+
+Easy Definition
+
+A file is simply:
+
+A container that stores data.
+
+Examples:
+
+📄 Resume.pdf
+
+🎵 Song.mp3
+
+🎥 Movie.mp4
+
+🖼️ Photo.jpg
+
+💻 Program.exe
+
+📊 Data.xlsx
+
+🏠 Real-Life Analogy
+
+Imagine:
+
+Cupboard
+
+contains:
+
+Math Notebook
+Physics Notebook
+Chemistry Notebook
+
+Each notebook stores information.
+
+Similarly:
+
+SSD/HDD
+
+contains:
+
+Resume.pdf
+Photo.jpg
+Movie.mp4
+Why Do We Need Files?
+
+Imagine no files existed.
+
+Every shutdown:
+
+All data disappears.
+
+😱
+
+Example:
+
+You create:
+
+Project Report
+
+Shutdown laptop.
+
+Next day:
+
+Gone forever.
+
+Files provide:
+
+✅ Permanent Storage
+
+✅ Organization
+
+✅ Easy Retrieval
+
+File Types
+
+Common file types:
+
+Extension	Example
+.txt	Notes
+.pdf	Documents
+.jpg	Images
+.mp3	Songs
+.mp4	Videos
+.exe	Programs
+.zip	Compressed Files
+📋 File Attributes
+
+Every file has metadata.
+
+Metadata means:
+
+Data about Data
+
+Example:
+
+Resume.pdf
+
+contains content.
+
+But OS also stores:
+
+Size
+Owner
+Creation Date
+Permissions
+Location
+Important File Attributes
+1. Name
+
+Example:
+
+Resume.pdf
+2. Identifier
+
+Unique ID internally.
+
+Example:
+
+File ID = 7845
+3. Size
+
+Example:
+
+5 MB
+4. Location
+
+Where file exists on disk.
+
+5. Owner
+
+Who created file.
+
+6. Protection
+
+Who can:
+
+Read
+Write
+Execute
+7. Time Stamps
+
+Stores:
+
+Created Time
+Modified Time
+Access Time
+File Operations
+
+OS provides many file operations.
+
+Create
+
+Example:
+
+New File
+Open
+
+Example:
+
+Double-click PDF.
+
+Read
+
+View content.
+
+Write
+
+Modify content.
+
+Append
+
+Add data at end.
+
+Example:
+
+Log File
+Rename
+
+Example:
+
+Resume.pdf
+      ↓
+Resume_Final.pdf
+Delete
+
+Remove file.
+
+Close
+
+Finish using file.
+
+Example of File Lifecycle
+Create
+  ↓
+Open
+  ↓
+Read/Write
+  ↓
+Save
+  ↓
+Close
+  ↓
+Delete (Optional)
+📂 What is a Directory?
+
+Many students think:
+
+Directory ≠ File
+
+Correct.
+
+Directory means:
+
+Folder
+
+Examples:
+
+Downloads
+Documents
+Pictures
+Videos
+
+Purpose:
+
+Organize Files
+Real-Life Analogy
+
+Imagine:
+
+Almirah
+
+contains folders.
+
+Folders contain papers.
+
+Similarly:
+
+Directory
+
+contains files.
+
+Directory Structure
+
+OS can organize directories in multiple ways.
+
+1️⃣ Single-Level Directory
+
+Oldest structure.
+
+Visualization:
+
+Directory
+
+Resume.pdf
+Song.mp3
+Photo.jpg
+Movie.mp4
+
+Everything in one place.
+
+Problem
+
+Suppose:
+
+10000 files
+
+inside same directory.
+
+😵
+
+Hard to manage.
+
+Also:
+
+Two users cannot keep:
+
+notes.txt
+
+with same name.
+
+Advantages
+
+✅ Simple
+
+Disadvantages
+
+❌ Name Conflicts
+
+❌ Poor Organization
+
+2️⃣ Two-Level Directory
+
+Solution:
+
+Create separate directory for each user.
+
+Example:
+
+User A
+   ↓
+   notes.txt
+
+User B
+   ↓
+   notes.txt
+
+Now possible.
+
+Visualization:
+
+Root
+ ├── UserA
+ └── UserB
+Advantages
+
+✅ No Name Conflict
+
+✅ Better Organization
+
+Disadvantages
+
+❌ Limited Sharing
+
+3️⃣ Tree Directory Structure
+
+Most common today.
+
+Used by:
+
+Microsoft Windows
+Linux
+macOS
+
+Visualization:
+
+Root
+│
+├── Documents
+│    ├── Resume.pdf
+│    └── Notes.doc
+│
+├── Pictures
+│    ├── Photo1.jpg
+│    └── Photo2.jpg
+│
+└── Videos
+     └── Movie.mp4
+
+This looks exactly like your laptop.
+
+Advantages
+
+✅ Scalable
+
+✅ Organized
+
+✅ Easy Search
+
+✅ Easy Management
+
+Absolute Path vs Relative Path
+
+Extremely Important Interview Topic.
+
+Absolute Path
+
+Complete path from root.
+
+Example:
+
+C:\Users\Lucky\Documents\Resume.pdf
+
+Starts from:
+
+Root
+Relative Path
+
+Path relative to current directory.
+
+Example:
+
+Documents\Resume.pdf
+Easy Analogy
+
+Absolute Address:
+
+House No. 25
+Street 8
+City
+State
+Country
+
+Relative Address:
+
+Next house from mine
+Root Directory
+
+Top-most directory.
+
+Linux:
+
+/
+
+Windows:
+
+C:\
+
+Everything starts from root.
+
+Current Working Directory (CWD)
+
+The directory where you are currently working.
+
+Example:
+
+C:\Users\Lucky
+
+If you open:
+
+Documents\Resume.pdf
+
+OS starts searching from CWD.
+
+Interview Questions
+Q1. What is a File?
+
+Answer:
+
+A named collection of related data stored on secondary storage.
+
+Q2. What is a File System?
+
+Answer:
+
+A method used by the OS to organize, store, and retrieve files on storage devices.
+
+Q3. Difference between File and Directory?
+File	Directory
+Stores Data	Stores Files/Folders
+Example: Resume.pdf	Example: Documents
+Q4. What are File Attributes?
+
+Answer:
+
+Metadata such as:
+
+Name
+Size
+Owner
+Location
+Permissions
+Time Stamps
+Q5. What is Root Directory?
+
+Answer:
+
+The highest-level directory in a file system.
+
+Q6. Difference between Absolute and Relative Path?
+
+Answer:
+
+Absolute Path starts from root.
+
+Relative Path starts from current directory.
