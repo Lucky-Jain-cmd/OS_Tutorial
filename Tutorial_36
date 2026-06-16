@@ -1,0 +1,623 @@
+OS Security & Protection
+
+Welcome to the final major chapter of Operating Systems 🎉
+
+By now you know:
+
+✅ Processes
+✅ Threads
+✅ Scheduling
+✅ Memory Management
+✅ Virtual Memory
+✅ File Systems
+✅ I/O Systems
+
+Now the question is:
+
+🤔 How does the OS protect data, users, files, passwords, and the system itself?
+
+Answer:
+
+🔐 Security & Protection
+🧠 First Understand the Difference
+
+This is a very common interview question.
+
+Protection vs Security
+
+Many students think both are the same.
+
+❌ They are different.
+
+🛡 Protection
+
+Protection means:
+
+Controlling access
+inside the system.
+
+Question:
+
+Which user can access what?
+
+Example:
+
+Your file:
+
+Resume.pdf
+
+should not be editable by another user.
+
+Protection handles this.
+
+🔐 Security
+
+Security means:
+
+Protecting system from
+external attacks.
+
+Examples:
+
+👨‍💻 Hacker
+
+🦠 Virus
+
+🐛 Worm
+
+🎣 Phishing
+
+Easy Analogy
+
+House Example:
+
+Protection
+Which family member
+can enter which room?
+Security
+Stop thieves
+from entering house.
+Comparison
+Protection	Security
+Internal control	External defense
+User permissions	Attack prevention
+Access management	Threat management
+1️⃣ Authentication
+
+One of the most important concepts.
+
+Definition
+
+Authentication verifies:
+
+Who are you?
+
+Examples:
+
+🔑 Password
+
+📱 OTP
+
+👆 Fingerprint
+
+🙂 Face Unlock
+
+Real-Life Example
+
+ATM asks:
+
+Enter PIN
+
+PIN proves identity.
+
+This is:
+
+Authentication
+Authentication Factors
+Something You Know
+
+Examples:
+
+Password
+PIN
+Something You Have
+
+Examples:
+
+Phone
+Smart Card
+OTP Device
+Something You Are
+
+Examples:
+
+Fingerprint
+Face
+Retina
+Multi-Factor Authentication (MFA)
+
+Uses multiple factors.
+
+Example:
+
+Password
++
+OTP
+
+Much safer.
+
+2️⃣ Authorization
+
+Interview favorite.
+
+Authentication asks:
+
+Who are you?
+
+Authorization asks:
+
+What can you do?
+
+Example:
+
+Login successful.
+
+Now OS checks:
+
+Can user delete file?
+Can user install software?
+Can user access admin panel?
+
+This is:
+
+Authorization
+Easy Example
+
+Airport:
+
+Authentication
+
+Passport check.
+
+Authorization
+
+Can you enter VIP lounge?
+
+Authentication vs Authorization
+Authentication	Authorization
+Identity Verification	Permission Verification
+Who are you?	What can you access?
+First Step	Second Step
+3️⃣ Access Control Matrix
+
+Important theory topic.
+
+Imagine:
+
+Users:
+
+Alice
+Bob
+Admin
+
+Resources:
+
+File1
+File2
+Printer
+
+Matrix:
+
+User	File1	File2	Printer
+Alice	Read	Read	Print
+Bob	Read/Write	No Access	Print
+Admin	Full	Full	Full
+
+This table is called:
+
+Access Control Matrix
+
+Purpose:
+
+Who can do what?
+4️⃣ Access Control Lists (ACL)
+
+Very common in modern systems.
+
+Instead of storing:
+
+User → Resources
+
+Store:
+
+Resource → Users
+
+Example
+
+File:
+
+Resume.pdf
+
+ACL:
+
+Lucky → Read Write
+
+Admin → Full
+
+Guest → Read Only
+
+Used in many file systems.
+
+5️⃣ Capabilities
+
+Alternative to ACL.
+
+ACL:
+
+File knows users.
+
+Capabilities:
+
+User knows permissions.
+
+Example
+
+User token:
+
+Read File1
+
+Write File2
+
+Print
+
+This token is called:
+
+Capability
+6️⃣ Malware
+
+Extremely Important.
+
+Definition
+
+Malware =
+
+Malicious Software
+
+Created to:
+
+❌ Damage systems
+
+❌ Steal data
+
+❌ Spy on users
+
+❌ Encrypt files
+
+Types:
+
+🦠 Virus
+
+🐛 Worm
+
+🐴 Trojan
+
+👻 Rootkit
+
+💰 Ransomware
+
+7️⃣ Virus
+
+Most famous malware.
+
+Definition
+
+A Virus is malicious code that attaches itself to another file or program.
+
+Example:
+
+Game.exe
+
+contains hidden virus.
+
+When program runs:
+
+Virus executes
+Characteristics
+
+✅ Needs Host Program
+
+✅ Spreads via files
+
+Real-Life Analogy
+
+Virus is like:
+
+Infected passenger
+inside a bus
+
+Needs carrier.
+
+8️⃣ Worm
+
+Interview favorite.
+
+Definition
+
+A Worm is a standalone malware that spreads automatically across networks.
+
+Difference:
+
+Virus:
+
+Needs Host
+
+Worm:
+
+No Host Needed
+
+Example:
+
+One infected PC.
+
+Worm spreads to:
+
+PC1
+PC2
+PC3
+PC4
+
+automatically.
+
+Real-Life Analogy
+
+Virus:
+
+Needs vehicle
+
+Worm:
+
+Can walk by itself
+Virus vs Worm
+Virus	Worm
+Needs Host	Standalone
+User action often needed	Automatic spread
+Slower spread	Faster spread
+9️⃣ Trojan Horse
+
+Very important.
+
+Definition
+
+Malware disguised as legitimate software.
+
+Example:
+
+Free Game
+
+Actually:
+
+Steals Passwords
+
+User installs willingly.
+
+Real-Life Analogy
+
+Gift Box 🎁
+
+Looks good outside.
+
+Danger inside.
+
+🔟 Rootkit
+
+Advanced malware.
+
+Purpose:
+
+Hide malware
+from OS and antivirus.
+
+Very difficult to detect.
+
+Often gains:
+
+Administrator Access
+1️⃣1️⃣ Ransomware
+
+Modern cyber threat.
+
+Example:
+
+All files become:
+
+Encrypted
+
+Message:
+
+Pay Money
+or lose files.
+
+This attack is called:
+
+Ransomware
+1️⃣2️⃣ Encryption
+
+Extremely Important.
+
+Definition
+
+Encryption converts:
+
+Readable Data
+      ↓
+Unreadable Data
+
+Example:
+
+Original:
+
+Hello
+
+Encrypted:
+
+X7A92Q
+
+Only authorized users can decrypt.
+
+Why Encryption?
+
+Protect:
+
+🔑 Passwords
+
+🏦 Banking Data
+
+💬 Messages
+
+📄 Documents
+
+Easy Analogy
+
+Locking a box.
+
+Data:
+
+Letter
+
+inside box.
+
+Encryption:
+
+Lock
+
+Decryption:
+
+Key
+1️⃣3️⃣ Firewalls
+
+Very important.
+
+Definition
+
+A Firewall monitors and controls network traffic.
+
+Think:
+
+Security Guard
+
+for network.
+
+Example:
+
+Incoming Request:
+
+Allowed?
+Blocked?
+
+Firewall decides.
+
+Real-Life Analogy
+
+Gate Security at Society.
+
+Allowed Visitors:
+
+✅ Enter
+
+Unknown Visitors:
+
+❌ Block
+
+1️⃣4️⃣ Secure Boot
+
+Modern OS feature.
+
+Purpose:
+
+Ensure trusted software
+starts during boot.
+
+When laptop starts:
+
+OS verifies:
+
+Bootloader
+Kernel
+Drivers
+
+If modified maliciously:
+
+Boot blocked
+
+Prevents boot-time malware.
+
+Security Layers in a Laptop
+User
+ ↓
+Authentication
+ ↓
+Authorization
+ ↓
+OS Protection
+ ↓
+Firewall
+ ↓
+Encryption
+ ↓
+Secure Boot
+ ↓
+Hardware
+Interview Questions
+Q1. Difference between Security and Protection?
+
+Answer:
+
+Protection controls internal access.
+
+Security protects against threats and attacks.
+
+Q2. Authentication vs Authorization?
+
+Answer:
+
+Authentication = Identity verification.
+
+Authorization = Permission verification.
+
+Q3. What is ACL?
+
+Answer:
+
+A list attached to a resource specifying which users can access it and how.
+
+Q4. Virus vs Worm?
+
+Answer:
+
+Virus requires a host file.
+
+Worm spreads independently.
+
+Q5. What is a Trojan Horse?
+
+Answer:
+
+Malware disguised as legitimate software.
+
+Q6. What is Encryption?
+
+Answer:
+
+Converting readable data into unreadable form for security.
+
+Q7. What is a Firewall?
+
+Answer:
+
+A system that monitors and filters network traffic.
+
+Q8. What is Secure Boot?
+
+Answer:
+
+A mechanism that ensures only trusted software loads during system startup.
