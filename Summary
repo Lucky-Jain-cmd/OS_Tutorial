@@ -943,3 +943,47 @@ Ek process ki current state save karna aur dusre process ki state load karna.
 Dispatch Latency kya hai?
 
 Ek process ko rok kar dusre process ko start karne me lagne wala time.
+
+Batch OS
+
+Jobs ko batch me execute karta hai.
+
+Multiprogramming OS
+
+CPU ko idle hone se bachata hai.
+
+Multitasking OS
+
+Ek saath kai tasks chalane ka illusion deta hai.
+
+Time-Sharing OS
+
+Har process ko thoda-thoda CPU time deta hai.
+
+Multiuser OS
+
+Kai users ko same system use karne deta hai.
+
+Multiprocessing OS
+
+Multiple CPU cores ka use karta hai.
+
+Distributed OS
+
+Kai computers milkar ek system jaise kaam karte hain.
+
+Network OS
+
+Network ke through resources share karte hain.
+
+RTOS
+
+Fixed deadline ke andar response deta hai.
+
+Embedded OS
+
+Special-purpose devices me use hota hai.
+
+Mobile OS
+
+Smartphones ke liye design kiya jata hai.
