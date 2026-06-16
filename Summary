@@ -1612,3 +1612,37 @@ Current location se path.
 ✅ File Operations
 ✅ Directory Structures
 ✅ Absolute & Relative Paths
+
+Contiguous Allocation?
+File ke saare blocks
+ek saath.
+Linked Allocation?
+Blocks chain ki tarah linked.
+Indexed Allocation?
+Index Block me
+sab addresses stored.
+FAT kya hai?
+Next block mapping table.
+Inode kya hai?
+File metadata structure.
+Disk Scheduling ka purpose?
+Head movement kam karna.
+Elevator Algorithm?
+SCAN
+🎯 Roadmap Status
+
+✅ Process Management
+✅ CPU Scheduling
+✅ Synchronization
+✅ Deadlocks
+✅ Memory Management
+✅ Paging
+✅ Segmentation
+✅ Virtual Memory
+✅ Page Replacement Algorithms
+✅ File Systems
+✅ File Allocation Methods
+✅ FAT
+✅ Inodes
+✅ HDD Structure
+✅ Disk Scheduling Algorithms
