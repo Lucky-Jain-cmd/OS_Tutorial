@@ -1,0 +1,556 @@
+System Calls: The Most Important Gateway in OS
+First Question
+
+Suppose you're using:
+
+Chrome
+VS Code
+Spotify
+WhatsApp
+
+Question:
+
+Can these applications directly talk to hardware?
+
+Can Chrome directly read SSD?
+
+Can VS Code directly allocate RAM?
+
+Can Spotify directly control speakers?
+
+❌ No.
+
+Why?
+
+Because that would be dangerous.
+
+Imagine Direct Hardware Access
+
+Suppose every application gets full access.
+
+A malicious Calculator app could:
+
+Delete Photos
+Format SSD
+Read Passwords
+Crash System
+
+Chaos.
+
+Therefore OS creates a protection layer.
+
+User
+ ↓
+Applications
+ ↓
+System Calls
+ ↓
+Kernel
+ ↓
+Hardware
+Definition
+Interview Definition
+
+A System Call is a mechanism through which a user-level program requests services from the Operating System Kernel.
+
+Easy Definition
+
+System Call = A request made by an application to the OS.
+
+Real-Life Example
+
+Imagine a bank.
+
+Customer:
+
+Need money
+
+Can he directly enter vault?
+
+No.
+
+Instead:
+
+Customer
+ ↓
+Request Form
+ ↓
+Bank Employee
+ ↓
+Vault
+
+Similarly:
+
+Application
+ ↓
+System Call
+ ↓
+Kernel
+ ↓
+Hardware
+Why Do System Calls Exist?
+
+Three main reasons:
+
+1. Security
+
+Applications should not directly control hardware.
+
+2. Resource Management
+
+OS decides:
+
+CPU allocation
+RAM allocation
+File access
+3. Stability
+
+A buggy app should not crash the whole system.
+
+Where Are System Calls Used?
+
+Answer:
+
+Almost everywhere.
+
+Example 1: Opening a File
+
+You open:
+
+notes.txt
+
+What happens?
+
+Notepad
+ ↓
+open() System Call
+ ↓
+Kernel
+ ↓
+SSD
+Example 2: Saving a File
+
+You click Save.
+
+Notepad
+ ↓
+write() System Call
+ ↓
+Kernel
+ ↓
+SSD
+Example 3: Creating a Process
+
+You open Chrome.
+
+Chrome.exe
+ ↓
+Process Creation System Call
+ ↓
+Kernel
+ ↓
+New Process
+Example 4: Playing Music
+
+Spotify wants speaker access.
+
+Spotify
+ ↓
+Audio System Call
+ ↓
+Kernel
+ ↓
+Speaker
+What Happens Internally?
+
+Suppose Chrome wants to read a file.
+
+Step 1
+
+Chrome executes:
+
+read()
+Step 2
+
+CPU switches from User Mode to Kernel Mode.
+
+(More on this in the next topic.)
+
+Step 3
+
+Kernel executes requested operation.
+
+Step 4
+
+Result returned.
+
+Step 5
+
+CPU returns to User Mode.
+
+Flow:
+
+Chrome
+ ↓
+System Call
+ ↓
+Kernel
+ ↓
+File System
+ ↓
+SSD
+ ↓
+Result
+ ↓
+Chrome
+Categories of System Calls
+
+Very Important for Interviews.
+
+There are five major categories.
+
+1. Process Control System Calls
+
+Used to manage processes.
+
+Examples
+
+Create process.
+
+Terminate process.
+
+Wait for process.
+
+Load program.
+
+Linux Examples
+fork()
+exec()
+wait()
+exit()
+fork()
+
+Creates a new process.
+
+Example:
+
+Parent Process:
+
+Chrome
+
+calls:
+
+fork()
+
+Result:
+
+Chrome
+     \
+      Child Process
+exec()
+
+Loads a new program.
+
+Example:
+
+Shell
+ ↓
+exec()
+ ↓
+Chrome Starts
+exit()
+
+Terminates process.
+
+Example:
+
+Close Notepad.
+
+exit()
+wait()
+
+Parent waits for child process.
+
+Example:
+
+Parent
+ ↓
+wait()
+ ↓
+Child finishes
+Real-Life Example
+
+Father tells son:
+
+Go buy groceries.
+
+Father waits.
+
+Son returns.
+
+Father continues.
+
+That's similar to wait().
+
+2. File Management System Calls
+
+Most frequently used.
+
+Operations:
+
+Open file
+Read file
+Write file
+Close file
+Delete file
+
+Examples:
+
+open()
+read()
+write()
+close()
+unlink()
+open()
+
+Open file.
+
+Example:
+
+notes.txt
+read()
+
+Read data.
+
+Example:
+
+Read PDF
+Read Text File
+write()
+
+Save data.
+
+Example:
+
+Save OS Notes
+close()
+
+Close file.
+
+Example:
+
+After editing.
+
+3. Device Management System Calls
+
+Used for hardware devices.
+
+Devices:
+
+Printer
+Mouse
+Keyboard
+Speaker
+
+Example:
+
+ioctl()
+
+Suppose printer is connected.
+
+Application asks:
+
+Print this document.
+
+Kernel communicates with printer driver.
+
+4. Information Management System Calls
+
+Used to obtain system information.
+
+Examples:
+
+getpid()
+time()
+uname()
+getpid()
+
+Returns Process ID.
+
+Example:
+
+Chrome:
+
+PID = 4521
+time()
+
+Returns current time.
+
+uname()
+
+Returns OS information.
+
+Example:
+
+Linux
+Ubuntu
+Kernel Version
+5. Communication System Calls
+
+Used when processes communicate.
+
+Examples:
+
+pipe()
+socket()
+send()
+recv()
+Example
+
+Chrome opens website.
+
+Chrome
+ ↓
+socket()
+ ↓
+Internet Connection
+
+Data received:
+
+recv()
+Most Common Linux System Calls
+System Call	Purpose
+fork()	Create process
+exec()	Load program
+wait()	Wait for child
+exit()	End process
+open()	Open file
+read()	Read file
+write()	Write file
+close()	Close file
+getpid()	Process ID
+socket()	Network communication
+A Complete Example
+
+You double-click Chrome.
+
+Process Creation
+fork()
+exec()
+
+Kernel creates Chrome process.
+
+Open Website
+socket()
+send()
+recv()
+
+Kernel communicates over network.
+
+Save PDF
+open()
+write()
+close()
+
+Kernel writes file to SSD.
+
+Close Chrome
+exit()
+
+Kernel terminates process.
+
+User Space vs Kernel Space
+
+Applications run in:
+
+User Space
+
+Hardware controlled by:
+
+Kernel Space
+
+Bridge between them:
+
+System Calls
+
+Diagram:
+
+User Space
+----------------
+Chrome
+VS Code
+Spotify
+----------------
+System Calls
+----------------
+Kernel Space
+----------------
+Memory Manager
+Scheduler
+Drivers
+File System
+----------------
+Hardware
+Important Interview Questions
+Q1
+
+What is a System Call?
+
+Answer:
+
+A mechanism used by applications to request services from the OS kernel.
+
+Q2
+
+Why are System Calls needed?
+
+Answer:
+
+For security, resource management, and controlled access to hardware.
+
+Q3
+
+Can user programs directly access hardware?
+
+Answer:
+
+No. They must use System Calls.
+
+Q4
+
+Name categories of System Calls.
+
+Answer:
+
+Process Control
+File Management
+Device Management
+Information Management
+Communication
+Hindi Revision
+System Call kya hai?
+
+Application ki OS se service maangne ki request.
+
+Chrome file kaise save karta hai?
+Chrome
+ ↓
+write() System Call
+ ↓
+Kernel
+ ↓
+SSD
+System Calls kyu hote hain?
+Security
+Stability
+Resource Management
+Sabse common System Calls
+fork()
+exec()
+open()
+read()
+write()
+close()
+wait()
+exit()
+socket()
