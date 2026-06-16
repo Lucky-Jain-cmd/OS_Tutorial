@@ -1,0 +1,519 @@
+Types of Operating System
+
+An Operating System can be classified based on:
+
+How it executes jobs
+How many users it supports
+How many tasks it runs
+How resources are shared
+How quickly responses are needed
+Big Picture
+Types of Operating Systems
+
+1. Batch OS
+2. Multiprogramming OS
+3. Multitasking OS
+4. Time-Sharing OS
+5. Multiuser OS
+6. Multiprocessing OS
+7. Distributed OS
+8. Network OS
+9. Real-Time OS
+10. Embedded OS
+11. Mobile OS
+
+Let's understand them one by one.
+
+1. Batch Operating System
+
+This is one of the oldest OS types.
+
+Problem Before Batch OS
+
+In early computers:
+
+User 1 → Run Program
+Wait
+User 2 → Run Program
+Wait
+User 3 → Run Program
+
+Huge waste of time.
+
+Solution
+
+Users submitted jobs together.
+
+OS collected them into a batch.
+
+Then executed them one after another automatically.
+
+Example
+
+Imagine a teacher checking exam copies.
+
+Instead of:
+
+Check 1 copy
+Student arrives
+Check another copy
+
+Teacher collects:
+
+100 answer sheets
+
+Then checks them continuously.
+
+That's Batch Processing.
+
+Characteristics
+
+✔ Jobs grouped into batches
+
+✔ No direct user interaction
+
+✔ High throughput
+
+❌ Long waiting time
+
+❌ No immediate response
+
+Real-Life Examples
+Salary Processing
+
+Company computes salaries for:
+
+10,000 employees
+
+at night.
+
+Electricity Bill Generation
+
+Generate lakhs of bills together.
+
+Bank Interest Calculation
+
+Calculate monthly interest for all accounts.
+
+2. Multiprogramming Operating System
+
+Very important.
+
+Problem
+
+Suppose one process is waiting for disk.
+
+CPU becomes idle.
+
+Waste.
+
+Solution
+
+Keep multiple programs in memory.
+
+If one waits:
+
+Run another.
+
+Example:
+
+Chrome → Waiting
+
+CPU would be idle.
+
+Instead:
+
+VS Code → Running
+Goal
+
+Keep CPU busy.
+
+Example
+
+You have:
+
+Chrome
+Spotify
+VS Code
+
+all loaded in RAM.
+
+OS switches among them.
+
+Characteristics
+
+✔ Better CPU utilization
+
+✔ Multiple programs in memory
+
+✔ Less CPU idle time
+
+3. Multitasking Operating System
+
+Most common OS today.
+
+Definition
+
+Allows multiple tasks to run apparently simultaneously.
+
+Example
+
+You are:
+
+Listening to Spotify
+Browsing Chrome
+Writing code
+Downloading files
+
+at the same time.
+
+Actually:
+
+CPU rapidly switches.
+
+Chrome
+Spotify
+VS Code
+Chrome
+Spotify
+Examples
+Microsoft Windows
+Ubuntu
+macOS
+4. Time-Sharing Operating System
+
+Interview favorite.
+
+Idea
+
+Each process gets a small time slice.
+
+Example:
+
+Chrome → 5 ms
+VS Code → 5 ms
+Spotify → 5 ms
+
+Then repeat.
+
+Users feel:
+
+Everything is running simultaneously.
+Real-Life Example
+
+Teacher gives:
+
+1 minute
+
+to each student for asking questions.
+
+Nobody monopolizes the class.
+
+Characteristics
+
+✔ Fast response
+
+✔ Fair CPU sharing
+
+✔ Interactive systems
+
+Examples
+Linux
+Unix
+Windows
+Multiprogramming vs Time-Sharing
+
+Many students confuse these.
+
+Multiprogramming
+
+Goal:
+
+Keep CPU Busy
+Time-Sharing
+
+Goal:
+
+Give Fast Response To Users
+5. Multiuser Operating System
+
+Allows multiple users to use the same computer system.
+
+Example
+
+University Server
+
+Users:
+
+Student A
+Student B
+Student C
+
+All use same server.
+
+OS keeps user data separate.
+
+Examples
+Unix
+Linux
+Mainframe systems
+Real-Life Example
+
+PG Hostel
+
+Many students.
+
+Same building.
+
+Different rooms.
+
+6. Multiprocessing Operating System
+
+Very important today.
+
+Definition
+
+Uses multiple CPUs or multiple cores.
+
+Example:
+
+Your laptop:
+
+8 Cores
+
+Instead of one CPU:
+
+Core 1
+Core 2
+Core 3
+...
+
+Processes can execute truly in parallel.
+
+Example
+
+While:
+
+Chrome runs on Core 1
+VS Code on Core 2
+Spotify on Core 3
+Characteristics
+
+✔ Higher speed
+
+✔ Better throughput
+
+✔ Parallel execution
+
+Examples
+
+Modern:
+
+Windows
+Linux
+macOS
+Multitasking vs Multiprocessing
+Multitasking
+
+One CPU rapidly switches.
+
+Multiprocessing
+
+Multiple CPUs/Cores work simultaneously.
+
+7. Distributed Operating System
+
+Advanced topic.
+
+Multiple computers appear as one system.
+
+Example
+
+Suppose:
+
+Computer A
+Computer B
+Computer C
+
+connected together.
+
+Users see:
+
+One Large System
+
+Work gets distributed.
+
+Real-Life Example
+
+Group project.
+
+Different students do different parts.
+
+Final result appears as one project.
+
+Applications
+Scientific computing
+Cloud infrastructure
+Supercomputers
+8. Network Operating System
+
+Different from Distributed OS.
+
+Interviewers ask this.
+
+Computers remain independent.
+
+They simply communicate through network.
+
+Example
+
+Office Network
+
+Computer A
+Computer B
+Computer C
+
+Each has its own OS.
+
+But they share:
+
+Files
+Printers
+Resources
+
+through network.
+
+Examples
+Windows Server
+Linux Servers
+Difference
+Distributed OS
+
+Looks like one computer.
+
+Network OS
+
+Looks like many computers connected together.
+
+9. Real-Time Operating System (RTOS)
+
+Extremely important.
+
+Definition
+
+Response must occur within a fixed deadline.
+
+Failure to respond on time can be dangerous.
+
+Example
+
+Airbag System
+
+When accident occurs:
+
+Airbag must open immediately.
+
+Not after 5 seconds.
+
+Examples
+Aircraft control
+Medical devices
+Industrial robots
+Nuclear systems
+Types
+Hard Real-Time
+
+Missing deadline unacceptable.
+
+Example:
+
+Aircraft control.
+
+Soft Real-Time
+
+Occasional delay acceptable.
+
+Example:
+
+Video streaming.
+
+Examples of RTOS
+VxWorks
+QNX
+FreeRTOS
+10. Embedded Operating System
+
+Used inside dedicated devices.
+
+Examples:
+
+Washing Machine
+Smart TV
+ATM
+Microwave
+Printer
+
+Usually designed for one purpose.
+
+Characteristics
+
+✔ Small size
+
+✔ Low memory usage
+
+✔ Specific functionality
+
+11. Mobile Operating System
+
+Designed for smartphones and tablets.
+
+Examples:
+
+Android
+iOS
+
+Features:
+
+Touch support
+Battery optimization
+Mobile networking
+Sensors
+Complete Comparison Table
+Type	Main Goal	Example
+Batch OS	Process jobs in groups	Salary Processing
+Multiprogramming OS	Keep CPU busy	Early Mainframes
+Multitasking OS	Run many tasks	Windows, Linux
+Time-Sharing OS	Fast user response	Linux, Unix
+Multiuser OS	Multiple users	Unix Server
+Multiprocessing OS	Use multiple CPUs/Cores	Modern PCs
+Distributed OS	Multiple systems act as one	Supercomputers
+Network OS	Resource sharing over network	Windows Server
+RTOS	Meet deadlines	Airbag Systems
+Embedded OS	Dedicated devices	ATM, Smart TV
+Mobile OS	Smartphones	Android, iOS
+Interview Questions
+Which OS type is used in modern laptops?
+
+Answer:
+
+Primarily:
+
+Multitasking OS
+Time-Sharing OS
+Multiprocessing OS
+Multiuser OS
+
+all at the same time.
+
+Which OS is used in airplanes?
+
+Answer:
+
+Real-Time Operating System (RTOS).
+
+Difference between Multiprogramming and Multitasking?
+Multiprogramming focuses on CPU utilization.
+Multitasking focuses on running multiple tasks interactively.
+Difference between Distributed OS and Network OS?
+Distributed OS appears as a single system.
+Network OS appears as multiple connected systems.
