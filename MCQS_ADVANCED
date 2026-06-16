@@ -1,0 +1,700 @@
+🚀 100 Most Important OS MCQs (Remaining Advanced Topics)
+Topics Covered
+
+✅ Boot Process (BIOS, UEFI, Bootloader)
+✅ Linux Internals
+✅ Shell & Linux Commands
+✅ Containers & Virtual Machines
+✅ Hypervisors
+✅ Kernel Architecture
+✅ Windows/Linux/Android Internals
+
+📌 PART 1: Boot Process (1-20)
+Q1. What is the first software executed after powering on a computer?
+
+A) OS Kernel
+B) BIOS/UEFI ✅
+C) Bootloader
+D) Shell
+
+Why?
+
+When power is supplied, firmware starts first.
+
+Boot sequence:
+
+Power On
+↓
+BIOS/UEFI
+↓
+Bootloader
+↓
+Kernel
+↓
+OS
+Q2. BIOS stands for?
+
+A) Basic Input Output System ✅
+B) Binary Input Output System
+C) Boot Integrated OS System
+D) Basic Internal Operating Software
+
+Why?
+
+BIOS is firmware stored on motherboard.
+
+Q3. Modern systems mostly use?
+
+A) DOS
+B) BIOS
+C) UEFI ✅
+D) FAT
+
+Why?
+
+UEFI is faster, secure, and supports large disks.
+
+Q4. Which component loads the OS kernel?
+
+A) CPU
+B) Bootloader ✅
+C) RAM
+D) Shell
+
+Why?
+
+Bootloader's job is:
+
+Find Kernel
+Load Kernel
+Transfer Control
+Q5. Which bootloader is common in Linux?
+
+A) NTLDR
+B) GRUB ✅
+C) CMD
+D) Bash
+
+Why?
+
+GRUB = Grand Unified Bootloader.
+
+Q6. Secure Boot prevents?
+
+A) Virus in RAM
+B) Unauthorized boot code ✅
+C) Disk Fragmentation
+D) Scheduling
+
+Why?
+
+Secure Boot verifies boot components.
+
+Q7. UEFI replaces?
+
+A) Kernel
+B) BIOS ✅
+C) Shell
+D) Scheduler
+
+Why?
+
+UEFI is modern firmware architecture.
+
+Q8. POST stands for?
+
+A) Power-On Self Test ✅
+B) Process Operating System Test
+C) Power OS Transfer
+D) Program Output State Test
+
+Why?
+
+Checks RAM, keyboard, CPU etc.
+
+Q9. If POST fails, system may?
+
+A) Boot normally
+B) Shut down or beep error ✅
+C) Open shell
+D) Start kernel
+
+Why?
+
+Hardware problems detected before OS starts.
+
+Q10. Kernel is loaded into?
+
+A) SSD
+B) Cache
+C) RAM ✅
+D) Register
+
+Why?
+
+CPU executes instructions from memory.
+
+Q11. Which partition type is preferred by UEFI?
+
+A) FAT16
+B) MBR
+C) GPT ✅
+D) EXT2
+
+Why?
+
+GPT supports large disks and more partitions.
+
+Q12. MBR full form?
+
+A) Main Boot Register
+B) Master Boot Record ✅
+C) Memory Boot Region
+D) Machine Boot Record
+
+Why?
+
+Stores boot information.
+
+Q13. Kernel initialization happens after?
+
+A) Shell
+B) Scheduler
+C) Bootloader ✅
+D) Login
+
+Why?
+
+Bootloader loads kernel first.
+
+Q14. Which firmware supports graphical interface?
+
+A) UEFI ✅
+B) BIOS
+C) DOS
+D) FAT
+
+Why?
+
+UEFI offers GUI and mouse support.
+
+Q15. What happens before kernel starts?
+
+A) Login
+B) BIOS/UEFI and Bootloader ✅
+C) Shell
+D) Process Creation
+
+Why?
+
+Kernel cannot start itself.
+
+Q16. Firmware is stored in?
+
+A) RAM
+B) SSD
+C) ROM/Flash Memory ✅
+D) Cache
+
+Why?
+
+Firmware must persist after shutdown.
+
+Q17. Booting means?
+
+A) Installing OS
+B) Starting Computer and Loading OS ✅
+C) Formatting Disk
+D) Compiling Program
+
+Why?
+
+Booting loads operating system into memory.
+
+Q18. Warm Boot means?
+
+A) Restarting system ✅
+B) First startup
+C) Kernel panic
+D) Shutdown
+
+Why?
+
+Warm boot = reboot.
+
+Q19. Cold Boot means?
+
+A) Restart
+B) Fresh Power-On Start ✅
+C) Sleep
+D) Hibernate
+
+Why?
+
+System starts from powered-off state.
+
+Q20. Which component transfers control to kernel?
+
+A) Scheduler
+B) Shell
+C) Bootloader ✅
+D) Driver
+
+Why?
+
+Bootloader hands execution to kernel.
+
+📌 PART 2: Linux Internals (21-40)
+Q21. Linux is primarily a?
+
+A) Kernel ✅
+B) Shell
+C) Compiler
+D) Browser
+
+Why?
+
+Linux technically refers to kernel.
+
+Q22. Linux kernel is?
+
+A) Monolithic ✅
+B) Microkernel
+C) Hybrid
+D) Layered
+
+Why?
+
+Most services run inside kernel space.
+
+Q23. Linux root directory is?
+
+A) C:
+B) Root
+C) / ✅
+D) Home
+
+Why?
+
+Everything starts from "/".
+
+Q24. Which directory stores user files?
+
+A) /bin
+B) /home ✅
+C) /dev
+D) /etc
+
+Why?
+
+Every user gets a home directory.
+
+Q25. /etc contains?
+
+A) Videos
+B) Configurations ✅
+C) Programs
+D) Drivers
+
+Why?
+
+System configuration files stored here.
+
+Q26. /bin stores?
+
+A) Logs
+B) User Data
+C) Essential Commands ✅
+D) Boot Files
+
+Why?
+
+Contains commands like ls, cp.
+
+Q27. /dev contains?
+
+A) Device Files ✅
+B) Drivers
+C) Logs
+D) Shells
+
+Why?
+
+Devices represented as files.
+
+Q28. Linux follows which philosophy?
+
+A) Everything is a File ✅
+B) Everything is Process
+C) Everything is Memory
+D) Everything is Thread
+
+Why?
+
+Devices, pipes, files all represented as files.
+
+Q29. PID means?
+
+A) Process Identifier ✅
+B) Program ID
+C) Parent Driver
+D) Process Interrupt Descriptor
+
+Why?
+
+Every process gets unique PID.
+
+Q30. Process with PID 1?
+
+A) Bash
+B) Init/Systemd ✅
+C) Kernel
+D) Scheduler
+
+Why?
+
+First userspace process.
+
+Q31. Which command shows processes?
+
+A) mkdir
+B) ps ✅
+C) pwd
+D) cp
+
+Q32. Which command kills process?
+
+A) kill ✅
+B) rm
+C) stop
+D) delete
+
+Q33. Fork() creates?
+
+A) Thread
+B) Child Process ✅
+C) Driver
+D) Interrupt
+
+Q34. Exec() does?
+
+A) Deletes Process
+B) Replaces Process Image ✅
+C) Creates Thread
+D) Suspends Process
+
+Q35. Daemon is?
+
+A) Virus
+B) Background Service ✅
+C) Scheduler
+D) Driver
+
+Q36. Cron is used for?
+
+A) Scheduling Jobs ✅
+B) Booting
+C) Logging
+D) Memory Allocation
+
+Q37. Which file stores passwords (hashed)?
+
+A) /etc/passwd
+B) /etc/shadow ✅
+C) /etc/root
+D) /etc/user
+
+Q38. Which command shows current directory?
+
+A) pwd ✅
+B) cd
+C) ls
+D) ps
+
+Q39. chmod changes?
+
+A) Owner
+B) Permissions ✅
+C) Process
+D) Path
+
+Q40. chown changes?
+
+A) File Name
+B) Owner ✅
+C) Size
+D) Process
+
+📌 PART 3: Shell & Commands (41-60)
+Q41. Bash stands for?
+
+A) Bourne Again Shell ✅
+
+Why?
+
+Most common Linux shell.
+
+Q42. Shell acts as?
+
+A) Translator between User and Kernel ✅
+
+Why?
+
+Accepts commands and communicates with OS.
+
+Q43. ls command?
+
+A) Lists files ✅
+
+Q44. cd command?
+
+A) Change Directory ✅
+
+Q45. mkdir?
+
+A) Create Directory ✅
+
+Q46. rmdir?
+
+A) Remove Empty Directory ✅
+
+Q47. cp?
+
+A) Copy Files ✅
+
+Q48. mv?
+
+A) Move/Rename Files ✅
+
+Q49. rm?
+
+A) Remove Files ✅
+
+Q50. cat?
+
+A) Display File Content ✅
+
+Q51. grep?
+
+A) Search Text Patterns ✅
+
+Q52. head command?
+
+A) First 10 Lines ✅
+
+Q53. tail command?
+
+A) Last 10 Lines ✅
+
+Q54. top command?
+
+A) System Monitoring ✅
+
+Q55. df command?
+
+A) Disk Usage ✅
+
+Q56. free command?
+
+A) Memory Usage ✅
+
+Q57. whoami?
+
+A) Current User ✅
+
+Q58. sudo?
+
+A) Execute as Superuser ✅
+
+Q59. man command?
+
+A) Manual Pages ✅
+
+Q60. echo command?
+
+A) Print Output ✅
+
+📌 PART 4: Virtualization & Containers (61-80)
+Q61. Virtual Machine provides?
+
+A) Complete Virtual Computer ✅
+
+Why?
+
+Guest OS runs independently.
+
+Q62. Which software manages VMs?
+
+A) Hypervisor ✅
+
+Q63. Type 1 Hypervisor runs?
+
+A) Directly on Hardware ✅
+
+Examples:
+
+VMware ESXi
+Microsoft Hyper-V
+Q64. Type 2 Hypervisor runs?
+
+A) On Host OS ✅
+
+Q65. Example Type 2 Hypervisor?
+
+A) Oracle VM VirtualBox ✅
+
+Q66. Container virtualizes?
+
+A) OS Level ✅
+
+Q67. VM virtualizes?
+
+A) Hardware Level ✅
+
+Q68. Containers share?
+
+A) Host Kernel ✅
+
+Q69. Which is lighter?
+
+A) Container ✅
+
+Q70. Which starts faster?
+
+A) Container ✅
+
+Q71. Popular container platform?
+
+A) Docker ✅
+
+Q72. Kubernetes manages?
+
+A) Containers ✅
+
+Q73. VM contains?
+
+A) Guest OS ✅
+
+Q74. Container contains?
+
+A) App + Dependencies ✅
+
+Q75. Containers consume?
+
+A) Less Resources ✅
+
+Q76. Hypervisor allocates?
+
+A) CPU, RAM, Storage ✅
+
+Q77. VM isolation is?
+
+A) Stronger ✅
+
+Q78. Container isolation uses?
+
+A) Namespaces and Cgroups ✅
+
+Q79. Docker image is?
+
+A) Blueprint for Container ✅
+
+Q80. Docker container is?
+
+A) Running Instance of Image ✅
+
+📌 PART 5: Kernel Architecture & Modern OS (81-100)
+Q81. Kernel is?
+
+A) Core of OS ✅
+
+Q82. Kernel Mode has?
+
+A) Full Privileges ✅
+
+Q83. User Mode has?
+
+A) Restricted Access ✅
+
+Q84. System Call switches?
+
+A) User Mode → Kernel Mode ✅
+
+Q85. Monolithic Kernel?
+
+A) Services inside kernel ✅
+
+Q86. Microkernel keeps?
+
+A) Minimal Functions in Kernel ✅
+
+Q87. Advantage of Microkernel?
+
+A) Better Reliability ✅
+
+Q88. Example Microkernel?
+
+A) MINIX ✅
+
+Q89. Example Monolithic Kernel?
+
+A) Linux ✅
+
+Q90. Hybrid Kernel example?
+
+A) Windows NT ✅
+
+Q91. Android is based on?
+
+A) Linux Kernel ✅
+
+Q92. Android apps run on?
+
+A) ART Runtime ✅
+
+Q93. Windows default file system?
+
+A) NTFS ✅
+
+Q94. Linux common file system?
+
+A) ext4 ✅
+
+Q95. Context Switch occurs between?
+
+A) Processes/Threads ✅
+
+Q96. Scheduler decides?
+
+A) Next Process to Execute ✅
+
+Q97. Kernel Panic occurs in?
+
+A) Linux ✅
+
+Q98. Blue Screen of Death (BSOD) belongs to?
+
+A) Windows ✅
+
+Q99. Init/Systemd is responsible for?
+
+A) Starting Services ✅
+
+Q100. Most Important Responsibility of Kernel?
+
+A) Resource Management ✅
+
+Why?
+
+Kernel manages:
+
+CPU
+Memory
+Files
+Processes
+Devices
+Security
+
+Without kernel:
+
+Hardware cannot be managed.
