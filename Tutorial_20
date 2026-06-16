@@ -1,0 +1,475 @@
+Deadlocks (Introduction & Fundamentals)
+
+Everything we studied recently:
+
+Mutex
+Semaphore
+Monitor
+Producer-Consumer
+Reader-Writer
+Dining Philosophers
+
+was preparing us for this chapter.
+
+What is a Deadlock?
+Official Definition
+
+A deadlock occurs when a set of processes are permanently blocked because each process is waiting for a resource held by another process.
+
+Easy Definition
+
+Think:
+
+I am waiting for you.
+
+You are waiting for me.
+
+Neither can move.
+
+System gets stuck forever.
+
+Real-Life Example 1: Two People
+
+Imagine:
+
+Rahul has:
+
+Pen
+
+and wants:
+
+Notebook
+
+Mohit has:
+
+Notebook
+
+and wants:
+
+Pen
+
+Situation:
+
+Rahul waits for Mohit
+
+Mohit waits for Rahul
+
+Result:
+
+Nobody proceeds
+
+Deadlock.
+
+Real-Life Example 2: Traffic Intersection
+
+Four cars arrive.
+
+Car A waits for Car B.
+
+Car B waits for Car C.
+
+Car C waits for Car D.
+
+Car D waits for Car A.
+
+Result:
+
+Traffic Frozen
+
+Deadlock.
+
+OS Example
+
+Suppose:
+
+Process P1
+
+Holds:
+
+Printer
+
+Needs:
+
+Scanner
+Process P2
+
+Holds:
+
+Scanner
+
+Needs:
+
+Printer
+
+Result:
+
+P1 waits for Scanner
+
+P2 waits for Printer
+
+Both wait forever.
+
+Deadlock.
+
+Visual Representation
+P1 ---> Scanner
+
+P2 ---> Printer
+
+Printer ---> P1
+
+Scanner ---> P2
+
+Circular dependency.
+
+Important Observation
+
+Deadlock is NOT:
+
+Slow System
+
+Deadlock is:
+
+No Progress Possible
+
+The system may still be alive.
+
+CPU may still run.
+
+Other processes may work.
+
+But affected processes are stuck forever.
+
+Necessary Conditions for Deadlock
+
+This is one of the most asked interview questions.
+
+Deadlock can occur only if FOUR conditions exist simultaneously.
+
+These are called:
+
+Coffman Conditions
+
+Named after Edward G. Coffman Jr..
+
+Condition 1: Mutual Exclusion
+
+Resource cannot be shared.
+
+Only one process can use it.
+
+Example:
+
+Printer
+
+Only one process prints at a time.
+
+If everyone could share it simultaneously:
+
+No deadlock.
+Condition 2: Hold and Wait
+
+Process already holds a resource and waits for another.
+
+Example:
+
+P1 holds:
+
+Printer
+
+and waits for:
+
+Scanner
+
+This is hold and wait.
+
+Condition 3: No Preemption
+
+Resource cannot be forcibly taken away.
+
+Example:
+
+Printer is allocated.
+
+OS cannot simply snatch it away.
+
+Process must voluntarily release it.
+
+Condition 4: Circular Wait
+
+Processes form a circle.
+
+Example:
+
+P1 waits for P2
+
+P2 waits for P3
+
+P3 waits for P4
+
+P4 waits for P1
+
+Circular chain.
+
+Most Important Memory Trick
+
+Remember:
+
+M H N C
+
+or
+
+Mutual Exclusion
+Hold and Wait
+No Preemption
+Circular Wait
+
+If any one condition is removed:
+
+Deadlock cannot occur.
+Example Analysis
+
+Suppose:
+
+P1 has Printer
+Needs Scanner
+
+P2 has Scanner
+Needs Printer
+
+Check conditions.
+
+Mutual Exclusion?
+
+Yes
+
+Printer shared?
+
+No
+
+Hold and Wait?
+
+Yes
+
+No Preemption?
+
+Yes
+
+Circular Wait?
+
+Yes
+
+All four present.
+
+Result:
+
+Deadlock
+Deadlock vs Starvation
+
+Students confuse these a lot.
+
+Deadlock
+
+Everybody waits.
+
+Example:
+
+P1 waits for P2
+
+P2 waits for P1
+
+Nobody progresses.
+
+Starvation
+
+One process waits forever.
+
+Others continue.
+
+Example:
+
+High-priority processes keep running
+
+Low-priority process never runs
+
+System works.
+
+But one process suffers.
+
+Deadlock vs Livelock
+
+Another interview favorite.
+
+Deadlock
+
+Processes do nothing.
+
+Example:
+
+Waiting forever
+Livelock
+
+Processes keep changing state.
+
+But no useful work happens.
+
+Example:
+
+Two people in a corridor:
+
+You move left.
+I move left.
+
+You move right.
+I move right.
+
+Both keep moving.
+
+Nobody passes.
+
+Resource Types
+
+Deadlocks happen because of resources.
+
+Examples:
+
+Hardware Resources
+Printer
+Scanner
+Tape Drive
+GPU
+Software Resources
+Files
+Database Locks
+Semaphores
+Mutexes
+Memory Resources
+RAM
+Buffers
+Pages
+Why Deadlocks Are Dangerous?
+
+Because they can:
+
+Freeze Applications
+
+Example:
+
+Database hangs.
+
+Waste Resources
+
+Resources remain locked forever.
+
+Reduce Throughput
+
+Work stops progressing.
+
+Cause System Failure
+
+Critical services may stop.
+
+Real Examples
+Banking
+
+Transaction A:
+
+Lock Account X
+Need Account Y
+
+Transaction B:
+
+Lock Account Y
+Need Account X
+
+Possible deadlock.
+
+Database Systems
+
+Two transactions lock different tables.
+
+Then request each other's tables.
+
+Deadlock.
+
+File Systems
+
+Process A:
+
+Lock File A
+Need File B
+
+Process B:
+
+Lock File B
+Need File A
+
+Deadlock.
+
+What Can OS Do About Deadlocks?
+
+There are four major strategies.
+
+1. Ignore Deadlocks
+
+Called:
+
+Ostrich Algorithm
+
+Idea:
+
+Pretend problem doesn't exist.
+
+Many systems do this.
+
+Because deadlocks are rare.
+
+2. Prevention
+
+Break one Coffman condition.
+
+3. Avoidance
+
+Avoid entering unsafe states.
+
+4. Detection and Recovery
+
+Allow deadlock.
+
+Detect it later.
+
+Recover from it.
+
+We will study each separately.
+
+Interview Questions
+Q1. What is Deadlock?
+
+Answer:
+
+A situation where processes wait indefinitely for resources held by each other.
+
+Q2. What are Coffman Conditions?
+
+Answer:
+
+Mutual Exclusion
+Hold and Wait
+No Preemption
+Circular Wait
+Q3. How many Coffman Conditions are there?
+
+Answer:
+
+4
+Q4. If one Coffman condition is removed?
+
+Answer:
+
+Deadlock cannot occur.
+
+Q5. Difference Between Deadlock and Starvation?
+
+Answer:
+
+Deadlock blocks all involved processes; starvation affects one or a few processes while others continue.
