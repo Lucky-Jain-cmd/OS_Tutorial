@@ -1457,3 +1457,30 @@ First Fit
 ✅ External Fragmentation
 ✅ Compaction
 ✅ First Fit / Best Fit / Worst Fit
+
+Page kya hai?
+Process ka fixed-size piece.
+Frame kya hai?
+RAM ka fixed-size piece.
+Page Table kya karti hai?
+Page Number
+      ↓
+Frame Number
+
+mapping store karti hai.
+
+Paging ka sabse bada fayda?
+External Fragmentation khatam.
+TLB kya hai?
+Page Table ka fast cache.
+Paging me kaunsi fragmentation reh sakti hai?
+Internal Fragmentation
+🎯 Roadmap Status
+
+✅ Memory Management Introduction
+✅ Contiguous Allocation
+✅ Internal / External Fragmentation
+✅ Paging
+✅ Page Table
+✅ Address Translation
+✅ TLB
