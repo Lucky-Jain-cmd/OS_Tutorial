@@ -1646,3 +1646,37 @@ SCAN
 ✅ Inodes
 ✅ HDD Structure
 ✅ Disk Scheduling Algorithms
+
+Device Driver kya hai?
+OS aur hardware ke beech translator.
+Interrupt kya hai?
+Device CPU ko signal bhejta hai.
+DMA kya karta hai?
+Device se RAM tak direct transfer.
+Buffering kya hai?
+Temporary storage during transfer.
+Caching kya hai?
+Frequently used data ko fast memory me rakhna.
+Spooling ka example?
+Printer Queue
+RAID ka purpose?
+Speed + Reliability
+🎯 Roadmap Status
+
+✅ Process Management
+✅ CPU Scheduling
+✅ Synchronization
+✅ Deadlocks
+✅ Memory Management
+✅ Virtual Memory
+✅ Page Replacement
+✅ File Systems
+✅ Disk Scheduling
+✅ I/O Systems
+✅ Device Drivers
+✅ Interrupts
+✅ DMA
+✅ Buffering
+✅ Caching
+✅ Spooling
+✅ RAID
