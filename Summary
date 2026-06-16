@@ -1191,3 +1191,29 @@ Roadmap Status
 ✅ Producer–Consumer Problem
 ✅ Reader–Writer Problem
 ✅ Dining Philosophers Problem
+
+
+Deadlock kya hai?
+
+Jab processes ek doosre ke resources ka wait karte rahen aur koi bhi aage na badh sake.
+
+Coffman Conditions
+Mutual Exclusion
+
+Hold and Wait
+
+No Preemption
+
+Circular Wait
+Deadlock hone ke liye?
+Sabhi 4 conditions
+ek saath present honi chahiye.
+Agar ek bhi condition hata do?
+Deadlock impossible.
+Roadmap Status
+
+✅ Producer–Consumer
+✅ Reader–Writer
+✅ Dining Philosophers
+✅ Deadlock Introduction
+✅ Coffman Conditions
