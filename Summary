@@ -1088,3 +1088,45 @@ Thread ka fayda?
 ✔ Less memory
 
 ✔ Better multitasking
+
+
+Multithreading kya hai?
+
+Ek process ke andar multiple threads ka concurrent execution.
+
+Example
+
+Chrome:
+
+UI Thread
+Network Thread
+Audio Thread
+Rendering Thread
+Fayde
+
+✔ Fast
+
+✔ Responsive
+
+✔ Less Memory
+
+✔ Better CPU Usage
+
+Biggest Problem
+Race Condition
+
+jab multiple threads same data ko ek saath modify karte hain.
+
+Roadmap Status
+
+✅ Processes
+✅ PCB
+✅ Process States
+✅ Schedulers
+✅ Dispatcher
+✅ Types of OS
+✅ System Calls
+✅ User Mode vs Kernel Mode
+✅ Interrupts
+✅ Threads
+✅ Multithreading
