@@ -1484,3 +1484,32 @@ Internal Fragmentation
 ✅ Page Table
 ✅ Address Translation
 ✅ TLB
+
+Segmentation kya hai?
+
+Program ko logical parts me divide karna.
+
+Segment examples?
+Code
+Data
+Stack
+Heap
+Segment Table me kya hota hai?
+Base Address
+Limit
+Physical Address kaise nikalte hain?
+Segmentation Fault kya hota hai?
+
+Jab process apne segment ki limit ke bahar memory access kare.
+
+Segmentation ki sabse badi problem?
+External Fragmentation
+🎯 Roadmap Status
+
+✅ Memory Management Introduction
+✅ Contiguous Allocation
+✅ Paging
+✅ Page Table
+✅ TLB
+✅ Segmentation
+✅ Paging vs Segmentation
