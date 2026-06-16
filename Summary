@@ -1323,3 +1323,29 @@ Roadmap Status
 ✅ Banker's Algorithm
 ✅ Safety Algorithm
 ✅ Resource Request Algorithm
+
+
+Deadlock Detection kya hai?
+
+OS deadlock ko hone deta hai aur baad mein usse detect karta hai.
+
+Single-instance resources mein detection kaise hoti hai?
+Wait-For Graph
+
+banaya jata hai.
+
+Cycle mil gaya?
+Deadlock
+Detection ka fayda?
+High Resource Utilization
+Nuksan?
+Deadlock sach mein ho sakta hai.
+
+Aur recovery karni padti hai.
+
+Roadmap Status
+
+✅ Deadlock Prevention
+✅ Deadlock Avoidance
+✅ Banker's Algorithm
+✅ Deadlock Detection
