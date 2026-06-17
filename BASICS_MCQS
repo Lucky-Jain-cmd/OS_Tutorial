@@ -1,0 +1,1055 @@
+1. What is the primary purpose of an Operating System?
+
+A) Compile Programs
+B) Manage Hardware and Software Resources
+C) Design Software
+D) Create Databases
+
+✅ Answer: B
+
+Why?
+OS acts as an interface between user and hardware and manages CPU, memory, files, and devices.
+
+2. Which is NOT an Operating System?
+
+A) Linux
+B) Windows
+C) Oracle
+D) macOS
+
+✅ Answer: C
+
+Why?
+Oracle is primarily a Database Management System (DBMS).
+
+3. Which component manages the CPU?
+
+A) File Manager
+B) Process Manager
+C) Device Driver
+D) Shell
+
+✅ Answer: B
+
+Why?
+Process Management allocates CPU to processes.
+
+4. Which scheduling algorithm follows FIFO?
+
+A) FCFS
+B) SJF
+C) Round Robin
+D) Priority
+
+✅ Answer: A
+
+Why?
+FCFS = First Come First Serve.
+
+5. What is the brain of the OS?
+
+A) Kernel
+B) Shell
+C) Compiler
+D) Driver
+
+✅ Answer: A
+
+Why?
+Kernel controls all major OS operations.
+
+6. Which memory is volatile?
+
+A) SSD
+B) HDD
+C) RAM
+D) ROM
+
+✅ Answer: C
+
+Why?
+RAM loses data when power is off.
+
+7. Which memory is non-volatile?
+
+A) Cache
+B) RAM
+C) Registers
+D) ROM
+
+✅ Answer: D
+
+Why?
+ROM retains data even after power loss.
+
+8. Which OS allows multiple users?
+
+A) MS-DOS
+B) Linux
+C) Palm OS
+D) None
+
+✅ Answer: B
+
+Why?
+Linux supports multiple users simultaneously.
+
+9. What is a Process?
+
+A) Program in Execution
+B) File in Memory
+C) Program in Disk
+D) Hardware Unit
+
+✅ Answer: A
+
+Why?
+A process is an actively running program.
+
+10. What is PCB?
+
+A) Program Control Block
+B) Process Control Block
+C) Processor Control Board
+D) Program Configuration Block
+
+✅ Answer: B
+
+Why?
+PCB stores information about a process.
+
+11. Which scheduling algorithm gives minimum average waiting time?
+
+A) FCFS
+B) Priority
+C) SJF
+D) RR
+
+✅ Answer: C
+
+Why?
+Shortest Job First minimizes waiting time mathematically.
+
+12. Round Robin scheduling is designed for:
+
+A) Batch Systems
+B) Real-Time Systems
+C) Time Sharing Systems
+D) Multiprocessing
+
+✅ Answer: C
+
+Why?
+Each process gets a fixed time quantum.
+
+13. Context Switching occurs when:
+
+A) Process changes CPU state
+B) File opens
+C) Disk reads
+D) OS boots
+
+✅ Answer: A
+
+Why?
+CPU switches from one process to another.
+
+14. Which scheduler selects process from Ready Queue?
+
+A) Long-Term
+B) Medium-Term
+C) Short-Term
+D) None
+
+✅ Answer: C
+
+Why?
+CPU Scheduler chooses next process.
+
+15. What is Deadlock?
+
+A) Infinite Loop
+B) CPU Crash
+C) Processes waiting forever for resources
+D) Memory Overflow
+
+✅ Answer: C
+
+Why?
+Processes block each other permanently.
+
+16. Deadlock requires how many conditions?
+
+A) 2
+B) 3
+C) 4
+D) 5
+
+✅ Answer: C
+
+Why?
+Mutual Exclusion, Hold & Wait, No Preemption, Circular Wait.
+
+17. Which condition is NOT necessary for deadlock?
+
+A) Circular Wait
+B) Mutual Exclusion
+C) Time Sharing
+D) Hold and Wait
+
+✅ Answer: C
+
+Why?
+Time sharing has no relation to deadlock.
+
+18. Banker’s Algorithm is used for:
+
+A) Scheduling
+B) Deadlock Avoidance
+C) Paging
+D) File Management
+
+✅ Answer: B
+
+Why?
+It checks safe state before allocating resources.
+
+19. Semaphore is used for:
+
+A) Scheduling
+B) Synchronization
+C) Paging
+D) Booting
+
+✅ Answer: B
+
+Why?
+Semaphores prevent race conditions.
+
+20. Race Condition occurs when:
+
+A) One process executes
+B) Multiple processes access shared data simultaneously
+C) OS crashes
+D) Memory full
+
+✅ Answer: B
+
+Why?
+Outcome depends on execution order.
+
+21. Binary Semaphore values are:
+
+A) 0 and 1
+B) 1 and 2
+C) 2 and 3
+D) Any integer
+
+✅ Answer: A
+
+Why?
+Works like a lock.
+
+22. Mutex stands for:
+
+A) Mutual Exclusion
+B) Multiple Exclusion
+C) Memory Utility
+D) None
+
+✅ Answer: A
+
+23. Which memory is fastest?
+
+A) HDD
+B) SSD
+C) RAM
+D) Register
+
+✅ Answer: D
+
+Why?
+Registers are inside CPU.
+
+24. Virtual Memory uses:
+
+A) Cache
+B) Secondary Storage
+C) Registers
+D) ROM
+
+✅ Answer: B
+
+25. Paging eliminates:
+
+A) External Fragmentation
+B) Internal Fragmentation
+C) Deadlock
+D) Scheduling
+
+✅ Answer: A
+
+26. Fixed-size blocks in memory are called:
+
+A) Segments
+B) Pages
+C) Frames
+D) Partitions
+
+✅ Answer: B
+
+27. Physical memory is divided into:
+
+A) Pages
+B) Segments
+C) Frames
+D) Blocks
+
+✅ Answer: C
+
+28. What is Thrashing?
+
+A) Excessive Paging
+B) CPU Overload
+C) Deadlock
+D) Boot Failure
+
+✅ Answer: A
+
+29. Page Fault occurs when:
+
+A) CPU Busy
+B) Page not found in RAM
+C) Disk Error
+D) OS Failure
+
+✅ Answer: B
+
+30. FIFO Page Replacement removes:
+
+A) Oldest Page
+B) Newest Page
+C) Random Page
+D) Largest Page
+
+✅ Answer: A
+
+31. LRU stands for?
+
+A) Least Recently Used
+B) Last Removed Unit
+C) Least Required Unit
+D) Last Required Use
+
+✅ Answer: A
+
+32. Which page replacement is generally better?
+
+A) FIFO
+B) LRU
+C) Random
+D) FCFS
+
+✅ Answer: B
+
+33. Segmentation supports:
+
+A) Logical Memory View
+B) Physical Memory View
+C) Scheduling
+D) Paging Only
+
+✅ Answer: A
+
+34. Internal Fragmentation occurs in:
+
+A) Paging
+B) Segmentation
+C) Deadlock
+D) Scheduling
+
+✅ Answer: A
+
+35. What is a File?
+
+A) Collection of Data
+B) CPU Unit
+C) Memory Block
+D) Process
+
+✅ Answer: A
+
+36. Which file allocation method uses linked list?
+
+A) Contiguous
+B) Linked
+C) Indexed
+D) Paging
+
+✅ Answer: B
+
+37. FAT stands for:
+
+A) File Allocation Table
+B) File Access Tool
+C) Fast Access Table
+D) Fast Allocation Tool
+
+✅ Answer: A
+
+38. NTFS belongs to:
+
+A) Linux
+B) Windows
+C) Android
+D) UNIX
+
+✅ Answer: B
+
+39. In UNIX everything is treated as:
+
+A) Process
+B) Thread
+C) File
+D) Memory
+
+✅ Answer: C
+
+40. Which command shows current directory in Linux?
+
+A) ls
+B) pwd
+C) cd
+D) dir
+
+✅ Answer: B
+
+41. Linux kernel is an example of:
+
+A) Microkernel
+B) Hybrid Kernel
+C) Monolithic Kernel
+D) Exokernel
+
+✅ Answer: C) Monolithic Kernel
+
+Why?
+Linux keeps most OS services inside the kernel space for performance.
+
+42. Windows kernel is generally classified as:
+
+A) Monolithic
+B) Hybrid
+C) Microkernel
+D) Exokernel
+
+✅ Answer: B) Hybrid
+
+Why?
+Windows combines features of monolithic and microkernel architectures.
+
+43. A daemon process is:
+
+A) Foreground Process
+B) Background Service Process
+C) User Process
+D) Zombie Process
+
+✅ Answer: B) Background Service Process
+
+Why?
+Daemons run in the background and provide services like printing, networking, etc.
+
+44. The fork() system call creates:
+
+A) Thread
+B) Child Process
+C) Interrupt
+D) File
+
+✅ Answer: B) Child Process
+
+Why?
+fork() duplicates the calling process.
+
+45. The exec() system call is used to:
+
+A) Create Process
+B) Delete Process
+C) Replace Current Process Image with New Program
+D) Create Thread
+
+✅ Answer: C
+
+Why?
+exec() loads and runs a new program in the current process.
+
+46. A Zombie Process is:
+
+A) Running Process
+B) Waiting Process
+C) Terminated Process whose PCB still exists
+D) New Process
+
+✅ Answer: C
+
+Why?
+The process has ended, but the parent has not yet collected its exit status.
+
+47. An Orphan Process is:
+
+A) Process without Memory
+B) Child Process whose Parent has Terminated
+C) Zombie Process
+D) Ready Process
+
+✅ Answer: B
+
+Why?
+Its parent dies before the child finishes.
+
+48. System Call Interface acts as:
+
+A) CPU Scheduler
+B) User-Kernel Bridge
+C) Memory Manager
+D) Compiler
+
+✅ Answer: B
+
+Why?
+It allows user programs to request OS services.
+
+49. A Trap is:
+
+A) Hardware Interrupt
+B) Software Interrupt
+C) Scheduler
+D) Memory Block
+
+✅ Answer: B
+
+Why?
+A trap is generated intentionally by software.
+
+50. Interrupts can be generated by:
+
+A) Hardware Only
+B) Software Only
+C) Hardware and Software Both
+D) CPU Only
+
+✅ Answer: C
+
+Why?
+Keyboard → Hardware interrupt, System Call → Software interrupt.
+
+51. Dispatcher is responsible for:
+
+A) Memory Allocation
+B) Process Creation
+C) Giving CPU Control to Selected Process
+D) File Allocation
+
+✅ Answer: C
+
+Why?
+Dispatcher performs context switch and transfers CPU.
+
+52. Ready Queue contains:
+
+A) Running Processes
+B) Blocked Processes
+C) Ready-to-Run Processes
+D) Terminated Processes
+
+✅ Answer: C
+
+53. Degree of Multiprogramming means:
+
+A) Number of CPUs
+B) Number of Processes in Memory
+C) Number of Users
+D) Number of Files
+
+✅ Answer: B
+
+54. Spooling stands for:
+
+A) Simultaneous Peripheral Operations On-Line
+B) System Peripheral Operations Online Logic
+C) Shared Peripheral Output Logic
+D) Sequential Processing Online Logic
+
+✅ Answer: A
+
+Why?
+Jobs are stored in a buffer before execution.
+
+55. DMA stands for:
+
+A) Direct Memory Access
+B) Data Memory Allocation
+C) Dynamic Memory Access
+D) Direct Machine Access
+
+✅ Answer: A
+
+56. During booting, what is loaded into memory?
+
+A) Application Software
+B) Kernel
+C) Browser
+D) Compiler
+
+✅ Answer: B
+
+57. Cold Boot means:
+
+A) Restarting Computer
+B) Booting from Powered-Off State
+C) Sleep Mode
+D) Hibernate Mode
+
+✅ Answer: B
+
+58. Warm Boot means:
+
+A) First Start
+B) Restart/Reboot without Power Off
+C) Shutdown
+D) Sleep
+
+✅ Answer: B
+
+59. Shell is:
+
+A) Hardware Device
+B) Command Interpreter
+C) Process Scheduler
+D) Memory Manager
+
+✅ Answer: B
+
+60. CLI stands for:
+
+A) Common Language Interface
+B) Command Line Interface
+C) Computer Logic Interface
+D) Central Line Interface
+
+✅ Answer: B
+
+61. GUI stands for:
+
+A) General User Interface
+B) Graphical User Interface
+C) Graphic Utility Interface
+D) General Utility Interface
+
+✅ Answer: B) Graphical User Interface
+
+Why?
+GUI allows users to interact through windows, icons, menus, and pointers instead of typing commands.
+
+62. Time Quantum is used in:
+
+A) FCFS
+B) SJF
+C) Round Robin
+D) Priority Scheduling
+
+✅ Answer: C) Round Robin
+
+Why?
+Each process gets a fixed CPU time called a time quantum.
+
+63. Starvation is most common in:
+
+A) FCFS
+B) Round Robin
+C) Priority Scheduling
+D) FIFO
+
+✅ Answer: C) Priority Scheduling
+
+Why?
+Low-priority processes may wait indefinitely if higher-priority processes keep arriving.
+
+64. Aging is used to solve:
+
+A) Deadlock
+B) Thrashing
+C) Starvation
+D) Fragmentation
+
+✅ Answer: C) Starvation
+
+Why?
+The waiting process's priority is gradually increased.
+
+65. A Thread is:
+
+A) Heavyweight Process
+B) Lightweight Process
+C) File
+D) Memory Unit
+
+✅ Answer: B) Lightweight Process
+
+Why?
+Threads share resources of a process and are cheaper to create.
+
+66. Multithreading means:
+
+A) Multiple CPUs
+B) Multiple Processes
+C) Multiple Threads within a Process
+D) Multiple Kernels
+
+✅ Answer: C
+
+67. IPC stands for:
+
+A) Internal Process Communication
+B) Inter Process Communication
+C) Inter Program Control
+D) Internal Program Control
+
+✅ Answer: B
+
+Why?
+IPC enables processes to exchange data.
+
+68. Which is an IPC mechanism?
+
+A) Pipe
+B) Semaphore
+C) Shared Memory
+D) All of These
+
+✅ Answer: D
+
+69. Fastest IPC mechanism is:
+
+A) Pipe
+B) Message Queue
+C) Shared Memory
+D) Socket
+
+✅ Answer: C
+
+Why?
+Processes directly access the same memory region.
+
+70. Message Passing is:
+
+A) CPU Scheduling
+B) Memory Management
+C) IPC Method
+D) Deadlock Prevention
+
+✅ Answer: C
+
+71. Cache Memory is located:
+
+A) Inside/Very Near CPU
+B) Hard Disk
+C) SSD
+D) Network
+
+✅ Answer: A
+
+Why?
+Cache stores frequently used data for faster access.
+
+72. Swap Space is:
+
+A) CPU Area
+B) Secondary Storage used as Virtual Memory
+C) Cache Area
+D) Register Area
+
+✅ Answer: B
+
+73. Belady's Anomaly occurs in:
+
+A) LRU
+B) Optimal
+C) FIFO
+D) Segmentation
+
+✅ Answer: C
+
+Why?
+Sometimes increasing frames causes more page faults in FIFO.
+
+74. Demand Paging means:
+
+A) Load Entire Program
+B) Load Page Only When Needed
+C) Load All Files
+D) Load Cache
+
+✅ Answer: B
+
+75. Memory Leak occurs when:
+
+A) Memory is Freed Properly
+B) Allocated Memory is Not Released
+C) Disk Fails
+D) CPU Crashes
+
+✅ Answer: B
+
+76. FCFS Disk Scheduling serves requests:
+
+A) Randomly
+B) Based on Priority
+C) In Arrival Order
+D) By Shortest Seek
+
+✅ Answer: C
+
+77. SCAN Disk Scheduling is also called:
+
+A) Elevator Algorithm
+B) Lift Algorithm
+C) Circular Algorithm
+D) FIFO Algorithm
+
+✅ Answer: A
+
+78. C-SCAN stands for:
+
+A) Circular SCAN
+B) Central SCAN
+C) Current SCAN
+D) Continuous SCAN
+
+✅ Answer: A
+
+79. Seek Time is:
+
+A) Time to Transfer Data
+B) Time to Move Disk Head
+C) Rotation Time
+D) CPU Time
+
+✅ Answer: B
+
+80. Rotational Latency is:
+
+A) Head Movement Time
+B) Waiting for Desired Sector Rotation
+C) Data Transfer Time
+D) CPU Delay
+
+✅ Answer: B
+
+81. Throughput means:
+
+A) Waiting Time
+B) Number of Jobs Completed per Unit Time
+C) CPU Speed
+D) Memory Size
+
+✅ Answer: B
+
+82. Turnaround Time =
+
+A) Completion Time − Arrival Time
+B) Burst Time − Arrival Time
+C) Waiting Time + Arrival Time
+D) Completion Time − Waiting Time
+
+✅ Answer: A
+
+83. Waiting Time is:
+
+A) CPU Execution Time
+B) Time Process Waits in Ready Queue
+C) Turnaround Time
+D) Response Time
+
+✅ Answer: B
+
+84. Response Time is:
+
+A) Time until First CPU Response
+B) Completion Time
+C) Waiting Time
+D) Turnaround Time
+
+✅ Answer: A
+
+85. Critical Section is:
+
+A) Shared Code Accessing Shared Data
+B) Scheduler Code
+C) Kernel Code
+D) User Program
+
+✅ Answer: A
+
+86. Producer-Consumer Problem is related to:
+
+A) Scheduling
+B) Synchronization
+C) Paging
+D) File Systems
+
+✅ Answer: B
+
+87. Dining Philosophers Problem demonstrates:
+
+A) Memory Management
+B) CPU Scheduling
+C) Synchronization and Deadlock Issues
+D) File Allocation
+
+✅ Answer: C
+
+88. Readers-Writers Problem is a classic:
+
+A) Deadlock Problem
+B) Scheduling Problem
+C) Synchronization Problem
+D) Paging Problem
+
+✅ Answer: C
+
+89. Kernel Mode is also called:
+
+A) User Mode
+B) Privileged Mode
+C) Guest Mode
+D) Normal Mode
+
+✅ Answer: B
+
+90. User Mode has:
+
+A) Full Hardware Access
+B) Limited Privileges
+C) Kernel Access
+D) Direct Memory Access
+
+✅ Answer: B
+
+91. Multiprocessing means:
+
+A) Multiple CPUs Working Together
+B) Multiple Files
+C) Multiple Users
+D) Multiple Threads
+
+✅ Answer: A
+
+92. Multiprogramming means:
+
+A) Multiple CPUs
+B) Multiple Programs in Memory Simultaneously
+C) Multiple Networks
+D) Multiple Kernels
+
+✅ Answer: B
+
+93. Time Sharing System aims to:
+
+A) Share CPU among Multiple Users/Processes
+B) Increase Disk Space
+C) Reduce Memory
+D) Eliminate Scheduling
+
+✅ Answer: A
+
+94. A Real-Time Operating System focuses on:
+
+A) Graphics
+B) Deadlines and Timely Response
+C) Large Storage
+D) Networking
+
+✅ Answer: B
+
+95. Which is an example of RTOS?
+
+A) MS-DOS
+B) Linux Mint
+C) Windows XP
+D) VxWorks
+
+✅ Answer: D
+
+Why?
+VxWorks is widely used in aerospace, robotics, and embedded systems.
+
+96. Embedded Operating Systems are designed for:
+
+A) General-Purpose PCs
+B) Dedicated Devices
+C) Supercomputers Only
+D) Cloud Servers Only
+
+✅ Answer: B
+
+97. Android is based on:
+
+A) UNIX Kernel
+B) Linux Kernel
+C) Windows Kernel
+D) DOS Kernel
+
+✅ Answer: B
+
+98. Who created Linux?
+
+A) Bill Gates
+B) Steve Jobs
+C) Linus Torvalds
+D) Dennis Ritchie
+
+✅ Answer: C
+
+99. UNIX was originally developed by:
+
+A) Bill Gates
+B) Ken Thompson and Dennis Ritchie
+C) Linus Torvalds
+D) Steve Jobs
+
+✅ Answer: B
+
+100. Operating System is primarily a:
+
+A) Compiler
+B) Resource Manager
+C) Text Editor
+D) Programming Language
+
+✅ Answer: B
+
+Why?
+The OS manages CPU, memory, storage, files, processes, and devices efficiently.
+
+🎯 Top 10 MCQs That Interviewers Love
+Process vs Thread
+Context Switching
+Deadlock Conditions
+Semaphore vs Mutex
+Paging vs Segmentation
+Virtual Memory
+Page Fault
+FCFS vs SJF vs Round Robin
+Zombie vs Orphan Process
+User Mode vs Kernel Mode
+📌 Quick Memory Trick
+
+OS = PMFDN
+
+P → Process Management
+M → Memory Management
+F → File Management
+D → Device Management
+N → Networking & Security
