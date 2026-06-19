@@ -1,0 +1,538 @@
+🚀 System Calls - Complete Deep Explanation (Your Style)
+
+Before understanding System Calls, remember:
+
+🤔 One Golden Rule
+
+Applications cannot directly access hardware or kernel resources.
+
+For example:
+
+❌ Notepad cannot directly read disk.
+
+❌ Chrome cannot directly allocate memory from RAM.
+
+❌ WhatsApp cannot directly create processes.
+
+Why?
+
+Because it would be dangerous.
+
+Imagine a buggy program directly controlling RAM, CPU, and files 😱
+
+System could crash.
+
+Therefore OS provides:
+
+🔥 System Calls
+📖 Definition
+
+A System Call is a mechanism through which a user program requests a service from the Operating System Kernel.
+
+Easy Interview Definition
+
+System Call is the interface between User Space and Kernel Space.
+
+🎭 Real-Life Analogy
+
+Imagine:
+
+You = Customer
+Restaurant = OS
+Chef = Kernel
+Waiter = System Call
+
+Can you directly enter kitchen and cook?
+
+❌ No
+
+You tell waiter.
+
+Waiter tells chef.
+
+Chef does work.
+
+Returns result.
+
+Exactly:
+
+Application
+    ↓
+System Call
+    ↓
+Kernel
+    ↓
+Hardware
+🏢 User Mode vs Kernel Mode
+
+Most important concept.
+
+User Mode
+
+Applications run here.
+
+Examples:
+
+🌐 Chrome
+
+🎵 Spotify
+
+📝 Notepad
+
+🎮 Games
+
+Permissions:
+
+❌ Cannot access hardware directly
+
+❌ Cannot execute privileged instructions
+
+Kernel Mode
+
+OS runs here.
+
+Examples:
+
+Memory Manager
+
+Scheduler
+
+Device Drivers
+
+File System
+
+Permissions:
+
+✅ Full Access
+
+✅ RAM
+
+✅ CPU
+
+✅ Devices
+
+✅ Files
+
+Visualization:
+
++------------------+
+|   User Mode      |
+| Chrome, VS Code  |
++------------------+
+         |
+         | System Call
+         v
++------------------+
+|  Kernel Mode     |
+| OS Core          |
++------------------+
+🔥 Why Do We Need System Calls?
+
+Suppose Chrome wants:
+
+Open File
+
+Can Chrome directly access SSD?
+
+❌ No
+
+It asks OS.
+
+Suppose VS Code wants:
+
+Allocate Memory
+
+Can VS Code directly take RAM?
+
+❌ No
+
+Must ask OS.
+
+Suppose WhatsApp wants:
+
+Send Data Over Internet
+
+Must ask OS.
+
+Therefore:
+
+Application
+     ↓
+System Call
+     ↓
+Operating System
+🚀 What Happens During a System Call?
+
+Suppose:
+
+read(file);
+
+is executed.
+
+Step 1
+
+Application running in User Mode.
+
+User Mode
+Step 2
+
+System Call invoked.
+
+Step 3
+
+CPU switches:
+
+User Mode
+      ↓
+Kernel Mode
+Step 4
+
+Kernel performs operation.
+
+Step 5
+
+Kernel returns result.
+
+Step 6
+
+CPU switches back.
+
+Kernel Mode
+      ↓
+User Mode
+
+Visualization:
+
+Application
+      ↓
+System Call
+      ↓
+Kernel
+      ↓
+Hardware
+      ↓
+Kernel
+      ↓
+Application
+🎯 Types of System Calls
+
+Interview Favorite.
+
+There are 6 major categories.
+
+1️⃣ Process Control System Calls
+
+Used for:
+
+✅ Create Process
+
+✅ Terminate Process
+
+✅ Execute Program
+
+Examples:
+
+fork()
+
+Creates child process.
+
+exec()
+
+Loads new program.
+
+exit()
+
+Terminates process.
+
+wait()
+
+Wait for child process.
+
+Example:
+
+Chrome opens new tab.
+
+OS creates process/thread.
+
+System Calls used.
+
+2️⃣ File Management System Calls
+
+Used for files.
+
+Examples:
+
+open()
+
+Open file.
+
+read()
+
+Read file.
+
+write()
+
+Write file.
+
+close()
+
+Close file.
+
+Example:
+
+Opening:
+
+Resume.pdf
+
+OS internally executes:
+
+open()
+read()
+close()
+3️⃣ Device Management System Calls
+
+Used for hardware devices.
+
+Examples:
+
+ioctl()
+
+Control device.
+
+read()
+
+Read keyboard input.
+
+write()
+
+Write to printer.
+
+Example:
+
+Press keyboard key.
+
+System call interacts with device driver.
+
+4️⃣ Information Maintenance System Calls
+
+Used to get system information.
+
+Examples:
+
+getpid()
+
+Get Process ID.
+
+getuid()
+
+Get User ID.
+
+time()
+
+Get system time.
+
+Example:
+
+Task Manager showing PID.
+
+Uses system calls.
+
+5️⃣ Communication System Calls
+
+Used for IPC (Inter Process Communication).
+
+Examples:
+
+pipe()
+
+Create pipe.
+
+socket()
+
+Create network socket.
+
+send()
+
+Send data.
+
+recv()
+
+Receive data.
+
+Example:
+
+WhatsApp message sent.
+
+Uses:
+
+socket()
+send()
+6️⃣ Protection System Calls
+
+Used for security.
+
+Examples:
+
+chmod()
+
+Change permissions.
+
+chown()
+
+Change owner.
+
+setuid()
+
+Change user privileges.
+
+Example:
+
+Making file read-only.
+
+Uses protection system calls.
+
+🌍 Real Examples Around You
+Example 1
+
+Opening Chrome
+
+System Calls:
+
+fork()
+exec()
+Example 2
+
+Saving PDF
+
+System Calls:
+
+open()
+write()
+close()
+Example 3
+
+Playing Song
+
+System Calls:
+
+open()
+read()
+Example 4
+
+Watching YouTube
+
+System Calls:
+
+socket()
+recv()
+Example 5
+
+Creating Folder
+
+System Calls:
+
+mkdir()
+Example 6
+
+Deleting File
+
+System Calls:
+
+unlink()
+🔥 Most Common Linux System Calls
+System Call	Purpose
+fork()	Create process
+exec()	Run program
+wait()	Wait for child
+exit()	End process
+open()	Open file
+read()	Read file
+write()	Write file
+close()	Close file
+getpid()	Get PID
+pipe()	IPC
+socket()	Networking
+⚡ Why Are System Calls Expensive?
+
+Because CPU changes:
+
+User Mode
+    ↓
+Kernel Mode
+    ↓
+User Mode
+
+This mode switching takes time.
+
+Called:
+
+Context Switch / Mode Switch Overhead
+🎯 Interview Questions
+Q1. What is a System Call?
+
+Answer:
+
+A System Call is an interface through which a user program requests services from the OS kernel.
+
+Q2. Why do we need System Calls?
+
+Answer:
+
+Applications cannot directly access hardware and kernel resources.
+
+Q3. Which mode executes System Calls?
+
+Answer:
+
+Kernel Mode.
+
+Q4. Give examples of System Calls.
+
+Answer:
+
+fork()
+exec()
+read()
+write()
+open()
+close()
+Q5. Which system call creates a process?
+
+Answer:
+
+fork()
+Q6. Which system call executes a new program?
+
+Answer:
+
+exec()
+Q7. Difference between fork() and exec()?
+fork()	exec()
+Creates child process	Replaces program
+New PID	Same PID
+Q8. Which system calls are used while opening a file?
+
+Answer:
+
+open()
+read()
+close()
+🇮🇳 Hindi Revision
+System Call kya hai?
+Application aur Kernel
+ke beech communication ka bridge.
+Kyu chahiye?
+Applications directly hardware
+access nahi kar sakti.
+fork() kya karta hai?
+Child process create karta hai.
+exec() kya karta hai?
+Current program ko replace karta hai.
+open(), read(), write()?
+File operations.
+socket()?
+Network communication.
+🧠 One-Line Memory Trick
+System Call = "Application ki Request to OS"
+
+Whenever an application wants file, memory, process, device, network, or security service, it uses a System Call. This is why almost every action you perform on a computer eventually reaches the kernel through system calls. 🚀
