@@ -316,3 +316,63 @@ Android = Linux Kernel
 
 Windows = NTFS
 Linux = ext4
+
+
+Interview Question
+Why do we use fork() before exec()?
+Answer
+
+fork() creates a child process so that the parent process (shell) remains alive.
+
+exec() then replaces the child process with the desired program.
+
+This allows the command to run while the shell continues to exist.
+
+Another Example
+
+Suppose terminal executes:
+
+chrome
+
+Without fork:
+
+bash
+  ↓
+chrome
+
+When Chrome closes:
+
+shell gone
+
+❌
+
+With fork:
+
+bash
+   |
+   +---- chrome
+
+Chrome closes.
+
+bash still alive
+
+✅
+
+Memory Trick
+fork()
+Create Worker
+exec()
+Give Worker New Job
+
+So:
+
+fork()
+     ↓
+Create Child
+
+exec()
+     ↓
+Turn Child Into Desired Program
+🎯 One-Line Interview Answer
+
+fork() is used to create a child process, and exec() is used to load the required program into that child process, so the parent shell remains alive and can accept more commands after the program finishes.
