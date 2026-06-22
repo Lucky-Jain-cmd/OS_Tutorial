@@ -428,3 +428,13 @@ Fixed partitioning mainly suffers from Internal Fragmentation, whereas dynamic p
 | Paging               | ✅ (small) | ❌     |
 | Segmentation         | ❌         | ✅     |
 -----------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------
+| Feature                | First Fit      | Best Fit          | Worst Fit        | Next Fit                             |
+| ---------------------- | -------------- | ----------------- | ---------------- | ------------------------------------ |
+| Search Starts          | Beginning      | Beginning         | Beginning        | Last Position                        |
+| Block Selected         | First Suitable | Smallest Suitable | Largest Suitable | First Suitable After Last Allocation |
+| Speed                  | Fastest        | Slow              | Slow             | Fast                                 |
+| Memory Utilization     | Good           | Better Initially  | Poor             | Moderate                             |
+| External Fragmentation | Moderate       | High              | Moderate         | Moderate                             |
+| Full Search Needed     | No             | Yes               | Yes              | No                                   |
+-------------------------------------------------------------------------------------------------------------------------
