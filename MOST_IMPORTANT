@@ -420,3 +420,11 @@ Compaction only helps with External Fragmentation.
 
 Internal Fragmentation occurs when allocated memory contains unused space inside the allocated block, while External Fragmentation occurs when free memory is split into small scattered holes between allocated blocks.
 Fixed partitioning mainly suffers from Internal Fragmentation, whereas dynamic partitioning suffers from External Fragmentation.
+-----------------------------------------------
+| Technique            | Internal  | External |
+| -------------------- | --------- | -------- |
+| Fixed Partitioning   | ✅         | ❌     |
+| Dynamic Partitioning | ❌         | ✅     |
+| Paging               | ✅ (small) | ❌     |
+| Segmentation         | ❌         | ✅     |
+-----------------------------------------------
