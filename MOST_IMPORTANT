@@ -387,6 +387,90 @@ fork() is used to create a child process, and exec() is used to load the require
 | Severity          | Usually smaller                | Can become severe                  |
 -------------------------------------------------------------------------------------------
 
+------------------------------------------------------------------
+| Feature        | Paging               | Segmentation           |
+| -------------- | -------------------- | ---------------------- |
+| Division       | Fixed-size Pages     | Variable-size Segments |
+| Based On       | Physical Memory View | Logical Program View   |
+| Address Format | Page#, Offset        | Segment#, Offset       |
+| Fragmentation  | Internal             | External               |
+| Compaction     | Not Needed           | Needed                 |
+| User Visible   | No                   | Yes                    |
+------------------------------------------------------------------
+Paging + Segmentation
+
+Modern systems often combine both.
+
+Example:
+
+Segment
+      ↓
+Pages
+      ↓
+Frames
+
+Benefits:
+
+✅ Logical organization
+
+✅ Better memory utilization
+
+✅ Less fragmentation
+
+Frequently Asked Interview Questions
+Q1. What is Segmentation?
+
+Answer:
+Segmentation is a memory management technique that divides a program into variable-sized logical units called segments.
+
+Q2. What is a Segment?
+
+A logical part of a program such as:
+
+Code
+Data
+Stack
+Heap
+Q3. What does a Segment Table contain?
+Base Address
+Limit
+Q4. What is the logical address format in Segmentation?
+(Segment Number, Offset)
+Q5. Which fragmentation occurs in Segmentation?
+
+✅ External Fragmentation
+
+❌ Internal Fragmentation
+
+Q6. What is a Segmentation Fault?
+
+An error that occurs when a process accesses memory outside its segment limit.
+
+Q7. Difference Between Paging and Segmentation?
+
+Paging divides memory into fixed-size pages.
+
+Segmentation divides memory into logical variable-sized segments.
+
+🎯 1-Minute Interview Answer
+
+Segmentation is a memory management technique in which a program is divided into variable-sized logical units called segments, such as code, data, stack, and heap. Each segment has a base address and a limit stored in a segment table. A logical address consists of a segment number and an offset. Segmentation provides logical organization, protection, and sharing but suffers from external fragmentation because segments are of variable size.
+
+🇮🇳 Hindi Summary
+
+Segmentation में program को logical parts (Code, Data, Stack, Heap) में बाँटा जाता है। हर segment का अपना Base Address और Limit होता है। Logical Address = (Segment Number, Offset) होता है। Segmentation logical organization और protection देती है, लेकिन इसमें External Fragmentation होती है।
+
+🧠 Golden Interview Line
+
+"Segmentation divides a program into variable-sized logical units, while Paging divides memory into fixed-size units." 🚀🔥
+
+Memory Trick
+Paging      → Physical View
+Segmentation → Logical View
+
+💯 This single line impresses interviewers.
+
+
 Interview Questions 🔥
 Q1. What is Internal Fragmentation?
 
