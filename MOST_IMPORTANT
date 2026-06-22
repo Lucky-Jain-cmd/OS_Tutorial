@@ -376,3 +376,47 @@ Turn Child Into Desired Program
 🎯 One-Line Interview Answer
 
 fork() is used to create a child process, and exec() is used to load the required program into that child process, so the parent shell remains alive and can accept more commands after the program finishes.
+-------------------------------------------------------------------------------------------
+| Feature           | Internal Fragmentation         | External Fragmentation             |
+| ----------------- | ------------------------------ | ---------------------------------- |
+| Waste Location    | Inside allocated block         | Between allocated blocks           |
+| Cause             | Fixed-size allocation          | Variable-size allocation           |
+| Memory Available? | Yes, but unusable inside block | Yes, but scattered                 |
+| Common In         | Fixed Partitioning, Paging     | Dynamic Partitioning, Segmentation |
+| Compaction Helps? | ❌ No                           | ✅ Yes                           |
+| Severity          | Usually smaller                | Can become severe                  |
+-------------------------------------------------------------------------------------------
+
+Interview Questions 🔥
+Q1. What is Internal Fragmentation?
+
+Memory wasted inside an allocated memory block because the process does not use the entire allocated space.
+
+Q2. What is External Fragmentation?
+
+Memory wasted in the form of scattered free holes between allocated memory blocks.
+
+Q3. Which fragmentation occurs in Fixed Partitioning?
+
+✅ Internal Fragmentation
+
+Q4. Which fragmentation occurs in Dynamic Partitioning?
+
+✅ External Fragmentation
+
+Q5. Does Paging suffer from External Fragmentation?
+
+❌ No
+
+Because pages can be placed in any frame.
+
+Q6. Can Compaction remove Internal Fragmentation?
+
+❌ No
+
+Compaction only helps with External Fragmentation.
+
+🎯 10-Second Interview Answer
+
+Internal Fragmentation occurs when allocated memory contains unused space inside the allocated block, while External Fragmentation occurs when free memory is split into small scattered holes between allocated blocks.
+Fixed partitioning mainly suffers from Internal Fragmentation, whereas dynamic partitioning suffers from External Fragmentation.
