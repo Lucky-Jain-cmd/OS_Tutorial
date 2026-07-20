@@ -1711,7 +1711,20 @@ Easy Trick to Remember
 👶 Orphan = Parent is gone, child is alive.
 🧟 Zombie = Child is gone, parent hasn't buried it (wait()).
 _______________________________________________________________________________________
+*SCHEDULER : The scheduler is an Operating System component (system software) that decides which process should execute next. 
+There are three schedulers in an operating system. 
+The Long-Term Scheduler selects which processes are admitted from secondary storage into main memory.
+The Short-Term Scheduler, also called the CPU Scheduler, selects the next process from the ready queue to execute on the CPU.
+The Medium-Term Scheduler temporarily swaps processes out of memory and brings them back later to manage memory efficiently and control the degree of multiprogramming.
+_______________________________________________________
+| Scheduler       | Main Work         | Frequency       |
+| --------------- | ----------------- | -------------   |
+| **Long-Term**   | Disk ➜ RAM        | Rare           |
+| **Short-Term**  | RAM ➜ CPU         | Very Frequent  |
+| **Medium-Term** | RAM ⇄ Disk (Swap) | Occasionally   |
+________________________________________________________
 
+________________________________________________________________________________________
 Protection kya hai?
 System ke andar
 access control karna.
