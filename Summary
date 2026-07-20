@@ -389,7 +389,10 @@ Bluetooth Service
 Audio Service
 
 and many more.
-
+____________________________________________________________________________________________________
+* The init process is the first user-space process started by the Linux kernel after booting. 
+* It always has PID 1 and is responsible for starting system services, creating user-space processes, and adopting orphan processes.
+* In modern Linux distributions, the traditional init process is typically replaced by systemd, which also runs as PID 1.
 _____________________________________________________________________________________________________
 Real-Life Example (School Analogy)
 
