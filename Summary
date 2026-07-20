@@ -1725,7 +1725,16 @@ _______________________________________________________
 ________________________________________________________
 
 ________________________________________________________________________________________
-Protection kya hai?
+_____________________________________________________________________________________________________________________________________________________________________________________________
+Here are crisp one-line interview definitions:
+
+Deadlock Prevention: Prevents deadlock by breaking at least one of the four necessary deadlock conditions.
+Deadlock Avoidance: Avoids deadlock by allocating resources only if the system remains in a safe state.
+Deadlock Detection: Allows deadlocks to occur and then checks whether a deadlock exists.
+Deadlock Recovery: Recovers from a deadlock by terminating processes or reclaiming resources.
+🔥 Easy Memory Trick
+_____________________________________________________________________________________________________________________________________________________________________________________________
+Protection kya hai
 System ke andar
 access control karna.
 Security kya hai?
