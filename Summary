@@ -1702,7 +1702,15 @@ Speed + Reliability
 ✅ Caching
 ✅ Spooling
 ✅ RAID
+_______________________________________________________________________________________
+An orphan process is a running child process whose parent has terminated. 
+It is adopted by Init/Systemd (PID 1). A zombie process is a process that has completed execution,
+but its parent has not yet collected its exit status using wait(). Zombies don't consume CPU, but they do occupy an entry in the process table until they are reaped.
 
+Easy Trick to Remember
+👶 Orphan = Parent is gone, child is alive.
+🧟 Zombie = Child is gone, parent hasn't buried it (wait()).
+_______________________________________________________________________________________
 
 Protection kya hai?
 System ke andar
