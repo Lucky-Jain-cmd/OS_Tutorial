@@ -1734,6 +1734,13 @@ Deadlock Detection: Allows deadlocks to occur and then checks whether a deadlock
 Deadlock Recovery: Recovers from a deadlock by terminating processes or reclaiming resources.
 🔥 Easy Memory Trick
 _____________________________________________________________________________________________________________________________________________________________________________________________
+____________________________________________________________________________________________________
+
+🔥 Easy Trick
+WFG + Cycle = 100% Deadlock
+RAG + Single Instance + Cycle = 100% Deadlock
+RAG + Multiple Instances + Cycle = Maybe Deadlock
+____________________________________________________________________________________________________
 Protection kya hai
 System ke andar
 access control karna.
