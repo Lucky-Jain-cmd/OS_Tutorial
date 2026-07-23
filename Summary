@@ -1240,6 +1240,21 @@ Roadmap Status
 ✅ Deadlock Introduction
 ✅ Coffman Conditions
 
+_____________________________________________________________________________________________________________________________________________________________________________
+Inode is a data structure that stores metadata about a file and pointers to its data blocks, but normally not the filename.
+_______________________________________________________________________________
+| Feature           | Hard Link                  | Soft Link                  |
+| ----------------- | -------------------------- | -------------------------- |
+| Meaning           | Another name for same file | Shortcut/reference to file |
+| Inode             | Same inode                 | Different inode            |
+| Original deleted  | ✅ Still works             | ❌ Broken                 |
+| Directory linking | ❌ Usually not allowed     | ✅ Allowed                |
+| Cross filesystem  | ❌ No                      | ✅ Yes                    |
+| Size              | Same file data             | Small, stores path         |
+| Command           | `ln`                       | `ln -s`                    |
+|_____________________________________________________________________________|
+
+
 RAG kya hai?
 
 Ek graph jo dikhata hai:
