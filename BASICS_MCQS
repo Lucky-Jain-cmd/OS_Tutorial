@@ -585,6 +585,13 @@ D) Sequential Processing Online Logic
 
 Why?
 Jobs are stored in a buffer before execution.
+🎯 Main purpose:
+
+Slow device ke jobs ko queue karna.
+
+Remember:
+
+Spooling = "Mera kaam line mein laga do." 😄
 
 55. DMA stands for:
 
@@ -1053,3 +1060,36 @@ M → Memory Management
 F → File Management
 D → Device Management
 N → Networking & Security
+--------------------------------------------------------------------------------------------------------
+| Feature            | 🖨️ Spooling           | ⚡ Caching                | 📦 Buffering               |
+| ------------------ | ---------------------- | ------------------------ | --------------------------  |
+| Main purpose       | Jobs ko queue karna    | Access fast karna        | Data transfer smooth karna  |
+| Main idea          | **Queue**              | **Fast copy**            | **Temporary storage**       |
+| Example            | Printer                | Browser/CPU cache        | Video streaming             |
+| Usually helps with | Slow peripheral/device | Frequently accessed data | Speed mismatch              |
+| Multiple jobs?     | ✅ Yes                  | Not the main purpose     | Not necessarily           |
+| Key word           | **QUEUE**              | **FAST**                 | **TEMPORARY**               |
+-------------------------------------------------------------------------------------------------------
+🖨️ 1. Spooling
+
+Spooling is a technique in which multiple jobs are temporarily stored in a queue before being processed by a slow device.
+It allows the CPU or application to continue working without waiting for the device.
+
+⚡ 2. Caching
+
+Caching is a technique of storing frequently used data in a faster storage area so that it can be accessed quickly when needed again. 
+It improves the overall performance of the system.
+
+Example: CPU cache stores frequently used instructions and data.
+
+👉 Key idea: Frequently used data → Fast access
+
+📦 3. Buffering
+
+Buffering is a technique of temporarily storing data while it is being transferred between two components that operate 
+at different speeds. It helps make data transfer smooth and prevents unnecessary waiting.
+
+Example: A video player stores some video data in a buffer while downloading it from the internet.
+
+👉 Key idea: Data → Temporary storage → Smooth transfer
+
